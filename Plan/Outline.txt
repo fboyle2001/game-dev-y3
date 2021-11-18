@@ -1,0 +1,47 @@
+Plan for coursework:
+Story guidance:
+- Assassin kitten video:
+    - Deployable cat character as well as the main character
+    - Cat is attached to or follows the player
+- Tree growing video:
+    - Could have a level or quest where you need to defend the tree while it grows
+    - Protect it from enemies
+- Phantom of the opera video:
+    - Could have part of the story require travel in a boat underground
+    
+Story plan:
+- First stage is retrieving the seeds
+- Second stage is defending the tree as it grows
+- Third stage is delivering them by boat to an underground location
+
+Mechanics:
+- Could have some sort of time slowdown using an empty GO that is fetched in the Start()
+  then multiply speeds or something. Probably too much.
+- Deployable cat assassin
+- Potentially add some puzzle elements, using the fact we have two characters?
+- Holes that the cat can go through but not the player
+- Power ups
+- Upgrades:
+    - Upgrade player and cat
+    - Starter kits
+- Difficulty:
+    - Affects how effective enemy AI is
+    - Number of enemies
+    - Time to defend objectives increased
+    - Lower health
+    - Less stamina
+    - Luck for drops
+- Enemies
+- Boss fight
+    - With unique mechanics perhaps learnt across the level
+
+Other:
+- Could do some cool stuff with lighting
+- Quests
+
+To-do:
+- Inventory screen
+- Vendor
+- Enemy pathing
+- Floating orbs
+- Upgrades
