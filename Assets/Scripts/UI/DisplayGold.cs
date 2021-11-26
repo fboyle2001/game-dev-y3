@@ -13,10 +13,10 @@ public class DisplayGold : MonoBehaviour
     void Start() {
         assetScript = player.GetComponent<PlayerAssets>();
         goldText = GetComponent<TMP_Text>();
-        goldText.text = assetScript.gold.ToString();
+        goldText.text = assetScript.GetGold().ToString();
     }
 
     void Update() {
-        goldText.text = assetScript.gold.ToString();
+        goldText.text = assetScript.GetGold().ToString();
     }
 }

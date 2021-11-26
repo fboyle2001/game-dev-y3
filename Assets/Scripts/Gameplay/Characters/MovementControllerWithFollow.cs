@@ -21,6 +21,7 @@ public class MovementControllerWithFollow : MonoBehaviour
 
     void FixedUpdate() {
         float sprint = 1;
+        
         if(Input.GetKey(KeyCode.LeftShift)) {
             sprint = sprintFactor;
             controllerAnimator.SetFloat("Speed_f", 0.5f);

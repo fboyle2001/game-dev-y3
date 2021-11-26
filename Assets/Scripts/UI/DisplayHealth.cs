@@ -6,29 +6,31 @@ using TMPro;
 public class DisplayHealth : MonoBehaviour
 {
 
-    public GameObject gameManager;
+    public GameObject characterManager;
     public bool asPercentage;
     public bool withPrefix;
     public string displayType = "active";
     private TMP_Text healthText;
+    private ActiveCharacterManager activeCharacterManager;
 
     void Start() {
         healthText = GetComponent<TMP_Text>();
+        activeCharacterManager = characterManager.GetComponent<ActiveCharacterManager>();
     }
 
     void Update() {
-        HealthManager manager;
+        CharacterStatManager manager;
 
         if(displayType == "active") {
-            manager = gameManager.GetComponent<SwitchPlayer>().GetActiveCharacter().GetComponent<HealthManager>();
+            manager = activeCharacterManager.GetActiveCharacter().GetComponent<CharacterStatManager>();
         } else if (displayType == "secondary") {
-            manager = gameManager.GetComponent<SwitchPlayer>().secondary.GetComponent<HealthManager>();
+            manager = activeCharacterManager.secondary.GetComponent<CharacterStatManager>();
         } else {
-            manager = gameManager.GetComponent<SwitchPlayer>().player.GetComponent<HealthManager>();
+            manager = activeCharacterManager.primary.GetComponent<CharacterStatManager>();
         }
          
         if(asPercentage) {
-            float percent = Mathf.Round(manager.health * 100 / manager.maxHealth);
+            float percent = Mathf.Round(manager.GetCurrentHealth() * 100 / manager.maxHealth);
 
             if(withPrefix) {
                 healthText.text = "Health: " + percent + "%";
@@ -37,9 +39,9 @@ public class DisplayHealth : MonoBehaviour
             }
         } else {
             if(withPrefix) {
-                healthText.text = "Health: " + manager.health + " / " + manager.maxHealth;
+                healthText.text = "Health: " + manager.GetCurrentHealth() + " / " + manager.maxHealth;
             } else {
-                healthText.text = manager.health + " / " + manager.maxHealth;
+                healthText.text = manager.GetCurrentHealth() + " / " + manager.maxHealth;
             }
         }
     }

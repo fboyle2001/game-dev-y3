@@ -7,6 +7,7 @@ public class CameraMouseRotate : MonoBehaviour
     public float horizontalSensitivity = 20f;
     public float verticalSensitivity = 20f;
     public float yClamp = 60f;
+    public bool rotationEnabled = true;
 
     private float currentYRotation = 0;
     private float currentXRotation = 0;
@@ -18,14 +19,16 @@ public class CameraMouseRotate : MonoBehaviour
     }
 
     void LateUpdate() {
-        float horizontalInputSpeed = Mathf.Clamp(Input.GetAxis("Mouse X"), -1, 1)  * horizontalSensitivity;
+        if(!rotationEnabled) return;
+        
+        float horizontalInputSpeed = Mathf.Clamp(Input.GetAxis("Mouse X"), -2, 2)  * horizontalSensitivity;
         currentXRotation += horizontalInputSpeed;
         currentXRotation = Mathf.Repeat(currentXRotation, 360);
 
         Vector3 horizontalRotate = Vector3.up * horizontalInputSpeed;
         transform.parent.Rotate(horizontalRotate);
 
-        float verticalInputSpeed = -Mathf.Clamp(Input.GetAxis("Mouse Y"), -1, 1)  * verticalSensitivity;
+        float verticalInputSpeed = -Mathf.Clamp(Input.GetAxis("Mouse Y"), -2, 2)  * verticalSensitivity;
         currentYRotation += verticalInputSpeed;
         currentYRotation = Mathf.Clamp(currentYRotation, -yClamp, yClamp);
         transform.rotation = Quaternion.Euler(currentYRotation, currentXRotation, 0);

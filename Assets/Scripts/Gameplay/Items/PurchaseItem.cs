@@ -9,14 +9,9 @@ public class PurchaseItem : MonoBehaviour
     public PlayerAssets assetManager;
 
     public void Purchase() {
-        if(assetManager.gold >= goldRequired) {
-            assetManager.gold -= goldRequired;
-
-            if(assetManager.inventoryItems.ContainsKey(itemName)) {
-                assetManager.inventoryItems[itemName] += 1;
-            } else {
-                assetManager.inventoryItems.Add(itemName, 1);
-            }
+        if(assetManager.HasEnoughGold(goldRequired)) {
+            assetManager.RemoveGold(goldRequired);
+            assetManager.GiveItem(itemName, 1);
         } else {
             Debug.Log("Not enough gold");
         }

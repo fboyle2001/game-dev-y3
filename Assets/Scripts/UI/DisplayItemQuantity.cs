@@ -15,11 +15,6 @@ public class DisplayItemQuantity : MonoBehaviour
     }
 
     void Update() {
-        if(!assetManager.inventoryItems.ContainsKey(itemName)) {
-            textComponent.text = "Quantity: 0";
-            return;
-        }
-
-        textComponent.text = "Quantity: " + assetManager.inventoryItems[itemName];
+        textComponent.text = "Quantity: " + assetManager.CountItem(itemName);
     }
 }

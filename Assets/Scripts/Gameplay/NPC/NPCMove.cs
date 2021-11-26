@@ -23,6 +23,6 @@ public class NPCMove : MonoBehaviour
 
     private void updateDest() {
         agent.SetDestination(target.transform.position);
-        Debug.Log(target.transform.position);
+        // Debug.Log(target.transform.position);
     }
 }

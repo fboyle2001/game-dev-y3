@@ -13,14 +13,14 @@ public class LocalInteraction : MonoBehaviour
     public ManageSecondaryUI secondaryUI;
     public bool playerOnly = true;
 
-    private SwitchPlayer gameCharacterManager;
+    private ActiveCharacterManager gameCharacterManager;
 
     void Start() {
-        gameCharacterManager = GameObject.FindWithTag("Game Manager").GetComponent<SwitchPlayer>();
+        gameCharacterManager = GameObject.FindWithTag("Game Manager").GetComponent<ActiveCharacterManager>();
     }
 
     void Update() {
-        if(playerOnly && !gameCharacterManager.isPlayerActive) {
+        if(playerOnly && !gameCharacterManager.IsPrimaryActive()) {
             displayText.gameObject.SetActive(false);
             displayText.text = "";
             return;
