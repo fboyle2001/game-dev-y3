@@ -54,13 +54,18 @@ public class FireWeapon : MonoBehaviour
         bool didHit = Physics.Raycast(transform.position, playerCamera.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, ~(1 << 8));
 
         if(didHit) {
-            EnemyStatManager stats = hit.rigidbody.gameObject.GetComponent<EnemyStatManager>();
-
-            if(stats != null) {
-                stats.ApplyDamage(damagePerHit);
+            if(hit.collider == null) {
+                return;
             }
 
-            Debug.DrawRay(transform.position, playerCamera.transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 5.0f);
+            EnemyStatManager enemyStats = hit.collider.gameObject.GetComponent<EnemyStatManager>();
+
+            if(enemyStats != null) {
+                enemyStats.ApplyDamage(damagePerHit * stats.damageMultiplier);
+                Debug.DrawRay(transform.position, playerCamera.transform.TransformDirection(Vector3.forward) * hit.distance, Color.green, 5.0f);
+            } else {
+                Debug.DrawRay(transform.position, playerCamera.transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 5.0f);
+            }
         } else {
             Debug.DrawRay(transform.position, playerCamera.transform.TransformDirection(Vector3.forward) * 1000, Color.blue, 5.0f);
         }
