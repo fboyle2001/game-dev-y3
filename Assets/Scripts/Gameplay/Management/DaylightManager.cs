@@ -40,4 +40,9 @@ public class DaylightManager : MonoBehaviour
         this.currentTime = time;
         UpdateIntensity();
     }
+
+    public void SetTime(int time) {
+        this.currentTime = time % 86400;
+        UpdateIntensity();
+    }
 }

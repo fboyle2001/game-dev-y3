@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,24 +14,26 @@ public class DialogueManager : MonoBehaviour
     struct DialogueEntry {
         public readonly string speaker;
         public readonly string text;
-        public  float durationInSeconds;
+        public readonly float durationInSeconds;
+        public readonly Action startCallback;
 
-        public DialogueEntry(string speaker, string text, float durationInSeconds) {
+        public DialogueEntry(string speaker, string text, float durationInSeconds, Action startCallback) {
             this.speaker = speaker;
             this.text = text;
             this.durationInSeconds = durationInSeconds;
+            this.startCallback = startCallback;
         }
     }
 
     private Queue<DialogueEntry> dialogueQueue;
     private bool activeDialogue;
 
-    void Start() {
+    void OnEnable() {
         ClearDialogue();
     }
 
-    public void QueueDialogue(string speaker, string text, float durationInSeconds) {
-        dialogueQueue.Enqueue(new DialogueEntry(speaker, text, durationInSeconds));
+    public void QueueDialogue(string speaker, string text, float durationInSeconds, Action startCallback = null) {
+        dialogueQueue.Enqueue(new DialogueEntry(speaker, text, durationInSeconds, startCallback));
 
         if(!activeDialogue) {
             DisplayDialogue();
@@ -60,6 +63,11 @@ public class DialogueManager : MonoBehaviour
         activeDialogue = true;
 
         DialogueEntry nextEntry = dialogueQueue.Dequeue();
+
+        // Callback to sync game events with dialogue
+        if(nextEntry.startCallback != null) {
+            nextEntry.startCallback();
+        }
 
         // Display the text
         DisplayDialogue(nextEntry.speaker, nextEntry.text);

@@ -9,6 +9,7 @@ TagManager:
   - Primary Character
   - Secondary Character
   - Player Camera
+  - Tree
   layers:
   - Default
   - TransparentFX
