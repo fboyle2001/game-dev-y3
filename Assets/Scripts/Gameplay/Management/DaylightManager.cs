@@ -8,7 +8,8 @@ public class DaylightManager : MonoBehaviour
     public GameObject lighting;
     
     private int currentTime = 0;
-    private int timeIncrementPerSecond = 1440; // 1440 = 60s per day, 72 = 20mins per in-game day
+    // m = mins per in-game day then TIPS = 86400 / (m * 60)
+    private int timeIncrementPerSecond = 72; // 1440 = 60s per day, 72 = 20mins per in-game day
     private bool timeFrozen = false;
 
     void FixedUpdate() {
@@ -16,7 +17,7 @@ public class DaylightManager : MonoBehaviour
 
         this.currentTime += Mathf.RoundToInt(Time.fixedDeltaTime * timeIncrementPerSecond);
         this.currentTime %= 86400;
-        
+
         UpdateIntensity();
     }
 
