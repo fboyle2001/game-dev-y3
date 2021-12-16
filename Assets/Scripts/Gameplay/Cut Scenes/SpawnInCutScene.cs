@@ -17,7 +17,7 @@ public class SpawnInCutScene : MonoBehaviour {
         gameManager.GetComponent<DaylightManager>().SetLightIntensity(1);
         
         // TODO: Localise
-        gameManager.GetComponent<DialogueManager>().QueueDialogue("You", "AHHHHHHHH!!!", 5);
+        gameManager.GetComponent<DialogueManager>().QueueDialogue("You", "AHHHHHHHH!!! this text is meant to be quite long this text is meant to be quite long this text is meant to be quite long this text is meant to be quite long this text is meant to be quite long ", 5);
     }
 
     void Update() {

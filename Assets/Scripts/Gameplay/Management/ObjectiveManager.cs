@@ -60,8 +60,7 @@ public class ObjectiveManager : MonoBehaviour
                 text += "\n";
             }
 
-            text += "- " + entry.title + "\n";
-            text += entry.description;
+            text += "□ " + entry.title + "\n";
         }
 
         objectiveTextList.text = text;
