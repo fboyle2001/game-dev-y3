@@ -3,6 +3,9 @@ Story guidance:
 - Assassin kitten video:
     - Deployable cat character as well as the main character
     - Cat is attached to or follows the player
+    - Alt: They can transform into the cat, will make it much easier with pathing etc
+        - Lose some of the complexity of steering behaviour though
+        - Could steering for EXP orbs?
 - Tree growing video:
     - Could have a level or quest where you need to defend the tree while it grows
     - Protect it from enemies
@@ -13,6 +16,10 @@ Story plan:
 - First stage is retrieving the seeds
 - Second stage is defending the tree as it grows
 - Third stage is delivering them by boat to an underground location
+
+Tutorial Stage:
+- Unlock the ability to transform into the assassin cat
+- Walks through how to use abilities
 
 Mechanics:
 - Could have some sort of time slowdown using an empty GO that is fetched in the Start()
@@ -40,8 +47,6 @@ Other:
 - Quests
 
 To-do:
-- Inventory screen
-- Vendor
 - Enemy pathing
 - Floating orbs
 - Upgrades

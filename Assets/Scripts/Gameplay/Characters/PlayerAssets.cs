@@ -6,19 +6,19 @@ public class PlayerAssets : MonoBehaviour
 {
 
     public int initialGold = 0;
-    public float initialExperience = 0;
+    // public float initialExperience = 0;
 
     private Dictionary<string, int> inventoryItems;
 
     private int gold;
-    private float experience;
-    private float spentExperience;
+    // private float experience;
+    // private float spentExperience;
 
     void Start() {
         inventoryItems = new Dictionary<string, int>();
         gold = initialGold;
-        experience = initialExperience;
-        spentExperience = 0;
+        // experience = initialExperience;
+        // spentExperience = 0;
     }
 
     public int CountItem(string itemName) {

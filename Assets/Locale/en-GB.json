@@ -1,0 +1,13 @@
+{
+    "initialSpawnFalling": {
+        "text": [
+            "AHHHHHHHHHHHH!!!!"
+        ]
+    },
+    "initialSpawnWakeUp": {
+        "text": [
+            "Where am I?!",
+            "<CAT NAME> where are you?"
+        ]
+    }
+}
