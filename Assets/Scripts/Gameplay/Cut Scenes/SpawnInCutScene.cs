@@ -12,12 +12,20 @@ public class SpawnInCutScene : MonoBehaviour {
     private float timeUnder = 0;
     private bool scriptFrozen = false;
 
+    private DaylightManager daylightManager;
+    private ObjectiveManager objectiveManager;
+    private DialogueManager dialogueManager;
+
     void Start() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
-        gameManager.GetComponent<DaylightManager>().SetLightIntensity(1);
+        daylightManager = gameManager.GetComponent<DaylightManager>();
+        objectiveManager = gameManager.GetComponent<ObjectiveManager>();
+        dialogueManager = gameManager.GetComponent<DialogueManager>();
+
+        daylightManager.SetLightIntensity(1);
         
         // TODO: Localise
-        gameManager.GetComponent<DialogueManager>().QueueDialogue("You", "AHHHHHHHH!!! this text is meant to be quite long this text is meant to be quite long this text is meant to be quite long this text is meant to be quite long this text is meant to be quite long ", 5);
+        dialogueManager.QueueDialogue("You", "AHHHHHHHH!!!", 8);
     }
 
     void Update() {
@@ -38,7 +46,7 @@ public class SpawnInCutScene : MonoBehaviour {
             realCamera.backgroundColor = Color.black;
 
             // Darken time
-            gameManager.GetComponent<DaylightManager>().SetLightIntensity(0);
+            daylightManager.SetLightIntensity(0);
 
             // Move the character
             realPlayer.transform.position = new Vector3(gameObject.transform.position.x, 17, gameObject.transform.position.z);
@@ -54,11 +62,11 @@ public class SpawnInCutScene : MonoBehaviour {
     void FinishCutScene() {
         realCamera.cullingMask = -1;
         realCamera.clearFlags = CameraClearFlags.Skybox;
-        gameManager.GetComponent<DialogueManager>().QueueDialogue("You", "Where am I?", 3);
-        gameManager.GetComponent<DialogueManager>().QueueDialogue("You", "Where is <CAT NAME>?", 3);
-        gameManager.GetComponent<DialogueManager>().QueueDialogue("You", "Is that smoke over there? Maybe someone is nearby...", 5, () => {
-            gameManager.GetComponent<ObjectiveManager>().AddObjective("findInitialCamp", "Follow the smoke", "Someone might be nearby", new ObjectiveManager.RewardEntry(0, 0));
-            gameManager.GetComponent<ObjectiveManager>().ShowObjectives();
+        dialogueManager.QueueDialogue("You", "Where am I?", 3);
+        dialogueManager.QueueDialogue("You", "Where is <CAT NAME>?", 3);
+        dialogueManager.QueueDialogue("You", "Something smells like it's burning. Maybe there is a camp nearby?", 5, () => {
+            objectiveManager.AddObjective("findInitialCamp", "Find help", "Someone might be nearby", new ObjectiveManager.RewardEntry(0, 0));
+            objectiveManager.ShowObjectives();
         });
     }
 

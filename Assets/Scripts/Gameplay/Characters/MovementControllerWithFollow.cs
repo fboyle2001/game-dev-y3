@@ -45,7 +45,7 @@ public class MovementControllerWithFollow : MonoBehaviour
             transform.LookAt(followTarget.transform);
         } else {
             Vector3 movement = transform.TransformDirection(Vector3.forward) * Input.GetAxis("Vertical") * Time.fixedDeltaTime * horizontalForce * sprint;
-            movement += transform.TransformDirection(Vector3.right) * Input.GetAxis("Horizontal") * Time.fixedDeltaTime * horizontalForce * sprint;
+            movement += transform.TransformDirection(Vector3.right) * Input.GetAxis("Horizontal") * Time.fixedDeltaTime * horizontalForce * (sprint / 2);
             controllerRb.MovePosition(transform.position + movement);
         }
     }
