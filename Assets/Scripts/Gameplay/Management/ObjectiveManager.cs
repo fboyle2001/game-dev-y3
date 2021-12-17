@@ -48,6 +48,16 @@ public class ObjectiveManager : MonoBehaviour
         objectivePanel.SetActive(true);
     }
 
+    public bool HasAtLeastOneObjective(string[] potentialObjectivesIds) {
+        foreach (string objectiveId in potentialObjectivesIds) {
+            if(objectives.ContainsKey(objectiveId)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     void ClearObjectives() {
         objectives = new Dictionary<string, ObjectiveEntry>();
     }
