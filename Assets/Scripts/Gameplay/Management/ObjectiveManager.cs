@@ -50,12 +50,16 @@ public class ObjectiveManager : MonoBehaviour
 
     public bool HasAtLeastOneObjective(string[] potentialObjectivesIds) {
         foreach (string objectiveId in potentialObjectivesIds) {
-            if(objectives.ContainsKey(objectiveId)) {
+            if(this.HasObjective(objectiveId)) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    public bool HasObjective(string objectiveId) {
+        return objectives.ContainsKey(objectiveId);
     }
 
     void ClearObjectives() {
