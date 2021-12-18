@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: a5839634f18aa484bbc86317f4240d94, type: 2}
 --- !u!224 &16098649 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4301310813228751780, guid: 6002b2c683a829e43b37a202e2d79128, type: 3}
@@ -285,15 +285,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7603063815342529448, guid: 8af2e9e1ba034964faeab4584b0b6406, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.12
+      value: -15.21
       objectReference: {fileID: 0}
     - target: {fileID: 7603063815342529448, guid: 8af2e9e1ba034964faeab4584b0b6406, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.065
+      value: 1.07
       objectReference: {fileID: 0}
     - target: {fileID: 7603063815342529448, guid: 8af2e9e1ba034964faeab4584b0b6406, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.8
+      value: 14.23
       objectReference: {fileID: 0}
     - target: {fileID: 7603063815342529448, guid: 8af2e9e1ba034964faeab4584b0b6406, type: 3}
       propertyPath: m_LocalRotation.w
@@ -329,7 +329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7603063815809080563, guid: 8af2e9e1ba034964faeab4584b0b6406, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7603063815809080563, guid: 8af2e9e1ba034964faeab4584b0b6406, type: 3}
       propertyPath: followTarget
@@ -4461,6 +4461,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!195 &900636687
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900636684}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &908401068
 GameObject:
   m_ObjectHideFlags: 0
@@ -6926,7 +6948,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 32
   m_IsActive: 1
 --- !u!4 &1205219426
 Transform:
