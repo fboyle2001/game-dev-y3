@@ -20,6 +20,7 @@ public class CharacterStats : MonoBehaviour
 
     void OnEnable() {
         currentHealth = maxHealth;
+        PropagateHealthEvent(0);
     }
 
     void Update() {
@@ -74,6 +75,12 @@ public class CharacterStats : MonoBehaviour
         PropagateStatEvent();
     }
 
+    public void AddMaxHealth(float amount) {
+        this.maxHealth += amount;
+        PropagateHealthEvent(0);
+        PropagateStatEvent();
+    }
+
     public void SetHealth(float health) {
         health = Mathf.Clamp(health, 0, maxHealth);
         float change = currentHealth - health;
@@ -92,13 +99,28 @@ public class CharacterStats : MonoBehaviour
         PropagateStatEvent();
     }
 
+    public void AddDamageMultiplier(float amount) {
+        this.damageMultiplier += amount;
+        PropagateStatEvent();
+    }
+
     public void SetRegenPerSecond(float regen) {
         this.regen = regen;
         PropagateStatEvent();
     }
 
+    public void AddRegenPerSecond(float amount) {
+        this.regen += amount;
+        PropagateStatEvent();
+    }
+
     public void SetArmour(float armour) {
         this.armour = armour;
+        PropagateStatEvent();
+    }
+
+    public void AddArmour(float amount) {
+        this.armour += amount;
         PropagateStatEvent();
     }
 

@@ -8,7 +8,7 @@ public class RegenPotionItem : ConsumableInventoryItem {
 
     public override void ApplyItemEffect(GameObject gameManager) {
         CharacterStats stats = gameManager.GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>();
-        stats.SetRegenPerSecond(stats.GetRegenPerSecond() + 0.2f);
+        stats.AddRegenPerSecond(0.2f);
     }
 
 }

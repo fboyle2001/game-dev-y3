@@ -11,11 +11,9 @@ public class StatDisplayHandler : MonoBehaviour
     public GameObject maxHealthText;
     public GameObject damageMultiplierText;
 
-    private CharacterStats primaryStats;
-
     void OnEnable() {
-        primaryStats = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>();
-        primaryStats.RegisterStatUpdateListener(new System.Action<CharacterStats>((stats) => {
+        GameObject.FindGameObjectWithTag("Game Manager").GetComponent<CharacterManager>()
+        .primary.GetComponent<CharacterStats>().RegisterStatUpdateListener(new System.Action<CharacterStats>((stats) => {
             armourText.GetComponent<TMP_Text>().SetText(stats.GetArmour().ToString("0.0"));
             regenText.GetComponent<TMP_Text>().SetText(stats.GetRegenPerSecond().ToString("0.0"));
             maxHealthText.GetComponent<TMP_Text>().SetText(stats.GetMaxHealth().ToString("0.0"));
@@ -24,3 +22,4 @@ public class StatDisplayHandler : MonoBehaviour
     }
 
 }
+
