@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour {
 
@@ -10,14 +11,26 @@ public class PlayerInventory : MonoBehaviour {
         registeredItems.Add(item.itemIdentifier, item);
     }
 
+    public GameObject weaponSlot;
+    public GameObject armourSlot;
+    public GameObject ringSlot;
     public InventorySlot[] inventorySlots;
     public GameObject emptyText;
 
+    private GameObject gameManager;
+
+    private EquippableInventoryItem currentWeapon = null;
+    private EquippableInventoryItem currentArmour = null;
+    private EquippableInventoryItem currentRing = null;
+
     private void RegisterItems() {
         RegisterItem(new RegenPotionItem(Resources.Load<Sprite>("Images/UI/Health")));
+        RegisterItem(new TatteredArmourItem(Resources.Load<Sprite>("Images/Characters/Fox")));
+        RegisterItem(new IronArmourItem(Resources.Load<Sprite>("Images/Characters/Player")));
     }
 
     void OnEnable() {
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         RegisterItems();
 
         foreach(InventorySlot slot in inventorySlots) {
@@ -25,6 +38,9 @@ public class PlayerInventory : MonoBehaviour {
         }
 
         emptyText.SetActive(true);
+        AddItemToInventory("tatteredArmour", 1, 0);
+        AddItemToInventory("tatteredArmour", 1, 0);
+        AddItemToInventory("ironArmour", 1, 0);
     }
 
     public void AddItemToInventory(string itemIdentifier, int quantity, int value) {
@@ -79,6 +95,38 @@ public class PlayerInventory : MonoBehaviour {
 
         if(empty) {
             emptyText.SetActive(true);
+        }
+    }
+
+    public void EquipItem(EquippableInventoryItem item, string slot) {
+        switch(slot) {
+            case "weapon":
+                if(currentWeapon != null) {
+                    currentWeapon.ReverseEffect(gameManager);
+                }
+
+                weaponSlot.GetComponent<Image>().sprite = item.itemImage;
+                currentWeapon = item;
+                break;
+            case "armour":
+                if(currentArmour != null) {
+                    currentArmour.ReverseEffect(gameManager);
+                    Debug.Log("applied reverse");
+                }
+
+                armourSlot.GetComponent<Image>().sprite = item.itemImage;
+                currentArmour = item;
+                break;
+            case "ring":
+                if(currentRing != null) {
+                    currentRing.ReverseEffect(gameManager);
+                }
+
+                ringSlot.GetComponent<Image>().sprite = item.itemImage;
+                currentRing = item;
+                break;
+            default:
+                break;
         }
     }
 
