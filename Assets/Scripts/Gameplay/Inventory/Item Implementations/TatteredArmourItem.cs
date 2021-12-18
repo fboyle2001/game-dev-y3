@@ -18,7 +18,7 @@ public class TatteredArmourItem : EquippableInventoryItem {
         stats.AddArmour(-5);
 
         PlayerInventory inventory = gameManager.GetComponent<CharacterManager>().GetPlayerInventory();
-        inventory.AddItemToInventory(itemIdentifier, 1, this.goldValue);
+        inventory.AddItemToInventory(itemIdentifier, 1);
     }
 
 }

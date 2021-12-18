@@ -18,7 +18,7 @@ public class IronArmourItem : EquippableInventoryItem {
         stats.AddArmour(-10);
         
         PlayerInventory inventory = gameManager.GetComponent<CharacterManager>().GetPlayerInventory();
-        inventory.AddItemToInventory(itemIdentifier, 1, this.goldValue);
+        inventory.AddItemToInventory(itemIdentifier, 1);
     }
 
 }

@@ -38,12 +38,12 @@ public class PlayerInventory : MonoBehaviour {
         }
 
         emptyText.SetActive(true);
-        AddItemToInventory("tatteredArmour", 1, 0);
-        AddItemToInventory("tatteredArmour", 1, 0);
-        AddItemToInventory("ironArmour", 1, 0);
+        AddItemToInventory("tatteredArmour", 1);
+        AddItemToInventory("tatteredArmour", 1);
+        AddItemToInventory("ironArmour", 1);
     }
 
-    public void AddItemToInventory(string itemIdentifier, int quantity, int value) {
+    public void AddItemToInventory(string itemIdentifier, int quantity) {
         // First check if we have an item slot occupied by this
         bool inventoryFull = true;
         InventorySlot occupiedSlot = null;
@@ -68,13 +68,14 @@ public class PlayerInventory : MonoBehaviour {
 
         if(occupiedSlot == null && inventoryFull) {
             // TODO: Let them know their inventory is full and pay them for the excess
-            int goldPayout = quantity * value;
+            int goldPayout = quantity * registeredItems[itemIdentifier].goldValue;
+            gameManager.GetComponent<PlayerResources>().UpdateGold(goldPayout);
         } else if (occupiedSlot != null) {
             // Add to the current slot and pay for their excess
             int realQuantity = occupiedSlot.GetQuantity() + quantity > occupiedSlot.GetOccupyingItem().maxQuantity ?
                     occupiedSlot.GetOccupyingItem().maxQuantity - occupiedSlot.GetQuantity() : quantity;
-            int goldPayout = (quantity - realQuantity) * value; 
-            
+            int goldPayout = (quantity - realQuantity) * registeredItems[itemIdentifier].goldValue; 
+            gameManager.GetComponent<PlayerResources>().UpdateGold(goldPayout);
             occupiedSlot.UpdateQuantity(realQuantity);
         } else {
             // Occupy a new slot

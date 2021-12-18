@@ -25,7 +25,12 @@ public class InitialCampCutScene : CutScene {
             dialogueManager.QueueDialogue("NPC1", "I think I might know where your cat is but I don't know whether to trust you..." + 
                 "there is an Orc's cave just off the path you followed to get here, might be worth a look.", 3);
             dialogueManager.QueueDialogue("NPC1", "Take out the Orc and then come back here and I'll explain everything you want to know." + 
-                "Here's a weapon to help you out, don't do anything stupid...", 3);
+                "Here's some stuff to help you out, don't do anything stupid...", 3, () => {
+                    gameManager.GetComponent<TutorialManager>().QueueTutorial("Inventory",
+                        "Press [I] to open your inventory. On the left side you will find items that give you helpful bonuses throughout the game." + 
+                        " On the right side is your character, stats and equipped weaponry. NPC1 has gifted you a <WEAPON_NAME> and a rare full health potion." + 
+                        " Equip the weapon by clicking 'Equip Item' and drink the potion by clicking 'Use Item' - it will help a lot in the Orc cave!", 15);
+                });
         }, 30);
 
         QueueAction(() => {
