@@ -26,6 +26,8 @@ public class InitialCampCutScene : CutScene {
                 "there is an Orc's cave just off the path you followed to get here, might be worth a look.", 3);
             dialogueManager.QueueDialogue("NPC1", "Take out the Orc and then come back here and I'll explain everything you want to know." + 
                 "Here's some stuff to help you out, don't do anything stupid...", 3, () => {
+                    gameManager.GetComponent<PlayerInventory>().AddItemToInventory("fullHealthPotion", 1);
+                    gameManager.GetComponent<PlayerInventory>().AddItemToInventory("rustedBow", 1);
                     gameManager.GetComponent<TutorialManager>().QueueTutorial("Inventory",
                         "Press [I] to open your inventory. On the left side you will find items that give you helpful bonuses throughout the game." + 
                         " On the right side is your character, stats and equipped weaponry. NPC1 has gifted you a <WEAPON_NAME> and a rare full health potion." + 

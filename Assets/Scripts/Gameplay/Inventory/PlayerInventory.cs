@@ -27,6 +27,8 @@ public class PlayerInventory : MonoBehaviour {
         RegisterItem(new RegenPotionItem(Resources.Load<Sprite>("Images/UI/Health")));
         RegisterItem(new TatteredArmourItem(Resources.Load<Sprite>("Images/Characters/Fox")));
         RegisterItem(new IronArmourItem(Resources.Load<Sprite>("Images/Characters/Player")));
+        RegisterItem(new RustedBowItem(Resources.Load<Sprite>("Images/UI/Crosshair")));
+        RegisterItem(new FullHealthPotionItem(Resources.Load<Sprite>("Images/Characters/Player Front")));
     }
 
     void OnEnable() {
@@ -38,9 +40,6 @@ public class PlayerInventory : MonoBehaviour {
         }
 
         emptyText.SetActive(true);
-        AddItemToInventory("tatteredArmour", 1);
-        AddItemToInventory("tatteredArmour", 1);
-        AddItemToInventory("ironArmour", 1);
     }
 
     public void AddItemToInventory(string itemIdentifier, int quantity) {

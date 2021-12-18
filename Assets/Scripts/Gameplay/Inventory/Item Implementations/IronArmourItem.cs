@@ -10,15 +10,14 @@ public class IronArmourItem : EquippableInventoryItem {
         CharacterStats stats = gameManager.GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>();
         stats.AddArmour(10);
 
-        gameManager.GetComponent<CharacterManager>().GetPlayerInventory().EquipItem(this, "armour");
+        gameManager.GetComponent<PlayerInventory>().EquipItem(this, "armour");
     }
 
     public override void ReverseEffect(GameObject gameManager) {
         CharacterStats stats = gameManager.GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>();
         stats.AddArmour(-10);
         
-        PlayerInventory inventory = gameManager.GetComponent<CharacterManager>().GetPlayerInventory();
-        inventory.AddItemToInventory(itemIdentifier, 1);
+        gameManager.GetComponent<PlayerInventory>().AddItemToInventory(itemIdentifier, 1);
     }
 
 }

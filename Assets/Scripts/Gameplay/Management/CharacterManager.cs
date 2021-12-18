@@ -19,10 +19,7 @@ public class CharacterManager : MonoBehaviour
     private bool secondaryUnlocked = false;
     private bool primaryActive = true;
 
-    private PlayerInventory playerInventory;
-
     void OnEnable() {
-        playerInventory = GameObject.FindGameObjectWithTag("Inventory").GetComponent<PlayerInventory>();
         // Automatically updates the UI with the health of each character
         primary.GetComponent<CharacterStats>().RegisterHealthUpdateListener(new System.Action<CharacterStats, float>((stats, change) => {
             int percentage = Mathf.RoundToInt(100 * Mathf.Clamp01(stats.GetCurrentHealth() / stats.GetMaxHealth()));
@@ -33,10 +30,6 @@ public class CharacterManager : MonoBehaviour
             int percentage = Mathf.RoundToInt(100 * Mathf.Clamp01(stats.GetCurrentHealth() / stats.GetMaxHealth()));
             primaryHealth.GetComponent<TMP_Text>().SetText(percentage + "%");
         }));
-    }
-
-    public PlayerInventory GetPlayerInventory() {
-        return playerInventory;
     }
 
     public void DisplaySecondaryPanel(bool display) {
