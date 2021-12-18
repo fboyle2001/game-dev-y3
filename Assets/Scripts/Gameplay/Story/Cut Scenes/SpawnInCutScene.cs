@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnInCutScene : MonoBehaviour {
 
     public GameObject realPlayer;
-    public Camera realCamera;
+    public GameObject realCamera;
 
     private GameObject gameManager;
     private float lastVelocityMagnitude = 0;
@@ -15,24 +15,28 @@ public class SpawnInCutScene : MonoBehaviour {
     private DaylightManager daylightManager;
     private ObjectiveManager objectiveManager;
     private DialogueManager dialogueManager;
+    private CharacterManager characterManager;
 
     void Start() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         daylightManager = gameManager.GetComponent<DaylightManager>();
         objectiveManager = gameManager.GetComponent<ObjectiveManager>();
         dialogueManager = gameManager.GetComponent<DialogueManager>();
+        characterManager = gameManager.GetComponent<CharacterManager>();
 
         daylightManager.SetLightIntensity(1);
+        characterManager.DisplaySecondaryPanel(false);
         
         // TODO: Localise
         dialogueManager.QueueDialogue("You", "AHHHHHHHH!!!", 8);
+        gameManager.GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>().ApplyDamageOverTime(99, 16);
     }
 
-    void Update() {
+    void FixedUpdate() {
         if(scriptFrozen) return;
 
         if(lastVelocityMagnitude <= 3) {
-            timeUnder += Time.deltaTime;
+            timeUnder += Time.fixedDeltaTime;
         } else {
             timeUnder = 0;
         }
@@ -41,9 +45,9 @@ public class SpawnInCutScene : MonoBehaviour {
 
         if(timeUnder > 1.5) {
             // Blacken screen
-            realCamera.cullingMask = 0;
-            realCamera.clearFlags = CameraClearFlags.SolidColor;
-            realCamera.backgroundColor = Color.black;
+            realCamera.GetComponent<Camera>().cullingMask = 0;
+            realCamera.GetComponent<Camera>().clearFlags = CameraClearFlags.SolidColor;
+            realCamera.GetComponent<Camera>().backgroundColor = Color.black;
 
             // Darken time
             daylightManager.SetLightIntensity(0);
@@ -51,7 +55,7 @@ public class SpawnInCutScene : MonoBehaviour {
             // Move the character
             realPlayer.transform.position = new Vector3(gameObject.transform.position.x, 17, gameObject.transform.position.z);
             gameObject.SetActive(false);
-            realPlayer.SetActive(true);
+            realCamera.SetActive(true);
 
             // Could add another step to display some text during the blackout phase
             Invoke("FinishCutScene", 1);
@@ -60,8 +64,9 @@ public class SpawnInCutScene : MonoBehaviour {
     }
 
     void FinishCutScene() {
-        realCamera.cullingMask = -1;
-        realCamera.clearFlags = CameraClearFlags.Skybox;
+        realCamera.GetComponent<Camera>().cullingMask = -1;
+        realCamera.GetComponent<Camera>().clearFlags = CameraClearFlags.Skybox;
+        gameManager.GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>().SetHealth(1f);
         dialogueManager.QueueDialogue("You", "Where am I?", 3);
         dialogueManager.QueueDialogue("You", "Where is <CAT NAME>?", 3);
         dialogueManager.QueueDialogue("You", "Something smells like it's burning. Maybe there is a camp nearby?", 5, () => {

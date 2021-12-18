@@ -31,6 +31,7 @@ public class ObjectiveManager : MonoBehaviour
             this.description = description;
             this.reward = reward;
         }
+        
     }
 
     private Dictionary<string, ObjectiveEntry> objectives;
@@ -86,7 +87,18 @@ public class ObjectiveManager : MonoBehaviour
     }
 
     public void CompleteObjective(string idenitifer, float rewardScalar) {
+        ObjectiveEntry objective;
+        bool found = objectives.TryGetValue(idenitifer, out objective);
 
+        if(!found) {
+            return;
+        }
+
+        objectives.Remove(idenitifer);
+        UpdateObjectiveDisplay();
+
+        // TODO: Give rewards
+        RewardEntry reward = objective.reward;
     }
 
 }
