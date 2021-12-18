@@ -20,11 +20,9 @@ public class CharacterManager : MonoBehaviour
     private bool primaryActive = true;
 
     void OnEnable() {
-        Debug.Log(primary.GetComponent<CharacterStats>().GetCurrentHealth() / primary.GetComponent<CharacterStats>().GetMaxHealth());
         // Automatically updates the UI with the health of each character
         primary.GetComponent<CharacterStats>().RegisterHealthUpdateListener(new System.Action<CharacterStats, float>((stats, change) => {
             int percentage = Mathf.RoundToInt(100 * Mathf.Clamp01(stats.GetCurrentHealth() / stats.GetMaxHealth()));
-            Debug.Log(percentage);
             primaryHealth.GetComponent<TMP_Text>().SetText(percentage + "%");
         }));
 
@@ -46,11 +44,4 @@ public class CharacterManager : MonoBehaviour
         return primaryActive;
     }
 
-    void Start() {
-        
-    }
-
-    void FixedUpdate() {
-
-    }
 }
