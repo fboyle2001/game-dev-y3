@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private InputAction toggleInventoryAction;
     private InputAction sprintingAction;
     private InputAction lookAroundAction;
+    private InputAction attackAction;
 
     private void Awake() {
         playerInput = GetComponent<PlayerInput>();
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
         toggleInventoryAction = playerInput.actions["Toggle Inventory"];
         sprintingAction = playerInput.actions["Sprinting"];
         lookAroundAction = playerInput.actions["Look Around"];
+        attackAction = playerInput.actions["Attack"];
 
         currentController = primary.GetComponent<ICharacterActions>();
     }
@@ -42,6 +44,9 @@ public class PlayerController : MonoBehaviour
 
         lookAroundAction.performed += StartLookAround;
         lookAroundAction.canceled += StopLookAround;
+
+        attackAction.performed += OnAttackPerformed;
+        attackAction.canceled += OnAttackCancelled;
     }
 
     private void OnDisable() {
@@ -55,6 +60,9 @@ public class PlayerController : MonoBehaviour
         
         lookAroundAction.performed -= StartLookAround;
         lookAroundAction.canceled -= StopLookAround;
+
+        attackAction.performed -= OnAttackPerformed;
+        attackAction.canceled -= OnAttackCancelled;
     }
 
     private void ToggleInventory(InputAction.CallbackContext context) {
@@ -85,6 +93,14 @@ public class PlayerController : MonoBehaviour
 
     private void StopLookAround(InputAction.CallbackContext context) {
         currentController.StopLookAround();
+    }
+
+    private void OnAttackPerformed(InputAction.CallbackContext context) {
+        currentController.StartAttack();
+    }
+
+    private void OnAttackCancelled(InputAction.CallbackContext context) {
+        currentController.StopAttack();
     }
 
 }

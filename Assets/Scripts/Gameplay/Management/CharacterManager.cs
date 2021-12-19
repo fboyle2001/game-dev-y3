@@ -44,4 +44,9 @@ public class CharacterManager : MonoBehaviour
         return primaryActive;
     }
 
+    public GameObject GetActiveCharacter() {
+        // TODO: Implement
+        return primary;
+    }
+
 }

@@ -11,14 +11,20 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     public float mouseSensitivityX = 5;
     public float mouseSensitivityY = 5;
     public GameObject primaryCamera;
+
     private Rigidbody rb;
+    private GameObject gameManager;
+    private WeaponManager weaponManager;
 
     private bool sprinting = false;
     private Vector2 movementDirection = new Vector2(0, 0);
     private Vector2 lookDirection = new Vector2(0, 0);
+    private bool attacking = false;
 
     void Awake() {
         rb = GetComponent<Rigidbody>();
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager");
+        weaponManager = gameManager.GetComponent<WeaponManager>();
     }
 
     void FixedUpdate() {
@@ -26,6 +32,9 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     void Update() {
+        if(attacking) {
+            weaponManager.FireWeapon();
+        }
     }
 
     void LateUpdate() {
@@ -90,7 +99,6 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
         Quaternion playerRot = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, right, 0)), Time.deltaTime);
         primaryCamera.transform.RotateAround(transform.position, Vector3.up, playerRot.eulerAngles.x);
         transform.rotation = playerRot;
-        
     }
 
     public void StartLookAround(Vector2 direction) {
@@ -99,6 +107,14 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
 
     public void StopLookAround() {
         this.lookDirection = new Vector2(0, 0);;
+    }
+
+    public void StartAttack() {
+        attacking = true && weaponManager.HasWeapon();
+    }
+
+    public void StopAttack() {
+        attacking = false;
     }
 
 }

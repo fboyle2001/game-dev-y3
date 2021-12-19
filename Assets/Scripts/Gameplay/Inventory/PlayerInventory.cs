@@ -19,9 +19,11 @@ public class PlayerInventory : MonoBehaviour {
 
     private GameObject gameManager;
 
-    private EquippableInventoryItem currentWeapon = null;
+    private WeaponInventoryItem currentWeapon = null;
     private EquippableInventoryItem currentArmour = null;
     private EquippableInventoryItem currentRing = null;
+
+    private List<System.Action<PlayerInventory>> equipUpdateListeners = new List<System.Action<PlayerInventory>>();
 
     private void RegisterItems() {
         RegisterItem(new RegenPotionItem(Resources.Load<Sprite>("Images/UI/Health")));
@@ -29,6 +31,7 @@ public class PlayerInventory : MonoBehaviour {
         RegisterItem(new IronArmourItem(Resources.Load<Sprite>("Images/Characters/Player")));
         RegisterItem(new RustedBowItem(Resources.Load<Sprite>("Images/UI/Crosshair")));
         RegisterItem(new FullHealthPotionItem(Resources.Load<Sprite>("Images/Characters/Player Front")));
+        RegisterItem(new WorstBowItem(Resources.Load<Sprite>("Images/Keys/I")));
     }
 
     void OnEnable() {
@@ -40,6 +43,13 @@ public class PlayerInventory : MonoBehaviour {
         }
 
         emptyText.SetActive(true);
+
+        GetComponent<PlayerInventory>().AddItemToInventory("rustedBow", 1);
+        GetComponent<PlayerInventory>().AddItemToInventory("worstBow", 2);
+    }
+
+    public void RegisterEquipUpdateListener(System.Action<PlayerInventory> action) {
+        equipUpdateListeners.Add(action);
     }
 
     public void AddItemToInventory(string itemIdentifier, int quantity) {
@@ -64,21 +74,27 @@ public class PlayerInventory : MonoBehaviour {
         }
 
         emptyText.SetActive(false);
+        InventoryItem identifiedItem = registeredItems[itemIdentifier];
 
         if(occupiedSlot == null && inventoryFull) {
             // TODO: Let them know their inventory is full and pay them for the excess
-            int goldPayout = quantity * registeredItems[itemIdentifier].goldValue;
+            int goldPayout = quantity * identifiedItem.goldValue;
             gameManager.GetComponent<PlayerResources>().UpdateGold(goldPayout);
         } else if (occupiedSlot != null) {
             // Add to the current slot and pay for their excess
             int realQuantity = occupiedSlot.GetQuantity() + quantity > occupiedSlot.GetOccupyingItem().maxQuantity ?
                     occupiedSlot.GetOccupyingItem().maxQuantity - occupiedSlot.GetQuantity() : quantity;
-            int goldPayout = (quantity - realQuantity) * registeredItems[itemIdentifier].goldValue; 
+            int goldPayout = (quantity - realQuantity) * identifiedItem.goldValue; 
+
             gameManager.GetComponent<PlayerResources>().UpdateGold(goldPayout);
             occupiedSlot.UpdateQuantity(realQuantity);
         } else {
             // Occupy a new slot
-            firstEmptySlot.SetOccupyingItem(registeredItems[itemIdentifier], quantity);
+            int realQuantity = quantity > identifiedItem.maxQuantity ? identifiedItem.maxQuantity : quantity;
+            int goldPayout = (quantity - realQuantity) * identifiedItem.goldValue;
+            gameManager.GetComponent<PlayerResources>().UpdateGold(goldPayout);
+
+            firstEmptySlot.SetOccupyingItem(identifiedItem, realQuantity);
             firstEmptySlot.SetVisible(true);
         }
 
@@ -106,12 +122,11 @@ public class PlayerInventory : MonoBehaviour {
                 }
 
                 weaponSlot.GetComponent<Image>().sprite = item.itemImage;
-                currentWeapon = item;
+                currentWeapon = item as WeaponInventoryItem;
                 break;
             case "armour":
                 if(currentArmour != null) {
                     currentArmour.ReverseEffect(gameManager);
-                    Debug.Log("applied reverse");
                 }
 
                 armourSlot.GetComponent<Image>().sprite = item.itemImage;
@@ -126,8 +141,14 @@ public class PlayerInventory : MonoBehaviour {
                 currentRing = item;
                 break;
             default:
-                break;
+                return;
         }
+
+        equipUpdateListeners.ForEach(action => action(this));
+    }
+
+    public WeaponInventoryItem GetCurrentWeapon() {
+        return currentWeapon;
     }
 
 }

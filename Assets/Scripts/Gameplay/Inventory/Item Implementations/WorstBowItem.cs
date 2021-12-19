@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RustedBowItem : WeaponInventoryItem {
+public class WorstBowItem : WeaponInventoryItem {
     
-    public RustedBowItem(Sprite itemImage) : base(itemIdentifier: "rustedBow", itemName: "Rusted Bow", goldValue: 100, itemImage, roundsPerMinute: 120, damagePerRound: 5) {}
+    public WorstBowItem(Sprite itemImage) : base(itemIdentifier: "worstBow", itemName: "Worst Bow", goldValue: 100, itemImage, roundsPerMinute: 10, damagePerRound: 5) {}
 
     public override void ApplyItemEffect(GameObject gameManager) {
         CharacterStats stats = gameManager.GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>();

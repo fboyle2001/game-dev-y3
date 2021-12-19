@@ -16,4 +16,8 @@ public interface ICharacterActions {
 
     void StopLookAround();
 
+    void StartAttack();
+
+    void StopAttack();
+
 }
