@@ -93,8 +93,19 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
 
         // Debug.Log("Mouse Up: " + up + ", Mouse Right: " + right);
         
-        Quaternion cameraRot = Quaternion.Slerp(primaryCamera.transform.rotation, Quaternion.Euler(primaryCamera.transform.rotation.eulerAngles + new Vector3(up, 0, 0)), Time.deltaTime);
-        primaryCamera.transform.rotation = cameraRot;
+        Vector3 vectorCameraRot = primaryCamera.transform.rotation.eulerAngles + new Vector3(up, 0, 0);
+        Quaternion cameraRot = Quaternion.Slerp(primaryCamera.transform.rotation, Quaternion.Euler(vectorCameraRot), Time.deltaTime);
+        Vector3 cameraEulerAngles = cameraRot.eulerAngles;
+        
+        cameraEulerAngles.x = Mathf.Clamp(cameraRot.eulerAngles.x, 0, 360);
+
+        if(cameraEulerAngles.x > 60 && cameraEulerAngles.x < 150) {
+            cameraEulerAngles.x = 60;
+        } else if(cameraEulerAngles.x < 300 && cameraEulerAngles.x > 180) {
+            cameraEulerAngles.x = 300;
+        }
+
+        primaryCamera.transform.rotation = Quaternion.Euler(cameraEulerAngles);
 
         Quaternion playerRot = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, right, 0)), Time.deltaTime);
         primaryCamera.transform.RotateAround(transform.position, Vector3.up, playerRot.eulerAngles.x);
@@ -106,7 +117,7 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     public void StopLookAround() {
-        this.lookDirection = new Vector2(0, 0);;
+        this.lookDirection = new Vector2(0, 0);
     }
 
     public void StartAttack() {

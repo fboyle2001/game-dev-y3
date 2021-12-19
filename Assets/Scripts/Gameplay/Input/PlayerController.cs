@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void ToggleInventory(InputAction.CallbackContext context) {
+        // Doesn't work for controllers
         inventoryCanvas.SetActive(!inventoryCanvas.activeSelf);
         GameObject.FindGameObjectWithTag("Game Manager").GetComponent<PlayerInventory>().AddItemToInventory("regenPotion", 10);
         Cursor.visible = !Cursor.visible;
