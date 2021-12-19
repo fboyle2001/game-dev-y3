@@ -12,6 +12,8 @@ public interface ICharacterActions {
 
     void StopSprinting();
 
-    void OnMouseMoved(Vector2 direction);
+    void StartLookAround(Vector2 direction);
+
+    void StopLookAround();
 
 }

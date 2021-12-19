@@ -15,6 +15,7 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
 
     private bool sprinting = false;
     private Vector2 movementDirection = new Vector2(0, 0);
+    private Vector2 lookDirection = new Vector2(0, 0);
 
     void Awake() {
         rb = GetComponent<Rigidbody>();
@@ -25,10 +26,10 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     void Update() {
-
     }
 
     void LateUpdate() {
+        LookAround();
     }
 
     private void Move() {
@@ -62,24 +63,24 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     public void StartSprinting() {
-        sprinting = true;
+        this.sprinting = true;
     }
 
     public void StopSprinting() {
-        sprinting = false;
+        this.sprinting = false;
     }
 
     public void StartMovement(Vector2 direction) {
-        movementDirection = direction;
+        this.movementDirection = direction;
     }
 
     public void StopMovement() {
-        movementDirection = new Vector2(0, 0);
+        this.movementDirection = new Vector2(0, 0);
     }
 
-    public void OnMouseMoved(Vector2 direction) {
-        float right = direction.normalized.x * mouseSensitivityX;
-        float up = -direction.normalized.y * mouseSensitivityY;
+    private void LookAround() {
+        float right = lookDirection.x * mouseSensitivityX;
+        float up = -lookDirection.y * mouseSensitivityY;
 
         // Debug.Log("Mouse Up: " + up + ", Mouse Right: " + right);
         
@@ -90,6 +91,14 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
         primaryCamera.transform.RotateAround(transform.position, Vector3.up, playerRot.eulerAngles.x);
         transform.rotation = playerRot;
         
+    }
+
+    public void StartLookAround(Vector2 direction) {
+        this.lookDirection = direction;
+    }
+
+    public void StopLookAround() {
+        this.lookDirection = new Vector2(0, 0);;
     }
 
 }

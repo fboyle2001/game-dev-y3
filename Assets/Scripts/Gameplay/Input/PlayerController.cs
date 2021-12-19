@@ -40,7 +40,8 @@ public class PlayerController : MonoBehaviour
 
         toggleInventoryAction.performed += ToggleInventory;
 
-        lookAroundAction.performed += OnMouseMoved;
+        lookAroundAction.performed += StartLookAround;
+        lookAroundAction.canceled += StopLookAround;
     }
 
     private void OnDisable() {
@@ -51,6 +52,9 @@ public class PlayerController : MonoBehaviour
         sprintingAction.canceled -= OnSprintingCancelled;
 
         toggleInventoryAction.performed -= ToggleInventory;
+        
+        lookAroundAction.performed -= StartLookAround;
+        lookAroundAction.canceled -= StopLookAround;
     }
 
     private void ToggleInventory(InputAction.CallbackContext context) {
@@ -75,8 +79,12 @@ public class PlayerController : MonoBehaviour
         currentController.StopSprinting();
     }
 
-    private void OnMouseMoved(InputAction.CallbackContext context) {
-        currentController.OnMouseMoved(context.ReadValue<Vector2>());
+    private void StartLookAround(InputAction.CallbackContext context) {
+        currentController.StartLookAround(context.ReadValue<Vector2>());
+    }
+
+    private void StopLookAround(InputAction.CallbackContext context) {
+        currentController.StopLookAround();
     }
 
 }

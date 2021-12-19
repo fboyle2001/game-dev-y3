@@ -42,7 +42,7 @@
                     "type": "Value",
                     "id": "ec94a217-ff32-466d-8f4a-048d80e9676f",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "interactions": ""
                 }
             ],
@@ -194,6 +194,17 @@
                     "name": "",
                     "id": "c0aa6043-bc3e-4ab9-8033-2f1466aefb6e",
                     "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4da26fcf-40d0-45ee-97e4-d2afb8ee7e46",
+                    "path": "<Gamepad>/buttonNorth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
