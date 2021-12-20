@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour {
+public class AnimatedEnemyMovement : MonoBehaviour {
 
     public GameObject cornerA;
     public GameObject cornerB;
     public GameObject home;
 
+    private Animator animator;
     private GameObject target;
     private GameObject gameManager;
     private bool active = false;
@@ -18,12 +19,12 @@ public class EnemyMovement : MonoBehaviour {
     private float maxX;
     private float minZ;
     private float maxZ;
+    private float speedFactor = 1;
 
-    void Start() {
+    void OnEnable() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         agent = GetComponent<NavMeshAgent>();
-
-        gameManager.GetComponent<CharacterManager>().RegisterActiveChangeListener(gameObject, OnActiveCharacterChange);
+        animator = GetComponent<Animator>();
 
         minX = Mathf.Min(cornerA.transform.position.x, cornerB.transform.position.x);
         maxX = Mathf.Max(cornerA.transform.position.x, cornerB.transform.position.x);
@@ -31,11 +32,9 @@ public class EnemyMovement : MonoBehaviour {
         maxZ = Mathf.Max(cornerA.transform.position.z, cornerB.transform.position.z);
     }
 
-    void OnDisable() {
-        gameManager.GetComponent<CharacterManager>().DeregisterActiveChangeListener(gameObject);
-    }
-
     void FixedUpdate() {
+        agent.velocity = agent.velocity * speedFactor;
+        animator.SetFloat("speed", agent.velocity.magnitude);
         if(!active) return;
         MoveTowardsTarget();
     }
@@ -54,18 +53,21 @@ public class EnemyMovement : MonoBehaviour {
         }
 
         agent.SetDestination(targetPosition);
+        Quaternion lookAt = Quaternion.LookRotation(targetPosition - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, Time.fixedDeltaTime);
     }
 
     public void SetActive(bool active) {
         this.active = active;
-
-        if(active) {
-            target = gameManager.GetComponent<CharacterManager>().GetActiveCharacter();
-            Debug.Log("Active");
-        }
+        agent.enabled = active;
     }
 
-    private void OnActiveCharacterChange(GameObject newActive) {
-        target = newActive;
+    public void SetTarget(GameObject target) {
+        this.target = target;
     }
+
+    public void SetSpeedFactor(float factor) {
+        this.speedFactor = factor;
+    }
+
 }

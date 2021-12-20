@@ -20,12 +20,14 @@ public class WeaponManager : MonoBehaviour
     private WeaponInventoryItem equippedWeapon;
     private float maxWidth;
     private GameObject gameManager;
+    private CharacterStats primaryStats;
 
     private float timeBetweenShots = 0;
     private float timeSinceLastShot = 0;
 
     void OnEnable() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
+        primaryStats = gameManager.GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>();
         GetComponent<PlayerInventory>().RegisterEquipUpdateListener(inventory => this.OnEquipmentChange(inventory));
         maxWidth = (chargeBackgroundBar.transform as RectTransform).sizeDelta.x;
         weaponPanel.SetActive(false);
@@ -84,14 +86,11 @@ public class WeaponManager : MonoBehaviour
         bool didHit = Physics.Raycast(fireSource.transform.position, primaryCamera.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, ~(1 << 8));
         
         if(didHit && hit.collider != null) {
-            // EnemyStatManager enemyStats = hit.collider.gameObject.GetComponent<EnemyStatManager>();
+            EnemyStats enemyStats = hit.collider.gameObject.GetComponent<EnemyStats>();
 
-            // if(enemyStats != null) {
-            //     enemyStats.ApplyDamage(damagePerHit * stats.damageMultiplier);
-            //     Debug.DrawRay(transform.position, playerCamera.transform.TransformDirection(Vector3.forward) * hit.distance, Color.green, 5.0f);
-            // } else {
-            //     Debug.DrawRay(transform.position, playerCamera.transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 5.0f);
-            // }
+            if(enemyStats != null) {
+                enemyStats.Damage(equippedWeapon.damagePerRound * primaryStats.GetDamageMultiplier());
+            }
             
             Debug.DrawRay(fireSource.transform.position, primaryCamera.transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 5.0f);
         } else {

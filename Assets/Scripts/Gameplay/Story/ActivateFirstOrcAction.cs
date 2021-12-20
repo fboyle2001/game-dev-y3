@@ -7,8 +7,7 @@ public class ActivateFirstOrcAction : MonoBehaviour, ITriggerAction {
     public GameObject orc;
 
     public void PerformAction() {
-        Debug.Log("Woke Orc");
-        orc.GetComponent<EnemyMovement>().SetActive(true);
+        orc.GetComponent<BasicOrc>().SetActive(true);
     }
 
 }
