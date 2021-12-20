@@ -22,18 +22,10 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Toggle Inventory",
-                    "type": "Button",
-                    "id": "a2266646-330b-41ba-8f43-f0195f75b52b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Sprinting",
                     "type": "Value",
                     "id": "bbfbb1ab-f1d9-4540-a591-b10fd16e4894",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
                 },
@@ -50,6 +42,22 @@
                     "type": "Value",
                     "id": "5fb4230a-aaf2-4f06-9e7a-48f85988930c",
                     "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Toggle Inventory",
+                    "type": "Button",
+                    "id": "08028584-61cb-4b2a-af6e-87c27efe75a0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "db34875b-3fdc-4159-9048-df9b6f20a6c2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -200,28 +208,6 @@
                 },
                 {
                     "name": "",
-                    "id": "c0aa6043-bc3e-4ab9-8033-2f1466aefb6e",
-                    "path": "<Keyboard>/i",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Toggle Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4da26fcf-40d0-45ee-97e4-d2afb8ee7e46",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Toggle Inventory",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "dd537df5-6efb-4be8-81f6-c9f0be9bd663",
                     "path": "<Keyboard>/shift",
                     "interactions": "",
@@ -283,6 +269,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "504ef5fe-e897-42bd-9e81-4ca50188d5f0",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f1a6183-948a-4d9f-9a0a-81ded12448cd",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Toggle Inventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "196c8b7a-35dc-4c61-b6b6-b06a1c1b9dc6",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c290981f-61af-4b6c-bafd-fdd99dbca14f",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

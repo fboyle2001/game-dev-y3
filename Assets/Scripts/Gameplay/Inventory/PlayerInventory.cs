@@ -24,6 +24,7 @@ public class PlayerInventory : MonoBehaviour {
     private EquippableInventoryItem currentRing = null;
 
     private List<System.Action<PlayerInventory>> equipUpdateListeners = new List<System.Action<PlayerInventory>>();
+    private List<System.Action<PlayerInventory>> itemChangeListeners = new List<System.Action<PlayerInventory>>();
 
     private void RegisterItems() {
         RegisterItem(new RegenPotionItem(Resources.Load<Sprite>("Images/UI/Health")));
@@ -50,6 +51,12 @@ public class PlayerInventory : MonoBehaviour {
 
     public void RegisterEquipUpdateListener(System.Action<PlayerInventory> action) {
         equipUpdateListeners.Add(action);
+        PropagateEquipEvent();
+    }
+
+    public void RegisterItemChangeListener(System.Action<PlayerInventory> action) {
+        itemChangeListeners.Add(action);
+        PropagateItemChangeEvent();
     }
 
     public void AddItemToInventory(string itemIdentifier, int quantity) {
@@ -98,6 +105,7 @@ public class PlayerInventory : MonoBehaviour {
             firstEmptySlot.SetVisible(true);
         }
 
+        PropagateItemChangeEvent();
     }
 
     public void PerformEmptyChecks() {
@@ -112,6 +120,48 @@ public class PlayerInventory : MonoBehaviour {
         if(empty) {
             emptyText.SetActive(true);
         }
+    }
+
+    public InventorySlot GetItemSlot(string itemIdentifier) {
+        foreach(InventorySlot slot in inventorySlots) {
+            if(slot.HasOccupyingItem()) {
+                if(slot.GetOccupyingItem().itemIdentifier == itemIdentifier) {
+                    return slot;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public bool AcceptingNewItemTypes() {
+        foreach(InventorySlot slot in inventorySlots) {
+            if(!slot.HasOccupyingItem()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool HasSpace(string itemIdentifier, int quantity) {
+        InventoryItem item = registeredItems[itemIdentifier];
+
+        if(item == null) {
+            return false;
+        }
+
+        InventorySlot slot = GetItemSlot(itemIdentifier);
+
+        if(slot != null) {
+            if(slot.GetQuantity() + quantity > item.maxQuantity) {
+                return false;
+            }
+
+            return true;
+        }
+
+        return AcceptingNewItemTypes();
     }
 
     public void EquipItem(EquippableInventoryItem item, string slot) {
@@ -144,7 +194,15 @@ public class PlayerInventory : MonoBehaviour {
                 return;
         }
 
+        PropagateEquipEvent();
+    }
+
+    private void PropagateEquipEvent() {
         equipUpdateListeners.ForEach(action => action(this));
+    }
+
+    private void PropagateItemChangeEvent() {
+        itemChangeListeners.ForEach(action => action(this));
     }
 
     public WeaponInventoryItem GetCurrentWeapon() {

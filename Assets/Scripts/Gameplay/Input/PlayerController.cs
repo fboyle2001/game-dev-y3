@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private InputAction sprintingAction;
     private InputAction lookAroundAction;
     private InputAction attackAction;
+    private InputAction interactAction;
 
     private void Awake() {
         playerInput = GetComponent<PlayerInput>();
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
         sprintingAction = playerInput.actions["Sprinting"];
         lookAroundAction = playerInput.actions["Look Around"];
         attackAction = playerInput.actions["Attack"];
+        interactAction = playerInput.actions["Interact"];
 
         currentController = primary.GetComponent<ICharacterActions>();
     }
@@ -40,13 +42,15 @@ public class PlayerController : MonoBehaviour
         sprintingAction.performed += OnSprintingPerformed;
         sprintingAction.canceled += OnSprintingCancelled;
 
-        toggleInventoryAction.performed += ToggleInventory;
+        toggleInventoryAction.started += ToggleInventory;
 
         lookAroundAction.performed += StartLookAround;
         lookAroundAction.canceled += StopLookAround;
 
         attackAction.performed += OnAttackPerformed;
         attackAction.canceled += OnAttackCancelled;
+
+        interactAction.started += Interact;
     }
 
     private void OnDisable() {
@@ -55,18 +59,19 @@ public class PlayerController : MonoBehaviour
 
         sprintingAction.performed -= OnSprintingPerformed;
         sprintingAction.canceled -= OnSprintingCancelled;
-
-        toggleInventoryAction.performed -= ToggleInventory;
+        
+        toggleInventoryAction.started -= ToggleInventory;
         
         lookAroundAction.performed -= StartLookAround;
         lookAroundAction.canceled -= StopLookAround;
 
         attackAction.performed -= OnAttackPerformed;
         attackAction.canceled -= OnAttackCancelled;
+
+        interactAction.started -= Interact;
     }
 
     private void ToggleInventory(InputAction.CallbackContext context) {
-        // Doesn't work for controllers
         inventoryCanvas.SetActive(!inventoryCanvas.activeSelf);
         GameObject.FindGameObjectWithTag("Game Manager").GetComponent<PlayerInventory>().AddItemToInventory("regenPotion", 10);
         Cursor.visible = !Cursor.visible;
@@ -102,6 +107,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnAttackCancelled(InputAction.CallbackContext context) {
         currentController.StopAttack();
+    }
+
+    private void Interact(InputAction.CallbackContext context) {
+        currentController.Interact();
     }
 
 }

@@ -20,4 +20,6 @@ public interface ICharacterActions {
 
     void StopAttack();
 
+    void Interact();
+
 }

@@ -128,4 +128,8 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
         attacking = false;
     }
 
+    public void Interact() {
+        gameManager.GetComponent<InteractionManager>().ExecuteInteractions();
+    }
+
 }
