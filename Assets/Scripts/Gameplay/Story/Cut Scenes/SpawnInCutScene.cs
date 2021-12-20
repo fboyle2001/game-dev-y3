@@ -26,8 +26,11 @@ public class SpawnInCutScene : MonoBehaviour {
 
         daylightManager.SetLightIntensity(1);
         characterManager.DisplaySecondaryPanel(false);
+        realPlayer.SetActive(true);
+        realCamera.SetActive(false);
         
         // TODO: Localise
+        gameManager.GetComponent<CharacterManager>().SetFrozen(true);
         dialogueManager.QueueDialogue("You", "AHHHHHHHH!!!", 8);
         gameManager.GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>().ApplyDamageOverTime(99, 16);
     }
@@ -66,7 +69,7 @@ public class SpawnInCutScene : MonoBehaviour {
     void FinishCutScene() {
         realCamera.GetComponent<Camera>().cullingMask = -1;
         realCamera.GetComponent<Camera>().clearFlags = CameraClearFlags.Skybox;
-        gameManager.GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>().SetHealth(1f);
+        gameManager.GetComponent<CharacterManager>().SetFrozen(false);
         gameManager.GetComponent<TutorialManager>().QueueTutorial("Movement and Display",
             "To move your character around use WASD and your mouse to look around. In the top left corner you will see your health." +
             " Right now you are on the verge of death! Objectives appear in the top right corner in case you forget what you are aiming for." + 

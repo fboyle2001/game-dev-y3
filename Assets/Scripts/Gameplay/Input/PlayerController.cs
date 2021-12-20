@@ -32,10 +32,6 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnEnable() {
-        // For testing only
-        GameObject.FindGameObjectWithTag("Game Manager").GetComponent<DaylightManager>().SetLightIntensity(1);
-        GameObject.FindGameObjectWithTag("Game Manager").GetComponent<DaylightManager>().SetTimeFrozen(true);
-
         moveAction.performed += OnMovePerformed;
         moveAction.canceled += OnMoveCancelled;
 
@@ -72,8 +68,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void ToggleInventory(InputAction.CallbackContext context) {
+        if(currentController.IsFrozen()) return;
         inventoryCanvas.SetActive(!inventoryCanvas.activeSelf);
-        GameObject.FindGameObjectWithTag("Game Manager").GetComponent<PlayerInventory>().AddItemToInventory("regenPotion", 10);
         Cursor.visible = !Cursor.visible;
     }
 

@@ -44,9 +44,6 @@ public class PlayerInventory : MonoBehaviour {
         }
 
         emptyText.SetActive(true);
-
-        GetComponent<PlayerInventory>().AddItemToInventory("rustedBow", 1);
-        GetComponent<PlayerInventory>().AddItemToInventory("worstBow", 2);
     }
 
     public void RegisterEquipUpdateListener(System.Action<PlayerInventory> action) {

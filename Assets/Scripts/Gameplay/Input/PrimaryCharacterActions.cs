@@ -20,6 +20,7 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     private Vector2 movementDirection = new Vector2(0, 0);
     private Vector2 lookDirection = new Vector2(0, 0);
     private bool attacking = false;
+    private bool frozen = false;
 
     void Awake() {
         rb = GetComponent<Rigidbody>();
@@ -28,6 +29,11 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     void FixedUpdate() {
+        if(frozen) {
+            rb.velocity = new Vector3(0, 0, 0);
+            return;
+        }
+
         Move();
     }
 
@@ -72,7 +78,7 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     public void StartSprinting() {
-        this.sprinting = true;
+        this.sprinting = true && !frozen;
     }
 
     public void StopSprinting() {
@@ -80,6 +86,7 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     public void StartMovement(Vector2 direction) {
+        if(frozen) return;
         this.movementDirection = direction;
     }
 
@@ -113,6 +120,7 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     public void StartLookAround(Vector2 direction) {
+        if(frozen) return;
         this.lookDirection = direction;
     }
 
@@ -121,7 +129,7 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     public void StartAttack() {
-        attacking = true && weaponManager.HasWeapon();
+        attacking = true && weaponManager.HasWeapon() && !frozen;
     }
 
     public void StopAttack() {
@@ -129,7 +137,16 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     public void Interact() {
+        if(frozen) return;
         gameManager.GetComponent<InteractionManager>().ExecuteInteractions();
+    }
+
+    public void SetFrozen(bool frozen) {
+        this.frozen = frozen;
+    }
+
+    public bool IsFrozen() {
+        return frozen;
     }
 
 }

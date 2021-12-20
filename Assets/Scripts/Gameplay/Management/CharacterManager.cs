@@ -7,7 +7,9 @@ public class CharacterManager : MonoBehaviour
 {
 
     public GameObject primary;
+    public GameObject primaryCamera;
     public GameObject secondary;
+    public GameObject secondaryCamera;
 
     public GameObject primaryImage;
     public GameObject primaryHealth;
@@ -47,6 +49,24 @@ public class CharacterManager : MonoBehaviour
     public GameObject GetActiveCharacter() {
         // TODO: Implement
         return primary;
+    }
+
+    public GameObject GetActiveCamera() {
+        // TODO: Implement
+        return primaryCamera;
+    }
+
+    public void SetFrozen(bool frozen) {
+        ICharacterActions actions = primary.GetComponent<ICharacterActions>();
+
+        if(frozen) {
+            actions.StopMovement();
+            actions.StopLookAround();
+            actions.StopSprinting();
+            actions.StopAttack();
+        }
+
+        actions.SetFrozen(frozen);
     }
 
 }
