@@ -75,7 +75,7 @@ public class InitialCampCutScene : CutScene {
                 " On the right side is your character, stats and equipped weaponry. NPC1 has gifted you a <WEAPON_NAME> and a rare full health potion." + 
                 " Equip the weapon by clicking 'Equip Item' and drink the potion by clicking 'Use Item' - it will help a lot in the Orc cave!", 15);
             gameManager.GetComponent<ObjectiveManager>().CompleteObjective("findInitialCamp", 0);
-            gameManager.GetComponent<ObjectiveManager>().AddObjective("findFirstOrcCave", "Find an Orc Cave", "Find an Orc Cave and see if they have your cat"
+            gameManager.GetComponent<ObjectiveManager>().AddObjective("findFirstOrcCave", "Find an Orc", "Find an Orc Cave and see if they have your cat"
                 , new ObjectiveManager.RewardEntry(0, 0));
 
             cutSceneCamera.SetActive(false);

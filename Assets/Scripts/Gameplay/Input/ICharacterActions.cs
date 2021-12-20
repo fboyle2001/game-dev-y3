@@ -22,6 +22,8 @@ public interface ICharacterActions {
 
     void Interact();
 
+    void Jump();
+
     void SetFrozen(bool frozen);
 
     bool IsFrozen();

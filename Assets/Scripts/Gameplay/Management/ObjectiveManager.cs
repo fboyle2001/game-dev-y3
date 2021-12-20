@@ -38,6 +38,7 @@ public class ObjectiveManager : MonoBehaviour
     private Dictionary<string, ObjectiveEntry> objectives;
 
     void OnEnable() {
+        EnemyBase.RegisterGlobalDamageHandler(gameObject, OnDamageHandler);
         ClearObjectives();
         HideObjectives();
     }
@@ -105,6 +106,18 @@ public class ObjectiveManager : MonoBehaviour
 
     public List<string> GetCompletedObjectives() {
         return completedObjectives;
+    }
+
+    private void OnDamageHandler(EnemyBase enemy) {
+        if(!enemy.GetStats().IsDead()) return;
+
+        switch(enemy.identifier) {
+            case "firstOrc":
+                CompleteObjective("findFirstOrcCave", 1);
+                return;
+            default:
+                return;
+        }
     }
 
 }

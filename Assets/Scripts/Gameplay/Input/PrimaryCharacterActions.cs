@@ -21,6 +21,7 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     private Vector2 lookDirection = new Vector2(0, 0);
     private bool attacking = false;
     private bool frozen = false;
+    private bool jump = false;
 
     void Awake() {
         rb = GetComponent<Rigidbody>();
@@ -30,9 +31,18 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
 
     void FixedUpdate() {
         if(frozen) {
-            rb.velocity = new Vector3(0, 0, 0);
+            rb.velocity = Vector3.zero;
             return;
         }
+
+        bool grounded = Physics.Raycast(GetComponent<Collider>().transform.position, Vector3.down, 0.5f, ~(1 << 8));
+
+        if(grounded && jump) {
+            rb.AddForce(Vector3.up * 400, ForceMode.Impulse);
+            grounded = false;
+        }
+        
+        jump = false;
 
         Move();
     }
@@ -139,6 +149,10 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     public void Interact() {
         if(frozen) return;
         gameManager.GetComponent<InteractionManager>().ExecuteInteractions();
+    }
+
+    public void Jump() {
+        jump = true;
     }
 
     public void SetFrozen(bool frozen) {

@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private InputAction lookAroundAction;
     private InputAction attackAction;
     private InputAction interactAction;
+    private InputAction jumpAction;
 
     private void Awake() {
         playerInput = GetComponent<PlayerInput>();
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
         lookAroundAction = playerInput.actions["Look Around"];
         attackAction = playerInput.actions["Attack"];
         interactAction = playerInput.actions["Interact"];
+        jumpAction = playerInput.actions["Jump"];
 
         currentController = primary.GetComponent<ICharacterActions>();
     }
@@ -46,7 +48,9 @@ public class PlayerController : MonoBehaviour
         attackAction.performed += OnAttackPerformed;
         attackAction.canceled += OnAttackCancelled;
 
-        interactAction.started += Interact;
+        interactAction.started += OnInteractPerformed;
+
+        jumpAction.performed += OnJumpPerformed;
     }
 
     private void OnDisable() {
@@ -64,7 +68,9 @@ public class PlayerController : MonoBehaviour
         attackAction.performed -= OnAttackPerformed;
         attackAction.canceled -= OnAttackCancelled;
 
-        interactAction.started -= Interact;
+        interactAction.started -= OnInteractPerformed;
+
+        jumpAction.performed -= OnJumpPerformed;
     }
 
     private void ToggleInventory(InputAction.CallbackContext context) {
@@ -105,8 +111,12 @@ public class PlayerController : MonoBehaviour
         currentController.StopAttack();
     }
 
-    private void Interact(InputAction.CallbackContext context) {
+    private void OnInteractPerformed(InputAction.CallbackContext context) {
         currentController.Interact();
+    }
+
+    private void OnJumpPerformed(InputAction.CallbackContext context) {
+        currentController.Jump();
     }
 
 }

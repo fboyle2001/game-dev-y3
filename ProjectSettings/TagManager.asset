@@ -11,6 +11,7 @@ TagManager:
   - Player Camera
   - Tree
   - Inventory
+  - Ground
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,7 @@ public class AnimatedEnemyMovement : MonoBehaviour {
     public GameObject cornerA;
     public GameObject cornerB;
     public GameObject home;
+    public string animatorSpeedName;
 
     private Animator animator;
     private GameObject target;
@@ -34,7 +35,7 @@ public class AnimatedEnemyMovement : MonoBehaviour {
 
     void FixedUpdate() {
         agent.velocity = agent.velocity * speedFactor;
-        animator.SetFloat("speed", agent.velocity.magnitude);
+        animator.SetFloat(animatorSpeedName, agent.velocity.magnitude);
         if(!active) return;
         MoveTowardsTarget();
     }
