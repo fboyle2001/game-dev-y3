@@ -21,6 +21,8 @@ public class CharacterManager : MonoBehaviour
     private bool secondaryUnlocked = false;
     private bool primaryActive = true;
 
+    private Dictionary<int, System.Action<GameObject>> activeChangeListeners = new Dictionary<int, System.Action<GameObject>>();
+
     void OnEnable() {
         // Automatically updates the UI with the health of each character
         primary.GetComponent<CharacterStats>().RegisterHealthUpdateListener(new System.Action<CharacterStats, float>((stats, change) => {
@@ -67,6 +69,21 @@ public class CharacterManager : MonoBehaviour
         }
 
         actions.SetFrozen(frozen);
+    }
+
+    public void RegisterActiveChangeListener(GameObject owner, System.Action<GameObject> action) {
+        activeChangeListeners.Add(owner.GetInstanceID(), action);
+        action(IsPrimaryActive() ? primary : secondary);
+    }
+
+    public void DeregisterActiveChangeListener(GameObject owner) {
+        activeChangeListeners.Remove(owner.GetInstanceID());
+    }
+
+    private void PropagateActiveChangeEvent(GameObject newActive) {
+        foreach(System.Action<GameObject> action in activeChangeListeners.Values) {
+            action(newActive);
+        }
     }
 
 }

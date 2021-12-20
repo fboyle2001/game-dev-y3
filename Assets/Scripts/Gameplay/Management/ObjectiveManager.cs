@@ -8,6 +8,7 @@ public class ObjectiveManager : MonoBehaviour
 
     public GameObject objectivePanel;
     public TMP_Text objectiveTextList;
+    private List<string> completedObjectives = new List<string>();
 
     public struct RewardEntry {
         public readonly int gold;
@@ -95,10 +96,15 @@ public class ObjectiveManager : MonoBehaviour
         }
 
         objectives.Remove(idenitifer);
+        completedObjectives.Add(idenitifer);
         UpdateObjectiveDisplay();
 
         // TODO: Give rewards
         RewardEntry reward = objective.reward;
+    }
+
+    public List<string> GetCompletedObjectives() {
+        return completedObjectives;
     }
 
 }

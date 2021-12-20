@@ -18,10 +18,12 @@ public class MessageTrigger : MonoBehaviour
     private int triggeredCount = 0;
     private bool canTrigger = true;
     private float timeSinceLastTrigger = 0;
+    private ITriggerAction additionalTriggerAction = null;
 
     void OnEnable() {
         dialogueManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<DialogueManager>();
         objectiveManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<ObjectiveManager>();
+        additionalTriggerAction = GetComponent<ITriggerAction>();
     }
 
     void FixedUpdate() {
@@ -42,6 +44,10 @@ public class MessageTrigger : MonoBehaviour
             timeSinceLastTrigger = 0;
 
             dialogueManager.QueueDialogue(speaker, message, messageDisplayTime);
+
+            if(additionalTriggerAction != null) {
+                additionalTriggerAction.PerformAction();
+            }
         }
     }
 
