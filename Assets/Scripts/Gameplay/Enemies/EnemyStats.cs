@@ -12,6 +12,7 @@ public class EnemyStats : MonoBehaviour {
     public float maxHealth;
     public float armour;
     public float regenPerSecond;
+    public float xpValue;
 
     private List<System.Action<EnemyStats, float>> damageListeners = new List<System.Action<EnemyStats, float>>();
 

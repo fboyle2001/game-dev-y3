@@ -11,7 +11,7 @@ public class PlayerResources : MonoBehaviour
     private List<System.Action<PlayerResources>> resourceUpdateListeners = new List<System.Action<PlayerResources>>();
 
     private int gold = 10;
-    private int currentExperienceLevel = 0;
+    private int currentExperienceLevel = 1;
     private int xpForNextLevel;
     private float xp = 0;
 
@@ -29,7 +29,7 @@ public class PlayerResources : MonoBehaviour
         // Makes it exponentially harder to level up
         // Current constants means level 5 needs 2 times the xp, 10 needs 4 times, 15 needs 8 times etc (relative to 0 --> 1 xp req).
         // Capped at 999 per level at around level 33/34 and beyond
-        return Mathf.CeilToInt(Mathf.Clamp(xpScalar * Mathf.Exp(xpPowerScalar * level), 0, 999));
+        return Mathf.CeilToInt(Mathf.Clamp(xpScalar * Mathf.Exp(xpPowerScalar * (level - 1)), 0, 999));
     }
 
     public void RegisterResourceUpdateListener(System.Action<PlayerResources> listener) {
@@ -45,10 +45,10 @@ public class PlayerResources : MonoBehaviour
         this.xp += amount; 
 
         while(xp >= xpForNextLevel) {
-            currentExperienceLevel++;
             xp -= xpForNextLevel;
-            xpForNextLevel = CalculateXPForLevel(currentExperienceLevel);
             GrantLevelUpReward(currentExperienceLevel);
+            currentExperienceLevel++;
+            xpForNextLevel = CalculateXPForLevel(currentExperienceLevel);
         }
 
         PropagateResourceEvent();

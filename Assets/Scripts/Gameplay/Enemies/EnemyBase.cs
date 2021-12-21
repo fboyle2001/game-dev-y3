@@ -14,6 +14,7 @@ public abstract class EnemyBase : MonoBehaviour {
     public string identifier;
 
     protected GameObject gameManager;
+    protected GameObject xpOrbPrefab;
 
     protected Animator animator;
     protected AnimatedEnemyMovement movementController;
@@ -23,6 +24,8 @@ public abstract class EnemyBase : MonoBehaviour {
 
     public void OnEnable() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
+        xpOrbPrefab = gameManager.GetComponent<PrefabStorage>().xpOrb;
+
         stats = GetComponent<EnemyStats>();
         movementController = GetComponent<AnimatedEnemyMovement>();
         animator = GetComponent<Animator>();
@@ -49,7 +52,10 @@ public abstract class EnemyBase : MonoBehaviour {
     }
 
     private void OnDamageHandler(EnemyStats stats, float damage) {
+        Debug.Log("Took damage: " + stats.IsDead());
+
         if(stats.IsDead()) {
+            OnDeath();
             gameManager.GetComponent<CharacterManager>().DeregisterActiveChangeListener(gameObject);
             SetActive(false);
             enemyUI.SetActive(false);
@@ -59,6 +65,12 @@ public abstract class EnemyBase : MonoBehaviour {
         foreach(System.Action<EnemyBase> action in globalDamageHandlers.Values) {
             action(this);
         }
+    }
+
+    protected void OnDeath() {
+        Debug.Log("dead");
+        GameObject xpOrb = Instantiate(xpOrbPrefab, transform.position + GetComponent<Collider>().bounds.extents.y * Vector3.up, xpOrbPrefab.transform.rotation);
+        xpOrb.GetComponent<XPOrbSteering>().SetXpValue(stats.xpValue);
     }
 
 }
