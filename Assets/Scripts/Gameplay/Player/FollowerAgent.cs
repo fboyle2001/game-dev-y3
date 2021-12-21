@@ -9,9 +9,11 @@ public class FollowerAgent : MonoBehaviour {
     public float teleportDistance = 40;
 
     private NavMeshAgent agent;
+    private Animator animator;
 
     void Start() {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate() {
@@ -22,6 +24,8 @@ public class FollowerAgent : MonoBehaviour {
         } else {
             MoveTowardsTarget();
         }
+
+        animator.SetFloat("speed", agent.velocity.magnitude);
     }
 
     private void TeleportNearTarget() {

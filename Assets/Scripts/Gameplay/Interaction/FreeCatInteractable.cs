@@ -11,6 +11,8 @@ public class FreeCatInteractable : MonoBehaviour, IInteractable
     private InteractionManager interactionManager;
     private TutorialManager tutorialManager;
 
+    private bool registered = false;
+
     void OnEnable() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         objectiveManager = gameManager.GetComponent<ObjectiveManager>();
@@ -20,7 +22,8 @@ public class FreeCatInteractable : MonoBehaviour, IInteractable
     }
 
     public void OnInteractPossible() {
-        if(objectiveManager.HasObjective("freeCat")) {
+        if(objectiveManager.HasObjective("freeCat") && !registered) {
+            registered = true;
             interactionManager.SetText("to free <CAT_NAME>");
             interactionManager.ShowText();
             interactionManager.RegisterInteraction("freeCatAction", () => {
@@ -41,6 +44,7 @@ public class FreeCatInteractable : MonoBehaviour, IInteractable
     }
 
     public void OnInteractImpossible() {
+        registered = false;
         interactionManager.HideText();
         interactionManager.UnregisterInteraction("freeCatAction");
     }

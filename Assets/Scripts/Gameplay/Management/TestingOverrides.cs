@@ -9,7 +9,7 @@ public class TestingOverrides : MonoBehaviour {
     }
 
     void Delayed() {
-        GetComponent<CharacterManager>().UnlockSecondary();
+        // GetComponent<CharacterManager>().UnlockSecondary();
     }
 
 }

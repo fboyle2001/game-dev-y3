@@ -17,8 +17,6 @@ public class CharacterManager : MonoBehaviour
 
     private Dictionary<int, System.Action<GameObject>> activeChangeListeners = new Dictionary<int, System.Action<GameObject>>();
 
-    
-
     public void UnlockSecondary() {
         secondaryUnlocked = true;
 
@@ -42,16 +40,25 @@ public class CharacterManager : MonoBehaviour
     }
 
     public void SetFrozen(bool frozen) {
-        ICharacterActions actions = primary.GetComponent<ICharacterActions>();
-
         if(frozen) {
-            actions.StopMovement();
-            actions.StopLookAround();
-            actions.StopSprinting();
-            actions.StopAttack();
+            if(secondaryUnlocked && !IsPrimaryActive()) {
+                secondary.GetComponent<ICharacterActions>().StopMovement();
+                secondary.GetComponent<ICharacterActions>().StopLookAround();
+                secondary.GetComponent<ICharacterActions>().StopSprinting();
+                secondary.GetComponent<ICharacterActions>().StopAttack();
+            } else {
+                primary.GetComponent<ICharacterActions>().StopMovement();
+                primary.GetComponent<ICharacterActions>().StopLookAround();
+                primary.GetComponent<ICharacterActions>().StopSprinting();
+                primary.GetComponent<ICharacterActions>().StopAttack();
+            }
         }
 
-        actions.SetFrozen(frozen);
+        if(IsPrimaryActive()) {
+            primary.GetComponent<ICharacterActions>().SetFrozen(frozen);
+        } else {
+            secondary.GetComponent<ICharacterActions>().SetFrozen(frozen);
+        }
     }
 
     public void SwapActive() {

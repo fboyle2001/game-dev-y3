@@ -15,6 +15,7 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
     private Rigidbody rb;
     private GameObject gameManager;
     private WeaponManager weaponManager;
+    private Animator animator;
 
     private bool sprinting = false;
     private Vector2 movementDirection = new Vector2(0, 0);
@@ -25,6 +26,7 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
 
     void Awake() {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         weaponManager = gameManager.GetComponent<WeaponManager>();
     }
@@ -32,19 +34,21 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
     void FixedUpdate() {
         if(frozen) {
             rb.velocity = Vector3.zero;
+            animator.SetFloat("speed", 0f);
             return;
         }
 
         bool grounded = Physics.Raycast(GetComponent<Collider>().transform.position, Vector3.down, 0.5f, ~(1 << 8));
 
         if(grounded && jump) {
-            rb.AddForce(Vector3.up * 4, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 50, ForceMode.Impulse);
             grounded = false;
         }
         
         jump = false;
 
         Move();
+        animator.SetFloat("speed", Mathf.Sqrt(Mathf.Pow(rb.velocity.x, 2) + Mathf.Pow(rb.velocity.z, 2)));
     }
 
     void Update() {
