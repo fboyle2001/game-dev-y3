@@ -15,7 +15,7 @@ public class VendorInteractable : MonoBehaviour, IInteractable {
     public void OnInteractPossible() {
         interactionManager.SetText("to open shop");
         interactionManager.ShowText();
-        interactionManager.RegisterInteraction("test", () => {
+        interactionManager.RegisterInteraction("vendor", () => {
             if(shopCanvas.activeSelf) {
                 shopCanvas.SetActive(false);
                 interactionManager.ShowText();
@@ -28,7 +28,7 @@ public class VendorInteractable : MonoBehaviour, IInteractable {
 
     public void OnInteractImpossible() {
         interactionManager.HideText();
-        interactionManager.UnregisterInteraction("test");
+        interactionManager.UnregisterInteraction("vendor");
         shopCanvas.SetActive(false);
     }
 

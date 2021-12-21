@@ -75,4 +75,5 @@ public class DialogueManager : MonoBehaviour
         // Display the next text after the delay 
         Invoke("DisplayDialogue", nextEntry.durationInSeconds);
     }
+
 }
