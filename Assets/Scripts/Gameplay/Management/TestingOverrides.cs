@@ -9,8 +9,7 @@ public class TestingOverrides : MonoBehaviour {
     }
 
     void Delayed() {
-        // GetComponent<ObjectiveManager>().AddObjective("freeCat", "a", "a", new ObjectiveManager.RewardEntry(0, 0));
-        // Debug.Log("added");
+        GetComponent<CharacterManager>().UnlockSecondary();
     }
 
 }

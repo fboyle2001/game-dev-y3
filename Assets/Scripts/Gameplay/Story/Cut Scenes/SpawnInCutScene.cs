@@ -25,7 +25,6 @@ public class SpawnInCutScene : MonoBehaviour {
         characterManager = gameManager.GetComponent<CharacterManager>();
 
         daylightManager.SetLightIntensity(1);
-        characterManager.DisplaySecondaryPanel(false);
         realPlayer.SetActive(true);
         realCamera.SetActive(false);
         

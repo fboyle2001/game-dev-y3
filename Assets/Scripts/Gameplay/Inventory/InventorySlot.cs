@@ -18,8 +18,11 @@ public class InventorySlot : MonoBehaviour {
     private int quantity = 0;
     private GameObject gameManager;
 
+    private GameObject active;
+
     void OnEnable() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
+        RefreshUI();
     }
 
     public void SetVisible(bool visible) {
@@ -63,6 +66,10 @@ public class InventorySlot : MonoBehaviour {
     }
 
     private void RefreshUI() {
+        if(gameManager == null) {
+            gameManager = GameObject.FindGameObjectWithTag("Game Manager");
+        };
+
         if(occupyingItem == null) {
             SetVisible(false);
             inventoryManager.PerformEmptyChecks();
@@ -70,17 +77,25 @@ public class InventorySlot : MonoBehaviour {
         }
 
         itemNameText.GetComponent<TMP_Text>().SetText(occupyingItem.itemName);
-        useButtonText.GetComponent<TMP_Text>().SetText(occupyingItem.equippable ? "Equip Item" : "Use One");
-        imageDisplay.GetComponent<Image>().sprite = occupyingItem.itemImage;
         useButton.GetComponent<Button>().onClick.RemoveAllListeners();
-        useButton.GetComponent<Button>().onClick.AddListener(() => {
-            occupyingItem.ApplyItemEffect(gameManager);
-            UpdateQuantity(-1);
 
-            if(quantity <= 0) {
-                inventoryManager.PerformEmptyChecks();
-            }
-        });
+        if(occupyingItem is WeaponInventoryItem && !gameManager.GetComponent<CharacterManager>().IsPrimaryActive()) {
+            useButtonText.GetComponent<TMP_Text>().SetText("Player Only");
+            useButton.GetComponent<Button>().interactable = false;
+        } else {
+            useButtonText.GetComponent<TMP_Text>().SetText(occupyingItem.equippable ? "Equip Item" : "Use One");
+            useButton.GetComponent<Button>().onClick.AddListener(() => {
+                occupyingItem.ApplyItemEffect(gameManager);
+                UpdateQuantity(-1);
+
+                if(quantity <= 0) {
+                    inventoryManager.PerformEmptyChecks();
+                }
+            });
+            useButton.GetComponent<Button>().interactable = true;
+        }
+
+        imageDisplay.GetComponent<Image>().sprite = occupyingItem.itemImage;
         quantityText.GetComponent<TMP_Text>().SetText(quantity.ToString());
     }
 

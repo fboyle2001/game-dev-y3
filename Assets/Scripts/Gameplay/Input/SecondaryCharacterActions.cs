@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
+public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
     
     public float forceScalar = 1500;
     public float sprintScalar = 2;
@@ -38,7 +38,7 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
         bool grounded = Physics.Raycast(GetComponent<Collider>().transform.position, Vector3.down, 0.5f, ~(1 << 8));
 
         if(grounded && jump) {
-            rb.AddForce(Vector3.up * 400, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 4, ForceMode.Impulse);
             grounded = false;
         }
         
@@ -49,7 +49,6 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
 
     void Update() {
         if(frozen) return;
-
         if(attacking) {
             weaponManager.FireWeapon();
         }
@@ -110,6 +109,8 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     private void LookAround() {
         float right = lookDirection.x * mouseSensitivityX;
         float up = -lookDirection.y * mouseSensitivityY;
+
+        // Debug.Log("Mouse Up: " + up + ", Mouse Right: " + right);
         
         Vector3 vectorCameraRot = primaryCamera.transform.rotation.eulerAngles + new Vector3(up, 0, 0);
         Quaternion cameraRot = Quaternion.Slerp(primaryCamera.transform.rotation, Quaternion.Euler(vectorCameraRot), Time.deltaTime);
@@ -140,7 +141,7 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     public void StartAttack() {
-        attacking = true && weaponManager.HasWeapon() && !frozen;
+        attacking = true && !frozen;
     }
 
     public void StopAttack() {
@@ -148,8 +149,7 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     public void Interact() {
-        if(frozen) return;
-        gameManager.GetComponent<InteractionManager>().ExecuteInteractions();
+        return;
     }
 
     public void Jump() {

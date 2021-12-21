@@ -33,6 +33,7 @@ public class PlayerInventory : MonoBehaviour {
         RegisterItem(new RustedBowItem(Resources.Load<Sprite>("Images/UI/Crosshair")));
         RegisterItem(new FullHealthPotionItem(Resources.Load<Sprite>("Images/Characters/Player Front")));
         RegisterItem(new WorstBowItem(Resources.Load<Sprite>("Images/Keys/I")));
+        RegisterItem(new ClawsItem(Resources.Load<Sprite>("Images/Keys/Health")));
     }
 
     void OnEnable() {

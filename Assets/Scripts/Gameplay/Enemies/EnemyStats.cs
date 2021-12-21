@@ -43,6 +43,8 @@ public class EnemyStats : MonoBehaviour {
     }
 
     public void Damage(float amount) {
+        if(dead) return;
+        
         float realDamage = amount / (0.04f * armour + 1);
         health = Mathf.Clamp(health - realDamage, 0, maxHealth);
 

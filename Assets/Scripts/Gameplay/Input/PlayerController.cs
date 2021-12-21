@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public GameObject primary;
 
     private ICharacterActions currentController;
+    private GameObject gameManager;
 
     private PlayerInput playerInput;
 
@@ -18,8 +19,11 @@ public class PlayerController : MonoBehaviour
     private InputAction attackAction;
     private InputAction interactAction;
     private InputAction jumpAction;
+    private InputAction switchCharacterAction;
 
     private void Awake() {
+        gameManager = GameObject.FindGameObjectWithTag("Game Manager");
+        gameManager.GetComponent<CharacterManager>().RegisterActiveChangeListener(gameObject, OnActiveCharacterChange);
         playerInput = GetComponent<PlayerInput>();
         
         moveAction = playerInput.actions["Move"];
@@ -29,6 +33,7 @@ public class PlayerController : MonoBehaviour
         attackAction = playerInput.actions["Attack"];
         interactAction = playerInput.actions["Interact"];
         jumpAction = playerInput.actions["Jump"];
+        switchCharacterAction = playerInput.actions["Switch Character"];
 
         currentController = primary.GetComponent<ICharacterActions>();
     }
@@ -51,6 +56,8 @@ public class PlayerController : MonoBehaviour
         interactAction.started += OnInteractPerformed;
 
         jumpAction.performed += OnJumpPerformed;
+
+        switchCharacterAction.started += OnSwitchPerformed;
     }
 
     private void OnDisable() {
@@ -71,6 +78,12 @@ public class PlayerController : MonoBehaviour
         interactAction.started -= OnInteractPerformed;
 
         jumpAction.performed -= OnJumpPerformed;
+
+        switchCharacterAction.started -= OnSwitchPerformed;
+    }
+
+    private void OnActiveCharacterChange(GameObject active) {
+        this.currentController = active.GetComponent<ICharacterActions>();
     }
 
     private void ToggleInventory(InputAction.CallbackContext context) {
@@ -117,6 +130,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnJumpPerformed(InputAction.CallbackContext context) {
         currentController.Jump();
+    }
+
+    private void OnSwitchPerformed(InputAction.CallbackContext context) {
+        gameManager.GetComponent<CharacterManager>().SwapActive();
     }
 
 }

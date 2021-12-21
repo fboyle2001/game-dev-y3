@@ -68,7 +68,6 @@ public abstract class EnemyBase : MonoBehaviour {
     }
 
     protected void OnDeath() {
-        Debug.Log("dead");
         GameObject xpOrb = Instantiate(xpOrbPrefab, transform.position + GetComponent<Collider>().bounds.extents.y * Vector3.up, xpOrbPrefab.transform.rotation);
         xpOrb.GetComponent<XPOrbSteering>().SetXpValue(stats.xpValue);
     }

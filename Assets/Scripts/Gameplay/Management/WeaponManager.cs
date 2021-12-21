@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class WeaponManager : MonoBehaviour
-{
+public class WeaponManager : MonoBehaviour {
 
     public GameObject weaponPanel;
     public GameObject weaponName;
@@ -39,8 +38,27 @@ public class WeaponManager : MonoBehaviour
         UpdateUI();
     }
 
+    public void SwitchCharacterMode(bool primary) {
+        if(primary) {
+            OnEquipmentChange(GetComponent<PlayerInventory>());
+        } else {
+            equippedWeapon = PlayerInventory.registeredItems["claws"] as WeaponInventoryItem;
+            weaponPanel.SetActive(true);
+            crosshair.SetActive(false);
+            weaponImage.GetComponent<Image>().sprite = null;
+            weaponName.GetComponent<TMP_Text>().text = "Claws";
+            this.timeBetweenShots = 60 / equippedWeapon.roundsPerMinute;
+            this.timeSinceLastShot = 0;
+        }
+    }
+
     private void OnEquipmentChange(PlayerInventory inventory) {
-        if(inventory.GetCurrentWeapon() == null) return;
+        if(inventory.GetCurrentWeapon() == null) {
+            weaponPanel.SetActive(false);
+            crosshair.SetActive(false);
+            equippedWeapon = null;
+            return;
+        }
 
         if(equippedWeapon == null) {
             equippedWeapon = inventory.GetCurrentWeapon();
@@ -80,23 +98,39 @@ public class WeaponManager : MonoBehaviour
     }
 
     public void FireWeapon() {
-        if(!HasWeapon() || timeSinceLastShot < timeBetweenShots || !gameManager.GetComponent<CharacterManager>().IsPrimaryActive()) return;
+        if(!HasWeapon() || timeSinceLastShot < timeBetweenShots) return;
 
-        RaycastHit hit;
-        bool didHit = Physics.Raycast(fireSource.transform.position, primaryCamera.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, ~(1 << 8));
-        
-        if(didHit && hit.collider != null) {
-            EnemyStats enemyStats = hit.collider.gameObject.GetComponent<EnemyStats>();
+        List<EnemyStats> damagables = new List<EnemyStats>(); 
 
-            if(enemyStats != null) {
-                enemyStats.Damage(equippedWeapon.damagePerRound * primaryStats.GetDamageMultiplier());
+        if(equippedWeapon.itemIdentifier == "claws") {
+            Collider[] hitColliders = Physics.OverlapSphere(fireSource.transform.position, 7, ~(1 << 8));
+
+            foreach(Collider hitCollider in hitColliders)  {
+                EnemyStats hitStats = hitCollider.GetComponent<EnemyStats>();
+
+                if(hitStats != null) {
+                    Debug.Log(hitCollider.name);
+                    damagables.Add(hitStats);
+                }
             }
-            
-            Debug.DrawRay(fireSource.transform.position, primaryCamera.transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 5.0f);
         } else {
-            Debug.DrawRay(fireSource.transform.position, primaryCamera.transform.TransformDirection(Vector3.forward) * 1000, Color.blue, 5.0f);
+            RaycastHit hit;
+            bool didHit = Physics.Raycast(fireSource.transform.position, primaryCamera.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, ~(1 << 8));
+            
+            if(didHit && hit.collider != null) {
+                EnemyStats enemyStats = hit.collider.gameObject.GetComponent<EnemyStats>();
+
+                if(enemyStats != null) {
+                    damagables.Add(enemyStats);
+                }
+                
+                Debug.DrawRay(fireSource.transform.position, primaryCamera.transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 5.0f);
+            } else {
+                Debug.DrawRay(fireSource.transform.position, primaryCamera.transform.TransformDirection(Vector3.forward) * 1000, Color.blue, 5.0f);
+            }
         }
 
+        damagables.ForEach(stats => stats.Damage(equippedWeapon.damagePerRound * primaryStats.GetDamageMultiplier()));
         this.timeSinceLastShot = 0;
     }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.AI;
 
 public class CharacterManager : MonoBehaviour
 {
@@ -11,37 +12,21 @@ public class CharacterManager : MonoBehaviour
     public GameObject secondary;
     public GameObject secondaryCamera;
 
-    public GameObject primaryImage;
-    public GameObject primaryHealth;
-
-    public GameObject secondaryPanel;
-    public GameObject secondaryImage;
-    public GameObject secondaryHealth;
-
     private bool secondaryUnlocked = false;
     private bool primaryActive = true;
 
     private Dictionary<int, System.Action<GameObject>> activeChangeListeners = new Dictionary<int, System.Action<GameObject>>();
 
-    void OnEnable() {
-        // Automatically updates the UI with the health of each character
-        primary.GetComponent<CharacterStats>().RegisterHealthUpdateListener(new System.Action<CharacterStats, float>((stats, change) => {
-            int percentage = Mathf.RoundToInt(100 * Mathf.Clamp01(stats.GetCurrentHealth() / stats.GetMaxHealth()));
-            primaryHealth.GetComponent<TMP_Text>().SetText(percentage + "%");
-        }));
+    
 
-        secondary.GetComponent<CharacterStats>().RegisterHealthUpdateListener(new System.Action<CharacterStats, float>((stats, change) => {
-            int percentage = Mathf.RoundToInt(100 * Mathf.Clamp01(stats.GetCurrentHealth() / stats.GetMaxHealth()));
-            primaryHealth.GetComponent<TMP_Text>().SetText(percentage + "%");
-        }));
-    }
+    public void UnlockSecondary() {
+        secondaryUnlocked = true;
 
-    public void DisplaySecondaryPanel(bool display) {
-        secondaryPanel.SetActive(display && secondaryUnlocked);
-    }
+        secondary.GetComponent<NavMeshObstacle>().enabled = false;
+        secondary.GetComponent<NavMeshAgent>().enabled = true;
+        secondary.GetComponent<FollowerAgent>().enabled = true;
 
-    public void SetSecondaryUnlocked(bool unlocked) {
-        secondaryUnlocked = unlocked;
+        GetComponent<UIManager>().DisplaySecondaryPanel(true);
     }
 
     public bool IsPrimaryActive() {
@@ -49,13 +34,11 @@ public class CharacterManager : MonoBehaviour
     }
 
     public GameObject GetActiveCharacter() {
-        // TODO: Implement
-        return primary;
+        return IsPrimaryActive() ? primary : secondary;
     }
 
     public GameObject GetActiveCamera() {
-        // TODO: Implement
-        return primaryCamera;
+        return IsPrimaryActive() ? primaryCamera : secondaryCamera;
     }
 
     public void SetFrozen(bool frozen) {
@@ -71,9 +54,76 @@ public class CharacterManager : MonoBehaviour
         actions.SetFrozen(frozen);
     }
 
+    public void SwapActive() {
+        if(!secondaryUnlocked) return;
+
+        if(primaryActive) {
+            primaryCamera.SetActive(false);
+            secondaryCamera.SetActive(true);
+
+            primary.GetComponent<NavMeshObstacle>().enabled = false;
+            primary.GetComponent<NavMeshAgent>().enabled = true;
+            primary.GetComponent<FollowerAgent>().enabled = true;
+            primary.GetComponent<Rigidbody>().isKinematic = true;
+
+            primary.GetComponent<ICharacterActions>().SetFrozen(true);
+            primary.GetComponent<ICharacterActions>().StopLookAround();
+            primary.GetComponent<ICharacterActions>().StopAttack();
+            primary.GetComponent<ICharacterActions>().StopSprinting();
+            primary.GetComponent<ICharacterActions>().StopMovement();
+
+            secondary.GetComponent<FollowerAgent>().enabled = false;
+            secondary.GetComponent<NavMeshAgent>().enabled = false;
+            secondary.GetComponent<NavMeshObstacle>().enabled = true;
+            secondary.GetComponent<Rigidbody>().isKinematic = false;
+
+            secondary.GetComponent<ICharacterActions>().SetFrozen(false);
+
+            Vector3 eulerAngles = secondary.transform.rotation.eulerAngles;
+            secondary.transform.rotation = Quaternion.Euler(new Vector3(0, eulerAngles.y, 0));
+            secondaryCamera.transform.rotation = secondary.transform.rotation;
+        } else {
+            primaryCamera.SetActive(true);
+            secondaryCamera.SetActive(false);
+
+            secondary.GetComponent<NavMeshObstacle>().enabled = false;
+            secondary.GetComponent<NavMeshAgent>().enabled = true;
+            secondary.GetComponent<FollowerAgent>().enabled = true;
+            secondary.GetComponent<Rigidbody>().isKinematic = true;
+
+            secondary.GetComponent<ICharacterActions>().SetFrozen(true);
+            secondary.GetComponent<ICharacterActions>().StopLookAround();
+            secondary.GetComponent<ICharacterActions>().StopAttack();
+            secondary.GetComponent<ICharacterActions>().StopSprinting();
+            secondary.GetComponent<ICharacterActions>().StopMovement();
+
+            primary.GetComponent<FollowerAgent>().enabled = false;
+            primary.GetComponent<NavMeshAgent>().enabled = false;
+            primary.GetComponent<NavMeshObstacle>().enabled = true;
+            primary.GetComponent<Rigidbody>().isKinematic = false;
+
+            primary.GetComponent<ICharacterActions>().SetFrozen(false);
+
+            Vector3 eulerAngles = primary.transform.rotation.eulerAngles;
+            primary.transform.rotation = Quaternion.Euler(new Vector3(0, eulerAngles.y, 0));
+            primaryCamera.transform.rotation = primary.transform.rotation;
+        }
+
+        primaryActive = !primaryActive;
+        PropagateActiveChangeEvent(GetActiveCharacter());
+    }
+
     public void RegisterActiveChangeListener(GameObject owner, System.Action<GameObject> action) {
-        activeChangeListeners.Add(owner.GetInstanceID(), action);
-        action(IsPrimaryActive() ? primary : secondary);
+        if(activeChangeListeners.ContainsKey(owner.GetInstanceID())) {
+            System.Action<GameObject> existing;
+            activeChangeListeners.TryGetValue(owner.GetInstanceID(), out existing);
+            activeChangeListeners.Remove(owner.GetInstanceID());
+            activeChangeListeners.Add(owner.GetInstanceID(), action + existing);
+        } else {
+            activeChangeListeners.Add(owner.GetInstanceID(), action);
+        }
+
+        action(GetActiveCharacter());
     }
 
     public void DeregisterActiveChangeListener(GameObject owner) {
