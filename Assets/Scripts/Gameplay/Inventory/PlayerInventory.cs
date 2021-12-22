@@ -27,16 +27,32 @@ public class PlayerInventory : MonoBehaviour {
     private List<System.Action<PlayerInventory>> itemChangeListeners = new List<System.Action<PlayerInventory>>();
 
     private void RegisterItems() {
-        RegisterItem(new RegenPotionItem(Resources.Load<Sprite>("Images/UI/Health")));
-        RegisterItem(new TatteredArmourItem(Resources.Load<Sprite>("Images/Characters/Fox")));
-        RegisterItem(new IronArmourItem(Resources.Load<Sprite>("Images/Characters/Player")));
-        RegisterItem(new RustedBowItem(Resources.Load<Sprite>("Images/UI/Crosshair")));
-        RegisterItem(new FullHealthPotionItem(Resources.Load<Sprite>("Images/Characters/Player Front")));
-        RegisterItem(new WorstBowItem(Resources.Load<Sprite>("Images/Keys/I")));
-        RegisterItem(new ClawsItem(Resources.Load<Sprite>("Images/Keys/Health")));
+        // Load sprite sheet
+        Sprite[] itemSprites = Resources.LoadAll<Sprite>("Images/Items/item_sprite_sheet");
+        Dictionary<string, Sprite> spriteMap = new Dictionary<string, Sprite>();
+
+        foreach(Sprite sprite in itemSprites) {
+            spriteMap.Add(sprite.name, sprite);
+        }
+        
+        RegisterItem(new ClawsItem(spriteMap["claws"]));
+        RegisterItem(new CraftedBowWeapon(spriteMap["craftedBow"]));
+        RegisterItem(new CrystalArmour(spriteMap["crystalArmour"]));
+        RegisterItem(new DamageRing(spriteMap["damageRing"]));
+        RegisterItem(new ExpertBowWeapon(spriteMap["expertBow"]));
+        RegisterItem(new FullHealthPotion(spriteMap["fullHealthPotion"]));
+        RegisterItem(new GodAmuletRing(spriteMap["godAmulet"]));
+        RegisterItem(new HealRing(spriteMap["healRing"]));
+        RegisterItem(new HealthPotionItem(spriteMap["healthPotion"]));
+        RegisterItem(new PlatedArmour(spriteMap["platedArmour"]));
+        RegisterItem(new RippedArmour(spriteMap["rippedArmour"]));
+        RegisterItem(new SorcerersPotion(spriteMap["sorcerersPotion"]));
+        RegisterItem(new SuperPotion(spriteMap["superPotion"]));
+        RegisterItem(new WornBowWeapon(spriteMap["wornBow"]));
     }
 
     void Awake() {
+        Debug.Log("awake called");
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         RegisterItems();
     }
@@ -47,6 +63,11 @@ public class PlayerInventory : MonoBehaviour {
         }
 
         emptyText.SetActive(true);
+    }
+
+    void Start() {
+        AddItemToInventory("wornBow", 1);
+        AddItemToInventory("fullHealthPotion", 1);
     }
 
     public void RegisterEquipUpdateListener(System.Action<PlayerInventory> action) {

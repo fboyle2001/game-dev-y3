@@ -10,6 +10,7 @@ public class TestingOverrides : MonoBehaviour {
 
     void Delayed() {
         // GetComponent<CharacterManager>().UnlockSecondary();
+        GetComponent<PlayerResources>().AddGold(1000000);
     }
 
 }

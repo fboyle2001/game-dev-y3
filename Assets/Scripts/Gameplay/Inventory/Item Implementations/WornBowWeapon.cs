@@ -2,21 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TatteredArmourItem : EquippableInventoryItem {
+public class WornBowWeapon : WeaponInventoryItem {
     
-    public TatteredArmourItem(Sprite itemImage) : base(itemIdentifier: "tatteredArmour", itemName: "Tattered Armour", goldValue: 50, itemImage) {}
+    public WornBowWeapon(Sprite itemImage) : base(itemIdentifier: "wornBow", itemName: "Worn Bow", goldValue: 0, itemImage, roundsPerMinute: 90, damagePerRound: 4) {}
 
     public override void ApplyItemEffect(GameObject gameManager) {
         PlayerStats stats = gameManager.GetComponent<PlayerStats>();
-        stats.AddArmour(5);
-
-        gameManager.GetComponent<PlayerInventory>().EquipItem(this, "armour");
+        gameManager.GetComponent<PlayerInventory>().EquipItem(this, "weapon");
     }
 
     public override void ReverseEffect(GameObject gameManager) {
         PlayerStats stats = gameManager.GetComponent<PlayerStats>();
-        stats.AddArmour(-5);
-
         gameManager.GetComponent<PlayerInventory>().AddItemToInventory(itemIdentifier, 1);
     }
 

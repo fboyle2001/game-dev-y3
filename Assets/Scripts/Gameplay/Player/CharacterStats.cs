@@ -81,6 +81,10 @@ public class CharacterStats : MonoBehaviour
         PropagateHealthEvent(amount);
     }
 
+    public void HealAsPercent(float percentage) {
+        Heal(maxHealth * Mathf.Clamp01(percentage));
+    }
+
     public void SetHealth(float health) {
         health = Mathf.Clamp(health, 0, maxHealth);
         float change = currentHealth - health;
