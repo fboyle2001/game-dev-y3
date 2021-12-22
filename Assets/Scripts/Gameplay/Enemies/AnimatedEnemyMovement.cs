@@ -22,7 +22,7 @@ public class AnimatedEnemyMovement : MonoBehaviour {
     private float maxZ;
     private float speedFactor = 1;
 
-    void OnEnable() {
+    void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();

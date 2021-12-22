@@ -10,7 +10,7 @@ public class ResourceDisplayHandler : MonoBehaviour
     public GameObject xpText;
     public GameObject levelText;
 
-    void OnEnable() {
+    void Awake() {
         GameObject.FindGameObjectWithTag("Game Manager").GetComponent<PlayerResources>().RegisterResourceUpdateListener((resources) => {
             goldText.GetComponent<TMP_Text>().SetText(resources.GetGold().ToString());
             xpText.GetComponent<TMP_Text>().SetText(resources.GetXP().ToString("0") + "/" + resources.GetXPForNextLevel().ToString());

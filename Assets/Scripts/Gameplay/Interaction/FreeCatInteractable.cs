@@ -13,7 +13,7 @@ public class FreeCatInteractable : MonoBehaviour, IInteractable
 
     private bool registered = false;
 
-    void OnEnable() {
+    void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         objectiveManager = gameManager.GetComponent<ObjectiveManager>();
         interactionManager = gameManager.GetComponent<InteractionManager>();

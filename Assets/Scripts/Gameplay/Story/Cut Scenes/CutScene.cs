@@ -18,8 +18,11 @@ public abstract class CutScene : MonoBehaviour {
     private Queue<CutSceneAction> actions = new Queue<CutSceneAction>();
     private bool started = false;
 
-    public void OnEnable() {
+    void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
+    }
+
+    public void OnEnable() {
         this.QueueRequiredActions();
         this.QueueActions();
     }

@@ -36,10 +36,12 @@ public class PlayerInventory : MonoBehaviour {
         RegisterItem(new ClawsItem(Resources.Load<Sprite>("Images/Keys/Health")));
     }
 
-    void OnEnable() {
+    void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         RegisterItems();
+    }
 
+    void OnEnable() {
         foreach(InventorySlot slot in inventorySlots) {
             slot.SetVisible(false);
         }

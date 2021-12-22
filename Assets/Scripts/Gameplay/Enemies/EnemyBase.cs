@@ -22,15 +22,18 @@ public abstract class EnemyBase : MonoBehaviour {
     protected GameObject target;
     protected bool active;
 
-    public void OnEnable() {
+    void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
-        xpOrbPrefab = gameManager.GetComponent<PrefabStorage>().xpOrb;
 
         stats = GetComponent<EnemyStats>();
         movementController = GetComponent<AnimatedEnemyMovement>();
         animator = GetComponent<Animator>();
+
         active = false;
-        
+    }
+
+    public void OnEnable() {
+        xpOrbPrefab = gameManager.GetComponent<PrefabStorage>().xpOrb;
         gameManager.GetComponent<CharacterManager>().RegisterActiveChangeListener(gameObject, OnActiveCharacterChange);
         stats.RegisterDamageListener(OnDamageHandler);
     }

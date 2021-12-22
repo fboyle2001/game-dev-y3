@@ -17,13 +17,15 @@ public class SpawnInCutScene : MonoBehaviour {
     private DialogueManager dialogueManager;
     private CharacterManager characterManager;
 
-    void Start() {
+    void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         daylightManager = gameManager.GetComponent<DaylightManager>();
         objectiveManager = gameManager.GetComponent<ObjectiveManager>();
         dialogueManager = gameManager.GetComponent<DialogueManager>();
         characterManager = gameManager.GetComponent<CharacterManager>();
+    }
 
+    void Start() {
         daylightManager.SetLightIntensity(1);
         realPlayer.SetActive(true);
         realCamera.SetActive(false);

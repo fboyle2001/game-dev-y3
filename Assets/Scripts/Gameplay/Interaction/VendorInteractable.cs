@@ -8,7 +8,7 @@ public class VendorInteractable : MonoBehaviour, IInteractable {
 
     private InteractionManager interactionManager;
 
-    void OnEnable() {
+    void Awake() {
         interactionManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<InteractionManager>();
     }
 

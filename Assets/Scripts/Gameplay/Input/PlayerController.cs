@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour
 
     private void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
-        gameManager.GetComponent<CharacterManager>().RegisterActiveChangeListener(gameObject, OnActiveCharacterChange);
         playerInput = GetComponent<PlayerInput>();
         
         moveAction = playerInput.actions["Move"];
@@ -39,6 +38,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnEnable() {
+        gameManager.GetComponent<CharacterManager>().RegisterActiveChangeListener(gameObject, OnActiveCharacterChange);
+
         moveAction.performed += OnMovePerformed;
         moveAction.canceled += OnMoveCancelled;
 
@@ -61,6 +62,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnDisable() {
+        gameManager.GetComponent<CharacterManager>().DeregisterActiveChangeListener(gameObject);
+
         moveAction.performed -= OnMovePerformed;
         moveAction.canceled -= OnMoveCancelled;
 

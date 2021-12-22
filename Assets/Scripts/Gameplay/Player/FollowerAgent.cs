@@ -11,7 +11,7 @@ public class FollowerAgent : MonoBehaviour {
     private NavMeshAgent agent;
     private Animator animator;
 
-    void Start() {
+    void Awake() {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
     }

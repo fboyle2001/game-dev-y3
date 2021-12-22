@@ -16,13 +16,14 @@ public class XPOrbSteering : MonoBehaviour {
 
     public void SetXpValue(float value) {
         xpValue = Mathf.Max(value, 1);
-        Debug.Log("Set xpValue to " + xpValue);
     }
 
-    void OnEnable() {
+    void Awake() {
         rb = GetComponent<Rigidbody>();
-
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
+    }
+
+    void Start() {        
         target = gameManager.GetComponent<CharacterManager>().GetActiveCharacter();
     }
 

@@ -9,6 +9,7 @@ public class PlayerResources : MonoBehaviour
     private static readonly float xpScalar = 10;
     
     private List<System.Action<PlayerResources>> resourceUpdateListeners = new List<System.Action<PlayerResources>>();
+    private List<System.Action<int>> levelUpListeners = new List<System.Action<int>>();
 
     private int gold = 10;
     private int currentExperienceLevel = 1;
@@ -16,12 +17,12 @@ public class PlayerResources : MonoBehaviour
     private float xp = 0;
 
     private GameObject gameManager;
-    private CharacterStats stats;
+    private PlayerStats stats;
 
     void OnEnable() {
         xpForNextLevel = CalculateXPForLevel(currentExperienceLevel);
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
-        stats = gameManager.GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>();
+        stats = gameManager.GetComponent<PlayerStats>();
         PropagateResourceEvent();
     }
 
@@ -36,9 +37,16 @@ public class PlayerResources : MonoBehaviour
         resourceUpdateListeners.Add(listener);
         PropagateResourceEvent();
     }
+    public void RegisterLevelUpListener(System.Action<int> listener) {
+        levelUpListeners.Add(listener);
+    }
 
     private void PropagateResourceEvent() {
         resourceUpdateListeners.ForEach(action => action(this));
+    }
+
+    private void PropagateLevelUpEvent(int newLevel) {
+        levelUpListeners.ForEach(action => action(newLevel));
     }
 
     public void AddExperience(float amount) {
@@ -49,6 +57,7 @@ public class PlayerResources : MonoBehaviour
             GrantLevelUpReward(currentExperienceLevel);
             currentExperienceLevel++;
             xpForNextLevel = CalculateXPForLevel(currentExperienceLevel);
+            PropagateLevelUpEvent(currentExperienceLevel);
         }
 
         PropagateResourceEvent();
@@ -84,23 +93,23 @@ public class PlayerResources : MonoBehaviour
         switch(levelReached) {
             case 1:
                 // Increase their max health
-                stats.AddMaxHealth(10f);
+                stats.AddMaxHealthMultiplier(0.1f);
                 break;
             case 2:
                 // Give them some regen
                 stats.AddRegenPerSecond(0.2f);
                 break;
             case 3:
-                stats.AddMaxHealth(10f);
+                stats.AddMaxHealthMultiplier(0.1f);
                 break;
             case 4:
-                stats.AddMaxHealth(10f);
+                stats.AddMaxHealthMultiplier(0.1f);
                 break;
             case 5:
-                stats.AddMaxHealth(10f);
+                stats.AddMaxHealthMultiplier(0.1f);
                 break;
             case 6:
-                stats.AddMaxHealth(10f);
+                stats.AddMaxHealthMultiplier(0.1f);
                 break;
             case 7:
             case 8:

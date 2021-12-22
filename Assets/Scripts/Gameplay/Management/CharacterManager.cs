@@ -25,6 +25,15 @@ public class CharacterManager : MonoBehaviour
         secondary.GetComponent<FollowerAgent>().enabled = true;
 
         GetComponent<UIManager>().DisplaySecondaryPanel(true);
+        
+        GameObject statDisplay = GameObject.FindGameObjectWithTag("Stat Display");
+        if(statDisplay != null && statDisplay.activeSelf) {
+            statDisplay.GetComponent<StatDisplayHandler>().UpdateStatDisplayGM();
+        }
+    }
+
+    public bool IsSecondaryUnlocked() {
+        return secondaryUnlocked;
     }
 
     public bool IsPrimaryActive() {

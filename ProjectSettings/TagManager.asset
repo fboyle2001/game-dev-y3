@@ -13,6 +13,7 @@ TagManager:
   - Inventory
   - Ground
   - Interactable
+  - Stat Display
   layers:
   - Default
   - TransparentFX

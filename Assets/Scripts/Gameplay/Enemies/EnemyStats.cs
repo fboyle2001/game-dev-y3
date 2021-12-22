@@ -21,10 +21,13 @@ public class EnemyStats : MonoBehaviour {
     private RectTransform healthBarTransform;
     private bool dead = false;
 
-    void Start() {
+    void Awake() {
         health = maxHealth;
         maxHealthBarWidth = (healthBarBackground.transform as RectTransform).rect.width;
         healthBarTransform = (healthBar.transform as RectTransform);
+    }
+
+    void Start() {
         UpdateHealthBar();
     }
 

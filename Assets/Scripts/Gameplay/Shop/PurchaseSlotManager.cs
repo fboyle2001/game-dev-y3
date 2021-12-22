@@ -21,11 +21,13 @@ public class PurchaseSlotManager : MonoBehaviour
     private int goldCost;
     private bool ready = false;
 
-    void OnEnable() {
+    void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         playerInventory = gameManager.GetComponent<PlayerInventory>();
         playerResources = gameManager.GetComponent<PlayerResources>();
+    }
 
+    void OnEnable() {
         playerResources.RegisterResourceUpdateListener((resources) => {
             CheckIfPurchasable();
         });

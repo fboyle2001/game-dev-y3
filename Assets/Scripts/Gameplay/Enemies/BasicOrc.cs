@@ -14,7 +14,6 @@ public class BasicOrc : EnemyBase {
 
     void Start() {
         SetActive(true);
-        gameManager.GetComponent<PlayerInventory>().AddItemToInventory("rustedBow", 2);
     }
 
     void FixedUpdate() {

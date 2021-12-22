@@ -7,9 +7,12 @@ public class CompletionManager : MonoBehaviour {
     private DialogueManager dialogueManager;
     private ObjectiveManager objectiveManager;
 
-    void OnEnable() {
+    void Awake() {
         dialogueManager = GetComponent<DialogueManager>();
         objectiveManager = GetComponent<ObjectiveManager>();
+    }
+
+    void Start() {
         EnemyBase.RegisterGlobalDamageHandler(gameObject, OnDamageHandler);
     }
 

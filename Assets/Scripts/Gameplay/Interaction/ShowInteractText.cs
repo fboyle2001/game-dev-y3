@@ -8,7 +8,7 @@ public class ShowInteractText : MonoBehaviour {
 
     private IInteractable currentInteractable;
 
-    void OnEnable() {
+    void Awake() {
         characterManager = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<CharacterManager>();
     }
 

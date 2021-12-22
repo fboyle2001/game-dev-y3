@@ -19,16 +19,19 @@ public class WeaponManager : MonoBehaviour {
     private WeaponInventoryItem equippedWeapon;
     private float maxWidth;
     private GameObject gameManager;
-    private CharacterStats primaryStats;
+    private PlayerStats playerStats;
 
     private float timeBetweenShots = 0;
     private float timeSinceLastShot = 0;
 
-    void OnEnable() {
+    void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
-        primaryStats = gameManager.GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>();
-        GetComponent<PlayerInventory>().RegisterEquipUpdateListener(inventory => this.OnEquipmentChange(inventory));
+        playerStats = gameManager.GetComponent<PlayerStats>();
         maxWidth = (chargeBackgroundBar.transform as RectTransform).sizeDelta.x;
+    }
+
+    void Start() {
+        GetComponent<PlayerInventory>().RegisterEquipUpdateListener(inventory => this.OnEquipmentChange(inventory));
         weaponPanel.SetActive(false);
         crosshair.SetActive(false);
     }
@@ -130,7 +133,7 @@ public class WeaponManager : MonoBehaviour {
             }
         }
 
-        damagables.ForEach(stats => stats.Damage(equippedWeapon.damagePerRound * primaryStats.GetDamageMultiplier()));
+        damagables.ForEach(stats => stats.Damage(equippedWeapon.damagePerRound * playerStats.GetDamageMultiplier()));
         this.timeSinceLastShot = 0;
     }
 

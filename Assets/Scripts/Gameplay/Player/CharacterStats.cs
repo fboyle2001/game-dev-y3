@@ -7,16 +7,33 @@ public class CharacterStats : MonoBehaviour
 
     public float maxHealth;
     private float currentHealth;
-    private float armour = 0;
-    private float regen = 0;
-    private float damageMultiplier = 1;
 
     private List<System.Action<CharacterStats, float>> healthUpdateListeners = new List<System.Action<CharacterStats, float>>();
     private List<System.Action<CharacterStats>> statUpdateListeners = new List<System.Action<CharacterStats>>();
 
+    private float originalMaxHealth;
     private float currentDOTEffect = 0;
     private float appliedDOTTime = 0;
     private float maxDOTTime = 0;
+    private PlayerStats stats;
+
+    void Awake() {
+        originalMaxHealth = maxHealth;
+        stats = GameObject.FindGameObjectWithTag("Game Manager").GetComponent<PlayerStats>();
+    }
+
+    void Start() {
+        stats.RegisterStatChangeListener(OnMaxHealthMultiplierChange);
+    }
+
+    private void OnMaxHealthMultiplierChange(PlayerStats stats) {
+        maxHealth = originalMaxHealth * stats.GetMaxHealthMultiplier();
+        PropagateHealthEvent(0);
+    }
+
+    public float GetOriginalMaxHealth() {
+        return maxHealth;
+    }
 
     void OnEnable() {
         currentHealth = maxHealth;
@@ -41,8 +58,8 @@ public class CharacterStats : MonoBehaviour
             }
         }
 
-        if(currentHealth < maxHealth && regen > 0) {
-            Heal(regen * Time.deltaTime);
+        if(currentHealth < maxHealth && stats.GetRegenPerSecond() > 0) {
+            Heal(stats.GetRegenPerSecond() * Time.deltaTime);
         }
     }
 
@@ -51,15 +68,10 @@ public class CharacterStats : MonoBehaviour
         PropagateHealthEvent(0);
     }
 
-    public void RegisterStatUpdateListener(System.Action<CharacterStats> listener) {
-        statUpdateListeners.Add(listener);
-        PropagateStatEvent();
-    }
-
     public void ApplyDamage(float damage) {
         // Scale the damage based on armour, damage reduction = 1 / (0.04 * armour + 1)
         // e.g. 100 damage with 0 armour = 100 health taken, 100 damage with 100 armour = 20 health taken
-        float realDamage = damage / (0.04f * armour + 1);
+        float realDamage = damage / (0.04f * stats.GetArmour() + 1);
         currentHealth = Mathf.Clamp(currentHealth - realDamage, 0, maxHealth);
         PropagateHealthEvent(realDamage);
     }
@@ -67,18 +79,6 @@ public class CharacterStats : MonoBehaviour
     public void Heal(float amount) {
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         PropagateHealthEvent(amount);
-    }
-
-    public void SetMaxHealth(float maxHealth) {
-        this.maxHealth = maxHealth;
-        PropagateHealthEvent(0);
-        PropagateStatEvent();
-    }
-
-    public void AddMaxHealth(float amount) {
-        this.maxHealth += amount;
-        PropagateHealthEvent(0);
-        PropagateStatEvent();
     }
 
     public void SetHealth(float health) {
@@ -94,36 +94,6 @@ public class CharacterStats : MonoBehaviour
         maxDOTTime = time;
     }
 
-    public void SetDamageMultiplier(float damageMultiplier) {
-        this.damageMultiplier = damageMultiplier;
-        PropagateStatEvent();
-    }
-
-    public void AddDamageMultiplier(float amount) {
-        this.damageMultiplier += amount;
-        PropagateStatEvent();
-    }
-
-    public void SetRegenPerSecond(float regen) {
-        this.regen = regen;
-        PropagateStatEvent();
-    }
-
-    public void AddRegenPerSecond(float amount) {
-        this.regen += amount;
-        PropagateStatEvent();
-    }
-
-    public void SetArmour(float armour) {
-        this.armour = armour;
-        PropagateStatEvent();
-    }
-
-    public void AddArmour(float amount) {
-        this.armour += amount;
-        PropagateStatEvent();
-    }
-
     public float GetMaxHealth() {
         return maxHealth;
     }
@@ -132,24 +102,8 @@ public class CharacterStats : MonoBehaviour
         return currentHealth;
     }
 
-    public float GetArmour() {
-        return armour;
-    }
-
-    public float GetRegenPerSecond() {
-        return regen;
-    }
-
-    public float GetDamageMultiplier() {
-        return damageMultiplier;
-    }
-
     private void PropagateHealthEvent(float change) {
         healthUpdateListeners.ForEach(action => action(this, change));
-    }
-
-    private void PropagateStatEvent() {
-        statUpdateListeners.ForEach(action => action(this));
     }
 
 }
