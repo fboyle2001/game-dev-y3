@@ -78,7 +78,7 @@ public class SpawnInCutScene : MonoBehaviour {
         dialogueManager.QueueDialogue("You", "Where am I?", 3);
         dialogueManager.QueueDialogue("You", "Where is <CAT NAME>?", 3);
         dialogueManager.QueueDialogue("You", "Something smells like it's burning. Maybe there is a camp nearby?", 5, () => {
-            objectiveManager.AddObjective("findInitialCamp", "Find help", "Someone might be nearby", new ObjectiveManager.RewardEntry(0, 0));
+            objectiveManager.AddObjective("findInitialCamp", "Find help", "Someone might be nearby", new ObjectiveManager.RewardEntry(300, 10));
             objectiveManager.ShowObjectives();
         });
     }

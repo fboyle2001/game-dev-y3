@@ -28,7 +28,7 @@ public class PurchaseSlotManager : MonoBehaviour
     }
 
     void OnEnable() {
-        playerResources.RegisterResourceUpdateListener((resources) => {
+        playerResources.RegisterResourceUpdateListener((resources, discard_a, discard_b) => {
             CheckIfPurchasable();
         });
 
@@ -50,7 +50,6 @@ public class PurchaseSlotManager : MonoBehaviour
         ready = true;
         nameText.GetComponent<TMP_Text>().text = heldItem.itemName;
         image.GetComponent<Image>().sprite = heldItem.itemImage;
-        playerResources.UpdateGold(100000);
         CheckIfPurchasable();
     }
 
@@ -85,7 +84,7 @@ public class PurchaseSlotManager : MonoBehaviour
         bool purchasable = CheckIfPurchasable();
         if(!purchasable) return;
 
-        playerResources.UpdateGold(-goldCost);
+        playerResources.AddGold(-goldCost);
         playerInventory.AddItemToInventory(heldItem.itemIdentifier, 1);
 
         CheckIfPurchasable();

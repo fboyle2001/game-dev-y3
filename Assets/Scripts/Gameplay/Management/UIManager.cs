@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour {
     public GameObject maxHealthPanel;
     public GameObject regenText;
     public GameObject regenPanel;
+    public float expireTime = 3f;
 
     [Header("Interaction")]
     public GameObject inventoryPanel;
@@ -38,16 +39,17 @@ public class UIManager : MonoBehaviour {
 
     private float xpGain;
     private int goldGain;
-    private int healthGain;
+    private float healthGain;
     private float damageMultGain;
-    private int armourGain;
-    private int maxHealthGain;
+    private float armourGain;
+    private float maxHealthGain;
     private float regenGain;
 
     void Start() {
         GetComponent<CharacterManager>().RegisterActiveChangeListener(gameObject, OnActiveCharacterChange);
         GetComponent<PlayerResources>().RegisterResourceUpdateListener(OnResourceUpdate);
         GetComponent<PlayerResources>().RegisterLevelUpListener(OnLevelUp);
+        GetComponent<PlayerStats>().RegisterStatChangeListener(OnGlobalStatsUpdate);
 
         // Automatically updates the UI with the health of each character
         GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>().RegisterHealthUpdateListener((stats, change) => {
@@ -95,58 +97,130 @@ public class UIManager : MonoBehaviour {
     }
 
     private void OnHealthGain(float gain) {
-
+        if(gain != 0) {
+            CancelInvoke("HideHealthPanel");
+            healthGain += gain;
+            string symbol = maxHealthGain >= 0 ? "+" : "-";
+            healthText.GetComponent<TMP_Text>().text = symbol + " " + healthGain + " Health";
+            healthPanel.SetActive(true);
+            Invoke("HideHealthPanel", expireTime);
+        }
     }
 
-    private void OnResourceUpdate(PlayerResources resources) {
+    private void OnGlobalStatsUpdate(PlayerStats globalStats, float maxHealthChange, float dmgChange, float regenChange, float armourChange) {
+        if(maxHealthChange != 0) {
+            CancelInvoke("HideMaxHealthPanel");
+            maxHealthGain += maxHealthChange;
+            string symbol = maxHealthGain >= 0 ? "+" : "-";
+            goldText.GetComponent<TMP_Text>().text = symbol + " " + (maxHealthGain * 100).ToString("0") + "% Max Health";
+            goldPanel.SetActive(true);
+            Invoke("HideMaxHealthPanel", expireTime);
+        }
 
+        if(dmgChange != 0) {
+            CancelInvoke("HideDamageMultPanel");
+            damageMultGain += dmgChange;
+            string symbol = damageMultGain >= 0 ? "+" : "-";
+            damageMultText.GetComponent<TMP_Text>().text = symbol + " " + (damageMultGain * 100).ToString("0.00") + "% Damage";
+            damageMultPanel.SetActive(true);
+            Invoke("HideDamageMultPanel", expireTime);
+        }
+
+        if(regenChange != 0) {
+            CancelInvoke("HideRegenPanel");
+            regenGain += regenChange;
+            string symbol = regenGain >= 0 ? "+" : "-";
+            regenText.GetComponent<TMP_Text>().text = symbol + " " + regenChange.ToString("0.0") + " Regen/Sec";
+            regenPanel.SetActive(true);
+            Invoke("HideRegenPanel", expireTime);
+        }
+
+        if(armourChange != 0) {
+            CancelInvoke("HideArmourPanel");
+            armourGain += armourChange;
+            string symbol = armourGain >= 0 ? "+" : "-";
+            armourText.GetComponent<TMP_Text>().text = symbol + " " + armourChange + " Armour";
+            armourPanel.SetActive(true);
+            Invoke("HideArmourPanel", expireTime);
+        }
+    }
+
+    private void OnResourceUpdate(PlayerResources resources, float xpChange, int goldChange) {
+        if(goldChange != 0) {
+            CancelInvoke("HideGoldPanel");
+            goldGain += goldChange;
+            string symbol = goldGain >= 0 ? "+" : "-";
+            goldText.GetComponent<TMP_Text>().text = symbol + " " + goldGain + " G";
+            goldPanel.SetActive(true);
+            Invoke("HideGoldPanel", expireTime);
+        }
+
+        if(xpChange != 0) {
+            CancelInvoke("HideXPPanel");
+            xpGain += xpChange;
+            string symbol = goldGain >= 0 ? "+" : "-";
+            xpText.GetComponent<TMP_Text>().text = symbol + " " + xpGain + " XP";
+            xpPanel.SetActive(true);
+            Invoke("HideXPPanel", expireTime);
+        }
     }
 
     private void OnLevelUp(int newLevel) {
+        CancelInvoke("HideLevelUpPanel");
+        levelUpText.GetComponent<TMP_Text>().text = "Level Up! (" + newLevel + ")";
+        levelUpPanel.SetActive(true);
+        Invoke("HideLevelUpPanel", expireTime);
 
     }
 
     private void HideXPPanel() {
-
+        xpGain = 0;
+        xpPanel.SetActive(false);
     }
 
     private void HideLevelUpPanel() {
-
+        levelUpPanel.SetActive(false);
     }
 
     private void HideGoldPanel() {
-
+        goldGain = 0;
+        goldPanel.SetActive(false);
     }
 
     private void HideHealthPanel() {
-
+        healthGain = 0;
+        healthPanel.SetActive(false);
     }
 
     private void HideDamageMultPanel() {
-
+        damageMultGain = 0;
+        damageMultPanel.SetActive(false);
     }
 
     private void HideArmourPanel() {
-
+        armourGain = 0;
+        armourPanel.SetActive(false);
     }
 
     private void HideMaxHealthPanel() {
-
+        maxHealthGain = 0;
+        maxHealthPanel.SetActive(false);
     }
 
     private void HideRegenPanel() {
-
+        regenGain = 0;
+        regenPanel.SetActive(false);
     }
 
     private void HideAllGainPanels() {
-        xpPanel.SetActive(false); //d
-        levelUpPanel.SetActive(false); //d
-        goldPanel.SetActive(false); //d
-        healthPanel.SetActive(false); //d
-        damageMultPanel.SetActive(false); //d
-        armourPanel.SetActive(false); //d
-        maxHealthPanel.SetActive(false); //d
-        regenPanel.SetActive(false); //d
+        xpPanel.SetActive(false);
+        levelUpPanel.SetActive(false);
+        goldPanel.SetActive(false);
+        healthPanel.SetActive(false);
+        damageMultPanel.SetActive(false);
+        armourPanel.SetActive(false);
+        maxHealthPanel.SetActive(false);
+        regenPanel.SetActive(false);
     }
 
 }

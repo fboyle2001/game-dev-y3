@@ -28,10 +28,10 @@ public class StatDisplayHandler : MonoBehaviour
     }
 
     public void UpdateStatDisplayGM() {
-        UpdateStatDisplay(gameManager.GetComponent<PlayerStats>());
+        UpdateStatDisplay(gameManager.GetComponent<PlayerStats>(), 0, 0, 0, 0);
     }
 
-    private void UpdateStatDisplay(PlayerStats stats) {
+    private void UpdateStatDisplay(PlayerStats stats, float maxHealthChange, float dmgChange, float regenChange, float armourChange) {
         armourText.GetComponent<TMP_Text>().SetText(stats.GetArmour().ToString("0.0"));
         regenText.GetComponent<TMP_Text>().SetText(stats.GetRegenPerSecond().ToString("0.0"));
         damageMultiplierText.GetComponent<TMP_Text>().SetText(stats.GetDamageMultiplier().ToString("0.00"));

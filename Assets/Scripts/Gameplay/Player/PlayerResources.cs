@@ -8,7 +8,7 @@ public class PlayerResources : MonoBehaviour
     private static readonly float xpPowerScalar = Mathf.Log(2) / 5;
     private static readonly float xpScalar = 10;
     
-    private List<System.Action<PlayerResources>> resourceUpdateListeners = new List<System.Action<PlayerResources>>();
+    private List<System.Action<PlayerResources, float, int>> resourceUpdateListeners = new List<System.Action<PlayerResources, float, int>>();
     private List<System.Action<int>> levelUpListeners = new List<System.Action<int>>();
 
     private int gold = 10;
@@ -23,7 +23,7 @@ public class PlayerResources : MonoBehaviour
         xpForNextLevel = CalculateXPForLevel(currentExperienceLevel);
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         stats = gameManager.GetComponent<PlayerStats>();
-        PropagateResourceEvent();
+        PropagateResourceEvent(0, 0);
     }
 
     private int CalculateXPForLevel(int level) {
@@ -33,16 +33,16 @@ public class PlayerResources : MonoBehaviour
         return Mathf.CeilToInt(Mathf.Clamp(xpScalar * Mathf.Exp(xpPowerScalar * (level - 1)), 0, 999));
     }
 
-    public void RegisterResourceUpdateListener(System.Action<PlayerResources> listener) {
+    public void RegisterResourceUpdateListener(System.Action<PlayerResources, float, int> listener) {
         resourceUpdateListeners.Add(listener);
-        PropagateResourceEvent();
+        PropagateResourceEvent(0, 0);
     }
     public void RegisterLevelUpListener(System.Action<int> listener) {
         levelUpListeners.Add(listener);
     }
 
-    private void PropagateResourceEvent() {
-        resourceUpdateListeners.ForEach(action => action(this));
+    private void PropagateResourceEvent(float xpChange, int goldChange) {
+        resourceUpdateListeners.ForEach(action => action(this, xpChange, goldChange));
     }
 
     private void PropagateLevelUpEvent(int newLevel) {
@@ -60,16 +60,16 @@ public class PlayerResources : MonoBehaviour
             PropagateLevelUpEvent(currentExperienceLevel);
         }
 
-        PropagateResourceEvent();
+        PropagateResourceEvent(amount, 0);
     }
 
     public bool HasEnoughGold(int requiredAmount) {
         return gold > requiredAmount;
     }
 
-    public void UpdateGold(int amount) {
+    public void AddGold(int amount) {
         this.gold = Mathf.Max(this.gold + amount, 0);
-        PropagateResourceEvent();
+        PropagateResourceEvent(0, amount);
     }
 
     public int GetGold() {

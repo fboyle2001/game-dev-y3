@@ -9,6 +9,7 @@ public class ObjectiveManager : MonoBehaviour
     public GameObject objectivePanel;
     public TMP_Text objectiveTextList;
     private List<string> completedObjectives = new List<string>();
+    private PlayerResources playerResources;
 
     public struct RewardEntry {
         public readonly int gold;
@@ -36,6 +37,10 @@ public class ObjectiveManager : MonoBehaviour
     }
 
     private Dictionary<string, ObjectiveEntry> objectives;
+
+    void Awake() {
+        playerResources = GetComponent<PlayerResources>();
+    }
 
     void OnEnable() {
         ClearObjectives();
@@ -101,6 +106,9 @@ public class ObjectiveManager : MonoBehaviour
 
         // TODO: Give rewards
         RewardEntry reward = objective.reward;
+
+        playerResources.AddExperience(reward.xp * rewardScalar);
+        playerResources.AddGold(Mathf.RoundToInt(reward.gold * rewardScalar));
     }
 
     public List<string> GetCompletedObjectives() {

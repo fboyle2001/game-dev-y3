@@ -26,7 +26,7 @@ public class CharacterStats : MonoBehaviour
         stats.RegisterStatChangeListener(OnMaxHealthMultiplierChange);
     }
 
-    private void OnMaxHealthMultiplierChange(PlayerStats stats) {
+    private void OnMaxHealthMultiplierChange(PlayerStats stats, float maxHealthChange, float dmgChange, float regenChange, float armourChange) {
         maxHealth = originalMaxHealth * stats.GetMaxHealthMultiplier();
         PropagateHealthEvent(0);
     }
@@ -73,7 +73,7 @@ public class CharacterStats : MonoBehaviour
         // e.g. 100 damage with 0 armour = 100 health taken, 100 damage with 100 armour = 20 health taken
         float realDamage = damage / (0.04f * stats.GetArmour() + 1);
         currentHealth = Mathf.Clamp(currentHealth - realDamage, 0, maxHealth);
-        PropagateHealthEvent(realDamage);
+        PropagateHealthEvent(-realDamage);
     }
 
     public void Heal(float amount) {
