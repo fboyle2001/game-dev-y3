@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class BasicOrc : EnemyBase {
     
-    public float timeBetweenAttacks;
-    public float attackRange;
-    public float targetGap;
-    public float damagePerAttack;
+    private float timeBetweenAttacks = 2;
+    private float attackRange = 10;
+    private float targetGap = 4;
+    private float damagePerAttack;
 
     private float timeSinceLastAttack = 0;
     private bool attacking = false;
 
+    new void Awake() {
+        base.Awake();
+        damagePerAttack = 8 * level;
+    }
+
     void Start() {
+        stats.SetArmour(3 * level);
+        stats.SetMaxHealth(40 * level);
+        stats.SetRegenPerSecond(0.1f * level);
+        stats.SetXPValue(9 * level);
+        stats.SetGoldValue(100 * level);
         SetActive(true);
     }
 
@@ -55,7 +65,6 @@ public class BasicOrc : EnemyBase {
     private void StopAttackAnimation() {
         timeSinceLastAttack = 0;
         target.GetComponent<CharacterStats>().ApplyDamage(damagePerAttack);
-        Debug.Log("attacked");
         animator.SetBool("waiting_to_attack", true);
         animator.SetBool("attacking", false);
         attacking = false;

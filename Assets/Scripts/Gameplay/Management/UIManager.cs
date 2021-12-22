@@ -12,8 +12,6 @@ public class UIManager : MonoBehaviour {
     public GameObject levelUpPanel;
     public GameObject goldText;
     public GameObject goldPanel;
-    public GameObject healthText;
-    public GameObject healthPanel;
     public GameObject damageMultText;
     public GameObject damageMultPanel;
     public GameObject armourText;
@@ -37,13 +35,12 @@ public class UIManager : MonoBehaviour {
     public GameObject secondaryImage;
     public GameObject secondaryHealth;
 
-    private float xpGain;
-    private int goldGain;
-    private float healthGain;
-    private float damageMultGain;
-    private float armourGain;
-    private float maxHealthGain;
-    private float regenGain;
+    private float xpGain = 0;
+    private int goldGain = 0;
+    private float damageMultGain = 0;
+    private float armourGain = 0;
+    private float maxHealthGain = 0;
+    private float regenGain = 0;
 
     void Start() {
         GetComponent<CharacterManager>().RegisterActiveChangeListener(gameObject, OnActiveCharacterChange);
@@ -53,19 +50,11 @@ public class UIManager : MonoBehaviour {
 
         // Automatically updates the UI with the health of each character
         GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>().RegisterHealthUpdateListener((stats, change) => {
-            if(change > 0) {
-                OnHealthGain(change);
-            }
-
             int percentage = Mathf.RoundToInt(100 * Mathf.Clamp01(stats.GetCurrentHealth() / stats.GetMaxHealth()));
             primaryHealth.GetComponent<TMP_Text>().SetText(percentage + "%");
         });
 
         GetComponent<CharacterManager>().secondary.GetComponent<CharacterStats>().RegisterHealthUpdateListener((stats, change) => {
-            if(change > 0) {
-                OnHealthGain(change);
-            }
-
             int percentage = Mathf.RoundToInt(100 * Mathf.Clamp01(stats.GetCurrentHealth() / stats.GetMaxHealth()));
             secondaryHealth.GetComponent<TMP_Text>().SetText(percentage + "%");
         });
@@ -96,23 +85,12 @@ public class UIManager : MonoBehaviour {
         CloseAllOpenUI();
     }
 
-    private void OnHealthGain(float gain) {
-        if(gain != 0) {
-            CancelInvoke("HideHealthPanel");
-            healthGain += gain;
-            string symbol = maxHealthGain >= 0 ? "+" : "-";
-            healthText.GetComponent<TMP_Text>().text = symbol + " " + healthGain + " Health";
-            healthPanel.SetActive(true);
-            Invoke("HideHealthPanel", expireTime);
-        }
-    }
-
     private void OnGlobalStatsUpdate(PlayerStats globalStats, float maxHealthChange, float dmgChange, float regenChange, float armourChange) {
         if(maxHealthChange != 0) {
             CancelInvoke("HideMaxHealthPanel");
             maxHealthGain += maxHealthChange;
             string symbol = maxHealthGain >= 0 ? "+" : "-";
-            goldText.GetComponent<TMP_Text>().text = symbol + " " + (maxHealthGain * 100).ToString("0") + "% Max Health";
+            goldText.GetComponent<TMP_Text>().text = symbol + " " + (Mathf.Abs(maxHealthGain) * 100).ToString("0") + "% Max Health";
             goldPanel.SetActive(true);
             Invoke("HideMaxHealthPanel", expireTime);
         }
@@ -121,7 +99,7 @@ public class UIManager : MonoBehaviour {
             CancelInvoke("HideDamageMultPanel");
             damageMultGain += dmgChange;
             string symbol = damageMultGain >= 0 ? "+" : "-";
-            damageMultText.GetComponent<TMP_Text>().text = symbol + " " + (damageMultGain * 100).ToString("0.00") + "% Damage";
+            damageMultText.GetComponent<TMP_Text>().text = symbol + " " + (Mathf.Abs(damageMultGain) * 100) + "% Damage";
             damageMultPanel.SetActive(true);
             Invoke("HideDamageMultPanel", expireTime);
         }
@@ -130,7 +108,7 @@ public class UIManager : MonoBehaviour {
             CancelInvoke("HideRegenPanel");
             regenGain += regenChange;
             string symbol = regenGain >= 0 ? "+" : "-";
-            regenText.GetComponent<TMP_Text>().text = symbol + " " + regenChange.ToString("0.0") + " Regen/Sec";
+            regenText.GetComponent<TMP_Text>().text = symbol + " " + Mathf.Abs(regenGain).ToString("0.0") + " Regen/Sec";
             regenPanel.SetActive(true);
             Invoke("HideRegenPanel", expireTime);
         }
@@ -139,7 +117,7 @@ public class UIManager : MonoBehaviour {
             CancelInvoke("HideArmourPanel");
             armourGain += armourChange;
             string symbol = armourGain >= 0 ? "+" : "-";
-            armourText.GetComponent<TMP_Text>().text = symbol + " " + armourChange + " Armour";
+            armourText.GetComponent<TMP_Text>().text = symbol + " " + Mathf.Abs(armourGain) + " Armour";
             armourPanel.SetActive(true);
             Invoke("HideArmourPanel", expireTime);
         }
@@ -150,7 +128,7 @@ public class UIManager : MonoBehaviour {
             CancelInvoke("HideGoldPanel");
             goldGain += goldChange;
             string symbol = goldGain >= 0 ? "+" : "-";
-            goldText.GetComponent<TMP_Text>().text = symbol + " " + goldGain + " G";
+            goldText.GetComponent<TMP_Text>().text = symbol + " " + Mathf.Abs(goldGain) + " G";
             goldPanel.SetActive(true);
             Invoke("HideGoldPanel", expireTime);
         }
@@ -159,7 +137,7 @@ public class UIManager : MonoBehaviour {
             CancelInvoke("HideXPPanel");
             xpGain += xpChange;
             string symbol = goldGain >= 0 ? "+" : "-";
-            xpText.GetComponent<TMP_Text>().text = symbol + " " + xpGain + " XP";
+            xpText.GetComponent<TMP_Text>().text = symbol + " " + Mathf.Abs(xpGain) + " XP";
             xpPanel.SetActive(true);
             Invoke("HideXPPanel", expireTime);
         }
@@ -187,11 +165,6 @@ public class UIManager : MonoBehaviour {
         goldPanel.SetActive(false);
     }
 
-    private void HideHealthPanel() {
-        healthGain = 0;
-        healthPanel.SetActive(false);
-    }
-
     private void HideDamageMultPanel() {
         damageMultGain = 0;
         damageMultPanel.SetActive(false);
@@ -216,7 +189,6 @@ public class UIManager : MonoBehaviour {
         xpPanel.SetActive(false);
         levelUpPanel.SetActive(false);
         goldPanel.SetActive(false);
-        healthPanel.SetActive(false);
         damageMultPanel.SetActive(false);
         armourPanel.SetActive(false);
         maxHealthPanel.SetActive(false);

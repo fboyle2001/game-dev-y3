@@ -9,10 +9,11 @@ public class EnemyStats : MonoBehaviour {
     public GameObject healthBar;
     public GameObject healthText;
 
-    public float maxHealth;
-    public float armour;
-    public float regenPerSecond;
-    public float xpValue;
+    private float maxHealth = 1;
+    private float armour = 0;
+    private float regenPerSecond = 0;
+    private float xpValue = 0;
+    private int goldValue = 0;
 
     private List<System.Action<EnemyStats, float>> damageListeners = new List<System.Action<EnemyStats, float>>();
 
@@ -34,6 +35,35 @@ public class EnemyStats : MonoBehaviour {
     void Update() {
         if(dead || regenPerSecond == 0 || health >= maxHealth) return;
         Heal(regenPerSecond * Time.deltaTime);
+    }
+
+    public void SetMaxHealth(float maxHealth) {
+        this.maxHealth = maxHealth;
+        this.health = maxHealth;
+    }
+
+    public void SetArmour(float armour) {
+        this.armour = armour;
+    }
+
+    public void SetRegenPerSecond(float regenPerSecond) {
+        this.regenPerSecond = regenPerSecond;
+    }
+
+    public void SetXPValue(float xpValue) {
+        this.xpValue = xpValue;
+    }
+
+    public float GetXPValue() {
+        return xpValue;
+    }
+
+    public void SetGoldValue(int goldValue) {
+        this.goldValue = goldValue;
+    }
+
+    public int GetGoldValue() {
+        return goldValue;
     }
 
     public void RegisterDamageListener(System.Action<EnemyStats, float> action) {

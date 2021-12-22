@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public abstract class EnemyBase : MonoBehaviour {
     
@@ -10,8 +11,12 @@ public abstract class EnemyBase : MonoBehaviour {
         globalDamageHandlers.Add(owner.GetInstanceID(), action);
     }
 
+    public GameObject nameText;
+    public GameObject levelText;
     public GameObject enemyUI;
+    public string enemyName;
     public string identifier;
+    public int level;
 
     protected GameObject gameManager;
     protected GameObject xpOrbPrefab;
@@ -22,7 +27,7 @@ public abstract class EnemyBase : MonoBehaviour {
     protected GameObject target;
     protected bool active;
 
-    void Awake() {
+    public void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
 
         stats = GetComponent<EnemyStats>();
@@ -36,6 +41,9 @@ public abstract class EnemyBase : MonoBehaviour {
         xpOrbPrefab = gameManager.GetComponent<PrefabStorage>().xpOrb;
         gameManager.GetComponent<CharacterManager>().RegisterActiveChangeListener(gameObject, OnActiveCharacterChange);
         stats.RegisterDamageListener(OnDamageHandler);
+        
+        nameText.GetComponent<TMP_Text>().text = enemyName;
+        levelText.GetComponent<TMP_Text>().text = "Level " + level;
     }
 
     public void SetActive(bool active) {
@@ -72,7 +80,8 @@ public abstract class EnemyBase : MonoBehaviour {
 
     protected void OnDeath() {
         GameObject xpOrb = Instantiate(xpOrbPrefab, transform.position + GetComponent<Collider>().bounds.extents.y * Vector3.up, xpOrbPrefab.transform.rotation);
-        xpOrb.GetComponent<XPOrbSteering>().SetXpValue(stats.xpValue);
+        xpOrb.GetComponent<XPOrbSteering>().SetXpValue(stats.GetXPValue());
+        gameManager.GetComponent<PlayerResources>().AddGold(stats.GetGoldValue());
     }
 
 }
