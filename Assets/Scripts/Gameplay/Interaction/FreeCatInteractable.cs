@@ -29,11 +29,11 @@ public class FreeCatInteractable : MonoBehaviour, IInteractable
             interactionManager.RegisterInteraction("freeCatAction", () => {
                 gameObject.SetActive(false);
                 interactionManager.HideText();
-                objectiveManager.CompleteObjective("freeCat", 1);
+                objectiveManager.CompleteObjective("freeCat");
 
                 dialogueManager.QueueDialogue("You", "You're alive! I can't believe it!", 3);
                 dialogueManager.QueueDialogue("You", "We'd better go back to this camp I've found hopefully they'll believe I'm not one of these Orcs now.", 3, () => {
-                    objectiveManager.AddObjective("returnToCamp", "Return to the camp", "Return to the camp to prove you aren't an Orc", new ObjectiveManager.RewardEntry(0, 0));
+                    objectiveManager.AddObjective("returnToCamp", "Return to the camp", "Return to the camp to prove you aren't an Orc", new ObjectiveManager.RewardEntry(1000, 20));
                     tutorialManager.QueueTutorial("Assassin Cat Unlocked", "You've now unlocked your assassin cat. Press [SWAP_KEY] to switch between your player and cat. " + 
                         "Enemies will target your current active character. Both characters must be alive at all times. " + 
                         "Your cat cannot interact but can use the inventory to restore health etc.", 15);

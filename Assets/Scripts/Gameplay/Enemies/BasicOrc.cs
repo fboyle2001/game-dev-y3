@@ -17,12 +17,16 @@ public class BasicOrc : EnemyBase {
         damagePerAttack = 8 * level;
     }
 
-    void Start() {
+    new void OnEnable() {
+        base.OnEnable();
         stats.SetArmour(3 * level);
         stats.SetMaxHealth(40 * level);
         stats.SetRegenPerSecond(0.1f * level);
         stats.SetXPValue(9 * level);
         stats.SetGoldValue(100 * level);
+    }
+
+    void Start() {
         SetActive(true);
     }
 

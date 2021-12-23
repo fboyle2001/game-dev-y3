@@ -92,7 +92,7 @@ public class ObjectiveManager : MonoBehaviour
         UpdateObjectiveDisplay();
     }
 
-    public void CompleteObjective(string idenitifer, float rewardScalar) {
+    public void CompleteObjective(string idenitifer, float rewardScalar = 1) {
         ObjectiveEntry objective;
         bool found = objectives.TryGetValue(idenitifer, out objective);
 

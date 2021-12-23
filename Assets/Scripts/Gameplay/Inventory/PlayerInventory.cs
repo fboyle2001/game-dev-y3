@@ -52,7 +52,6 @@ public class PlayerInventory : MonoBehaviour {
     }
 
     void Awake() {
-        Debug.Log("awake called");
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         RegisterItems();
     }

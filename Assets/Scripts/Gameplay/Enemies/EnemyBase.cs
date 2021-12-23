@@ -63,8 +63,6 @@ public abstract class EnemyBase : MonoBehaviour {
     }
 
     private void OnDamageHandler(EnemyStats stats, float damage) {
-        Debug.Log("Took damage: " + stats.IsDead());
-
         if(stats.IsDead()) {
             OnDeath();
             gameManager.GetComponent<CharacterManager>().DeregisterActiveChangeListener(gameObject);
@@ -82,6 +80,12 @@ public abstract class EnemyBase : MonoBehaviour {
         GameObject xpOrb = Instantiate(xpOrbPrefab, transform.position + GetComponent<Collider>().bounds.extents.y * Vector3.up, xpOrbPrefab.transform.rotation);
         xpOrb.GetComponent<XPOrbSteering>().SetXpValue(stats.GetXPValue());
         gameManager.GetComponent<PlayerResources>().AddGold(stats.GetGoldValue());
+
+        Invoke("ClearBody", 2);
+    }
+
+    private void ClearBody() {
+        gameObject.SetActive(false);
     }
 
 }

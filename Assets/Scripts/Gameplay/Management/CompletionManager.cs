@@ -21,8 +21,8 @@ public class CompletionManager : MonoBehaviour {
 
         switch(enemy.identifier) {
             case "firstOrc":
-                objectiveManager.CompleteObjective("findFirstOrcCave", 1);
-                objectiveManager.AddObjective("freeCat", "Free your cat", "Free you cat from the cage inside the cave", new ObjectiveManager.RewardEntry(0, 0));
+                objectiveManager.CompleteObjective("findFirstOrcCave");
+                objectiveManager.AddObjective("freeCat", "Free your cat", "Free you cat from the cage inside the cave", new ObjectiveManager.RewardEntry(1000, 20));
                 dialogueManager.QueueDialogue("You", "Lets go free <CAT_NAME>! I can hear them just inside the cave.", 5);
                 return;
             default:

@@ -14,6 +14,7 @@ TagManager:
   - Ground
   - Interactable
   - Stat Display
+  - Map Areas
   layers:
   - Default
   - TransparentFX

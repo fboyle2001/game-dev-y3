@@ -68,8 +68,9 @@ public class TrustedCutScene : CutScene {
             gameManager.GetComponent<TutorialManager>().QueueTutorial("Vendor",
                 "Get close to NPC1 and press [Interact] to visit their shop. You can only do this from the main character and not your cat. " + 
                 "It's a good idea to purchase some items every time you are at the camp.", 10);
-            gameManager.GetComponent<ObjectiveManager>().CompleteObjective("returnToCamp", 0);
-            gameManager.GetComponent<ObjectiveManager>().AddObjective("findSeeds", "Find the Seeds of Life", "Find the Seeds of Life"
+            gameManager.GetComponent<ObjectiveManager>().CompleteObjective("returnToCamp");
+            gameManager.GetComponent<MapSectionManager>().EnableMountainPathSection();
+            gameManager.GetComponent<ObjectiveManager>().AddObjective("climbMountain", "Climb the Mountain", "Climb the Mountain and find clues"
                 , new ObjectiveManager.RewardEntry(0, 0));
 
             cutSceneCamera.SetActive(false);

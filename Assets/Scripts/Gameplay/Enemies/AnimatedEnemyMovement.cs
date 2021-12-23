@@ -55,7 +55,7 @@ public class AnimatedEnemyMovement : MonoBehaviour {
 
         agent.SetDestination(targetPosition);
         Quaternion lookAt = Quaternion.LookRotation(targetPosition - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, Time.fixedDeltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, 10 * Time.fixedDeltaTime);
     }
 
     public void SetActive(bool active) {
