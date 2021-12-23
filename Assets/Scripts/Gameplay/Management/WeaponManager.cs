@@ -106,7 +106,7 @@ public class WeaponManager : MonoBehaviour {
         List<EnemyStats> damagables = new List<EnemyStats>(); 
 
         if(equippedWeapon.itemIdentifier == "claws") {
-            Collider[] hitColliders = Physics.OverlapSphere(fireSource.transform.position, 7, ~(1 << 8));
+            Collider[] hitColliders = Physics.OverlapSphere(fireSource.transform.position, 7, ~(1 << 8 | 1 << 2));
 
             foreach(Collider hitCollider in hitColliders)  {
                 EnemyStats hitStats = hitCollider.GetComponent<EnemyStats>();
@@ -118,7 +118,7 @@ public class WeaponManager : MonoBehaviour {
             }
         } else {
             RaycastHit hit;
-            bool didHit = Physics.Raycast(fireSource.transform.position, primaryCamera.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, ~(1 << 8));
+            bool didHit = Physics.Raycast(fireSource.transform.position, primaryCamera.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, ~(1 << 8 | 1 << 2));
             
             if(didHit && hit.collider != null) {
                 EnemyStats enemyStats = hit.collider.gameObject.GetComponent<EnemyStats>();

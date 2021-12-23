@@ -90,8 +90,8 @@ public class UIManager : MonoBehaviour {
             CancelInvoke("HideMaxHealthPanel");
             maxHealthGain += maxHealthChange;
             string symbol = maxHealthGain >= 0 ? "+" : "-";
-            goldText.GetComponent<TMP_Text>().text = symbol + " " + (Mathf.Abs(maxHealthGain) * 100).ToString("0") + "% Max Health";
-            goldPanel.SetActive(true);
+            maxHealthText.GetComponent<TMP_Text>().text = symbol + " " + (Mathf.Abs(maxHealthGain) * 100).ToString("0") + "% Max Health";
+            maxHealthPanel.SetActive(true);
             Invoke("HideMaxHealthPanel", expireTime);
         }
 

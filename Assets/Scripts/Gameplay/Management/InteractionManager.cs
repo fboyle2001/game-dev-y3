@@ -30,7 +30,9 @@ public class InteractionManager : MonoBehaviour {
     }
 
     public void ExecuteInteractions() {
-        foreach(System.Action action in registeredInteractions.Values) {
+        List<System.Action> copiedActions = new List<System.Action>(registeredInteractions.Values);
+        
+        foreach(System.Action action in copiedActions) {
             action();
         }
     }

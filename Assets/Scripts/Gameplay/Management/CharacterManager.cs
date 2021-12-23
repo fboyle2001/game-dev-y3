@@ -14,6 +14,7 @@ public class CharacterManager : MonoBehaviour
 
     private bool secondaryUnlocked = false;
     private bool primaryActive = true;
+    private bool swappingAvailable = true;
 
     private Dictionary<int, System.Action<GameObject>> activeChangeListeners = new Dictionary<int, System.Action<GameObject>>();
 
@@ -70,8 +71,13 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
+    public void SetSwappingAvailable(bool available) {
+        this.swappingAvailable = available;
+    }
+
     public void SwapActive() {
         if(!secondaryUnlocked) return;
+        if(!swappingAvailable) return;
 
         if(primaryActive) {
             primaryCamera.SetActive(false);
