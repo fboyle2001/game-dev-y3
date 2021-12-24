@@ -9,12 +9,12 @@ public class InitialCampCutScene : CutScene {
 
     private Vector3 npcReturnPosition;
     private Quaternion npcReturnRotation;
-    private Vector3 npcCutScenePosition = new Vector3(643.44f, 14.39f, 422.25f);
-    private Vector3 npcCutSceneRotationEulers = new Vector3(2.978f, -78.3f, 6.369f);
+    private Vector3 npcCutScenePosition = new Vector3(637.21f, 13.86f, 426.35f);
+    private Vector3 npcCutSceneRotationEulers = new Vector3(5.402f, -87.44f, 4.361f);
 
     private Vector3 playerReturnPosition;
     private Quaternion playerReturnRotation;
-    private Vector3 playerCutScenePosition = new Vector3(624.66f, 12.1f, 426.70f);
+    private Vector3 playerCutScenePosition = new Vector3(624.66f, 12.25f, 426.70f);
     private Vector3 playerCutSceneRotationEulers = new Vector3(0f, -245.3f, -4.519f);
 
     new void OnEnable() {
@@ -52,7 +52,6 @@ public class InitialCampCutScene : CutScene {
             
             cutSceneCamera.SetActive(true);
 
-            dialogueManager.QueueDialogue("You", "Hello? Is anybody there?", 3);
             dialogueManager.QueueDialogue("NPC1", "Stay out of here! The others are on their way back you'd better get running... wait who are you?", 3);
             dialogueManager.QueueDialogue("You", "I'm <CHARACTER NAME> I don't know how I got here, where am I?", 3);
             dialogueManager.QueueDialogue("NPC1", "Hmmm I'm not sure I believe that, we're the furtherest camp from <THE TOWN>." + 
@@ -65,7 +64,7 @@ public class InitialCampCutScene : CutScene {
                 "there is an Orc's cave just off the path you followed to get here, might be worth a look.", 3);
             dialogueManager.QueueDialogue("NPC1", "Take out the Orc and then come back here and I'll explain everything you want to know." + 
                 "Here's some stuff to help you out, don't do anything stupid...", 3);
-        }, 30);
+        }, 27);
 
         QueueAction(() => {
             gameManager.GetComponent<PlayerInventory>().AddItemToInventory("fullHealthPotion", 1);

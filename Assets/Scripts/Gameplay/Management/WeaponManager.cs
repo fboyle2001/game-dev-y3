@@ -20,6 +20,7 @@ public class WeaponManager : MonoBehaviour {
     private float maxWidth;
     private GameObject gameManager;
     private PlayerStats playerStats;
+    private CharacterManager characterManager;
 
     private float timeBetweenShots = 0;
     private float timeSinceLastShot = 0;
@@ -27,6 +28,7 @@ public class WeaponManager : MonoBehaviour {
     void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         playerStats = gameManager.GetComponent<PlayerStats>();
+        characterManager = gameManager.GetComponent<CharacterManager>();
         maxWidth = (chargeBackgroundBar.transform as RectTransform).sizeDelta.x;
     }
 
@@ -106,13 +108,12 @@ public class WeaponManager : MonoBehaviour {
         List<EnemyStats> damagables = new List<EnemyStats>(); 
 
         if(equippedWeapon.itemIdentifier == "claws") {
-            Collider[] hitColliders = Physics.OverlapSphere(fireSource.transform.position, 7, ~(1 << 8 | 1 << 2));
+            Collider[] hitColliders = Physics.OverlapSphere(characterManager.secondary.transform.position, 5, ~(1 << 8 | 1 << 2));
 
             foreach(Collider hitCollider in hitColliders)  {
                 EnemyStats hitStats = hitCollider.GetComponent<EnemyStats>();
 
                 if(hitStats != null) {
-                    Debug.Log(hitCollider.name);
                     damagables.Add(hitStats);
                 }
             }

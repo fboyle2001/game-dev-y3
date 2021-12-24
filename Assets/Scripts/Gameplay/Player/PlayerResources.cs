@@ -89,7 +89,7 @@ public class PlayerResources : MonoBehaviour
     }
 
     private void GrantLevelUpReward(int levelReached) {
-        // Rewards are pre-determined for the first 15 levels
+        // Rewards are pre-determined for the first 22 levels which seems to be max level
         switch(levelReached) {
             case 1:
                 stats.AddMaxHealthMultiplier(0.1f);
@@ -134,7 +134,28 @@ public class PlayerResources : MonoBehaviour
                 stats.AddDamageMultiplier(0.2f);
                 break;
             case 15:
+                stats.AddMaxHealthMultiplier(0.2f);
+                break;
+            case 16:
+                stats.AddArmour(5f);
+                break;
+            case 17:
                 stats.AddRegenPerSecond(0.2f);
+                break;
+            case 18:
+                stats.AddDamageMultiplier(0.2f);
+                break;
+            case 19:
+                stats.AddMaxHealthMultiplier(0.2f);
+                break;
+            case 20:
+                stats.AddMaxHealthMultiplier(0.2f);
+                break;
+            case 21:
+                stats.AddDamageMultiplier(0.2f);
+                break;
+            case 22:
+                stats.AddArmour(5f);
                 break;
             default:
                 break;

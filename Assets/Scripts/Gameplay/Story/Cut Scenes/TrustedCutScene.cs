@@ -9,12 +9,12 @@ public class TrustedCutScene : CutScene {
 
     private Vector3 npcReturnPosition;
     private Quaternion npcReturnRotation;
-    private Vector3 npcCutScenePosition = new Vector3(643.44f, 14.39f, 422.25f);
-    private Vector3 npcCutSceneRotationEulers = new Vector3(2.978f, -78.3f, 6.369f);
+    private Vector3 npcCutScenePosition = new Vector3(637.21f, 13.86f, 426.35f);
+    private Vector3 npcCutSceneRotationEulers = new Vector3(5.402f, -87.44f, 4.361f);
 
     private Vector3 playerReturnPosition;
     private Quaternion playerReturnRotation;
-    private Vector3 playerCutScenePosition = new Vector3(624.66f, 12.1f, 426.70f);
+    private Vector3 playerCutScenePosition = new Vector3(624.66f, 12.25f, 426.70f);
     private Vector3 playerCutSceneRotationEulers = new Vector3(0f, -245.3f, -4.519f);
 
     new void OnEnable() {

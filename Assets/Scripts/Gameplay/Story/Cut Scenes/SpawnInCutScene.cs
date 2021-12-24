@@ -60,9 +60,10 @@ public class SpawnInCutScene : MonoBehaviour {
             realPlayer.transform.position = new Vector3(gameObject.transform.position.x, 16, gameObject.transform.position.z);
             gameObject.SetActive(false);
             realCamera.SetActive(true);
+            gameManager.GetComponent<CharacterManager>().SetFrozen(false);
 
             // Could add another step to display some text during the blackout phase
-            Invoke("FinishCutScene", 2);
+            Invoke("FinishCutScene", 1);
             scriptFrozen = true;
         }
     }
@@ -70,7 +71,6 @@ public class SpawnInCutScene : MonoBehaviour {
     void FinishCutScene() {
         realCamera.GetComponent<Camera>().cullingMask = -1;
         realCamera.GetComponent<Camera>().clearFlags = CameraClearFlags.Skybox;
-        gameManager.GetComponent<CharacterManager>().SetFrozen(false);
         gameManager.GetComponent<TutorialManager>().QueueTutorial("Movement and Display",
             "To move your character around use WASD and your mouse to look around. In the top left corner you will see your health." +
             " Right now you are on the verge of death! Objectives appear in the top right corner in case you forget what you are aiming for." + 

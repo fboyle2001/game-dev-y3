@@ -50,11 +50,11 @@ public class RedirectCutScene : CutScene {
             
             cutSceneCamera.SetActive(true);
 
-            dialogueManager.QueueDialogue("NPC1", "Run! They're coming! Wait... you found them...", 3);
+            dialogueManager.QueueDialogue("NPC1", "Run! They're coming! Wait... you found the seeds...", 3);
             dialogueManager.QueueDialogue("You", "What's going on?", 3);
-            dialogueManager.QueueDialogue("NPC1", "They've destroyed the camp, but you've found the seeds. You can end this torment.", 3);
+            dialogueManager.QueueDialogue("NPC1", "I could hear Orcs approaching the camp... but you've found the seeds. You can end this torment.", 3);
             dialogueManager.QueueDialogue("You", "What are these? What do I need to do?", 3);
-            dialogueManager.QueueDialogue("NPC1", "Go back to the Orc Cave I sent you to when we first met and plant the seeds in the cave.", 3);
+            dialogueManager.QueueDialogue("NPC1", "Go back to the Orc Cave I sent you to when we first met and plant the seeds there.", 3);
             dialogueManager.QueueDialogue("NPC1", "You'll need to gear up first, I managed to bring some stuff with me.", 3);
             dialogueManager.QueueDialogue("NPC1", "Good luck...", 3);
         }, 21);

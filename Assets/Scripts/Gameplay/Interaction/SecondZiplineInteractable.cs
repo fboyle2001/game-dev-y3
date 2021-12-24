@@ -77,7 +77,7 @@ public class SecondZiplineInteractable : MonoBehaviour, IInteractable {
             interactionManager.ShowText();
             interactionManager.RegisterInteraction("crossZiplineB", () => {
                 characterManager.SetSwappingAvailable(false);
-                dialogueManager.QueueDialogue("You", "Hop on <CAT_NAME> we are going across!", 5);
+                dialogueManager.QueueDialogue("You", "Stay on my back <CAT_NAME> we are going back!", 5);
                 interactionManager.UnregisterInteraction("crossZiplineB");
                 interactionManager.HideText();
                 EnableZipline();
