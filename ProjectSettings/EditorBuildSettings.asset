@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TestScene.unity
     guid: b83a23e533c3d8a448757c79173dbd59
   - enabled: 1
-    path: Assets/Scenes/TerrainTestScene.unity
+    path: Assets/Scenes/PrimaryGameScene.unity
     guid: 3428f5cc1362fd04fba92048c8ef72bb
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: ee5ea9bc35a41424691f384429c17f60, type: 2}
