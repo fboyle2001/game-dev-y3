@@ -76,6 +76,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Test Action",
+                    "type": "Button",
+                    "id": "3ddbfa7f-afb0-4801-977b-66381bab5fb4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -362,6 +370,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Close UI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "150c753d-92a9-489f-9bcb-14af56f5efcb",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Test Action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

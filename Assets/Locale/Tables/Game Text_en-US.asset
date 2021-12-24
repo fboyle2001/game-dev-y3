@@ -500,6 +500,22 @@ MonoBehaviour:
     m_Localized: Shop
     m_Metadata:
       m_Items: []
+  - m_Id: 67599483404288
+    m_Localized: Exile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67406742552576
+    m_Localized: Skeleton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67267277750272
+    m_Localized: Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67187669860352
+    m_Localized: Orc
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:

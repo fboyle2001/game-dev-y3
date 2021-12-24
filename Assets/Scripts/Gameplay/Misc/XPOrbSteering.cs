@@ -57,7 +57,7 @@ public class XPOrbSteering : MonoBehaviour {
 
     private void AbsorbXpOrb() {
         gameManager.GetComponent<PlayerResources>().AddExperience(xpValue);
-        gameObject.SetActive(false);
+        GameObject.Destroy(gameObject);
     }
 
 }

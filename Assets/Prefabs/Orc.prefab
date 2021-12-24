@@ -1770,7 +1770,7 @@ MonoBehaviour:
   nameText: {fileID: 6713360440151214146}
   levelText: {fileID: 6713360439862571645}
   enemyUI: {fileID: 6713360439743052742}
-  enemyName: Orc
+  enemyName: enm_orc
   identifier: orc
   level: 1
 --- !u!114 &5731256614967067008

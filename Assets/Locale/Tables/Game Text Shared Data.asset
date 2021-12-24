@@ -455,6 +455,22 @@ MonoBehaviour:
     m_Key: ui_vendor_title
     m_Metadata:
       m_Items: []
+  - m_Id: 67187669860352
+    m_Key: enm_orc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67267277750272
+    m_Key: txt_enm_level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67406742552576
+    m_Key: enm_skeleton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67599483404288
+    m_Key: enm_exile
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

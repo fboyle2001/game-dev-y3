@@ -28,7 +28,7 @@ public class PlayerInventory : MonoBehaviour {
 
     private void RegisterItems() {
         // Load sprite sheet
-        Sprite[] itemSprites = Resources.LoadAll<Sprite>("Images/Items/item_sprite_sheet");
+        Sprite[] itemSprites = Resources.LoadAll<Sprite>("Sprites/item_sprite_sheet");
         Dictionary<string, Sprite> spriteMap = new Dictionary<string, Sprite>();
 
         foreach(Sprite sprite in itemSprites) {
@@ -210,6 +210,22 @@ public class PlayerInventory : MonoBehaviour {
         }
 
         PropagateEquipEvent();
+    }
+
+    public bool IsEquipped(string itemIdentifier) {
+        if(currentWeapon != null && currentWeapon.itemIdentifier == itemIdentifier) {
+            return true;
+        }
+
+        if(currentArmour != null && currentArmour.itemIdentifier == itemIdentifier) {
+            return true;
+        }
+
+        if(currentRing != null && currentRing.itemIdentifier == itemIdentifier) {
+            return true;
+        }
+
+        return false;
     }
 
     private void PropagateEquipEvent() {

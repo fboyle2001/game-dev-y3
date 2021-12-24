@@ -42,4 +42,18 @@ public class InteractionManager : MonoBehaviour {
         }
     }
 
+    public string StrListInteractions() {
+        string conc = "";
+
+        foreach(string key in new List<string>(registeredInteractions.Keys)) {
+            if(conc == "") {
+                conc += ", ";
+            }
+
+            conc += key;
+        }
+
+        return conc;
+    }
+
 }

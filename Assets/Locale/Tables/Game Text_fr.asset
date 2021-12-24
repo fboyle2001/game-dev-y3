@@ -144,7 +144,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 24334965014528
-    m_Localized: "\xC7a n'a pas l'air bon ! J'arrive {global.cat_name}!"
+    m_Localized: "\xC7a n'a pas l'air bon! J'arrive {global.cat_name}!"
     m_Metadata:
       m_Items:
       - id: 0
@@ -327,7 +327,7 @@ MonoBehaviour:
       m_Items:
       - id: 0
   - m_Id: 34086843449344
-    m_Localized: "Il est temps de lib\xE9rer {global.cat_name} ! Je peux les entendre
+    m_Localized: "Il est temps de lib\xE9rer {global.cat_name}! Je peux les entendre
       juste \xE0 l'int\xE9rieur de la grotte."
     m_Metadata:
       m_Items:
@@ -419,7 +419,8 @@ MonoBehaviour:
   - m_Id: 39395620159488
     m_Localized: Hop sur {global.cat_name} nous allons traverser!
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - id: 0
   - m_Id: 39598960017408
     m_Localized: pour ouvrir un magasin
     m_Metadata:
@@ -511,9 +512,25 @@ MonoBehaviour:
     m_Localized: Boutique
     m_Metadata:
       m_Items: []
+  - m_Id: 67187669860352
+    m_Localized: Orque
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67267277750272
+    m_Localized: Niveau
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67406742552576
+    m_Localized: Squelette
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67599483404288
+    m_Localized: Exil
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 0000f225840000000000b24dcf100000000032eecf1000000000f2ec211600000000b2f7851600000000f21d771a000000007217701c000000003252c91c0000000032ebea1e000000003276001f0000000032a223240000000072f4c8240000
+        m_Entries: 0000f225840000000000b24dcf100000000032eecf1000000000f2ec211600000000b2f7851600000000f21d771a000000007217701c000000003252c91c0000000032ebea1e000000003276001f0000000032a223240000000072f4c82400000000f281d4230000

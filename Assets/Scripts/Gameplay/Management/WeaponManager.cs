@@ -16,10 +16,16 @@ public class WeaponManager : MonoBehaviour {
     public GameObject fireSource;
     public GameObject primaryCamera;
 
+    [Header("Crosshair Feedback")]
+    public Sprite hitCrosshairSprite;
+    public Sprite missCrosshairSprite;
+    public float revertTime = 0.8f;
+
     private WeaponInventoryItem equippedWeapon;
     private float maxWidth;
     private PlayerStats playerStats;
     private CharacterManager characterManager;
+    private Sprite defaultCrosshairSprite;
 
     private float timeBetweenShots = 0;
     private float timeSinceLastShot = 0;
@@ -28,6 +34,7 @@ public class WeaponManager : MonoBehaviour {
         playerStats = GetComponent<PlayerStats>();
         characterManager = GetComponent<CharacterManager>();
         maxWidth = (chargeBackgroundBar.transform as RectTransform).sizeDelta.x;
+        defaultCrosshairSprite = crosshair.GetComponent<Image>().sprite;
     }
 
     void Start() {
@@ -48,7 +55,7 @@ public class WeaponManager : MonoBehaviour {
             equippedWeapon = PlayerInventory.registeredItems["claws"] as WeaponInventoryItem;
             weaponPanel.SetActive(true);
             crosshair.SetActive(false);
-            weaponImage.GetComponent<Image>().sprite = null;
+            weaponImage.GetComponent<Image>().sprite = equippedWeapon.itemImage;
             weaponName.GetComponent<TMP_Text>().text = equippedWeapon.GetItemName(GetComponent<LocaleManager>());
             this.timeBetweenShots = 60 / equippedWeapon.roundsPerMinute;
             this.timeSinceLastShot = 0;
@@ -118,22 +125,32 @@ public class WeaponManager : MonoBehaviour {
         } else {
             RaycastHit hit;
             bool didHit = Physics.Raycast(fireSource.transform.position, primaryCamera.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, ~(1 << 8 | 1 << 2));
+            bool hitCrosshair = false;
             
             if(didHit && hit.collider != null) {
                 EnemyStats enemyStats = hit.collider.gameObject.GetComponent<EnemyStats>();
 
                 if(enemyStats != null) {
                     damagables.Add(enemyStats);
+                    hitCrosshair = true;
                 }
-                
-                Debug.DrawRay(fireSource.transform.position, primaryCamera.transform.TransformDirection(Vector3.forward) * hit.distance, Color.red, 5.0f);
-            } else {
-                Debug.DrawRay(fireSource.transform.position, primaryCamera.transform.TransformDirection(Vector3.forward) * 1000, Color.blue, 5.0f);
-            }
+            } 
+
+            ChangeCrosshair(hitCrosshair);
         }
 
         damagables.ForEach(stats => stats.Damage(equippedWeapon.damagePerRound * playerStats.GetDamageMultiplier()));
         this.timeSinceLastShot = 0;
+    }
+
+    private void ChangeCrosshair(bool hit) {
+        CancelInvoke("RevertCrosshair");
+        crosshair.GetComponent<Image>().sprite = hit ? hitCrosshairSprite : missCrosshairSprite;
+        Invoke("RevertCrosshair", revertTime);        
+    }
+
+    private void RevertCrosshair() {
+        crosshair.GetComponent<Image>().sprite = defaultCrosshairSprite;
     }
 
 }

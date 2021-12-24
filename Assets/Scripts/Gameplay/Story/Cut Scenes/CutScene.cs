@@ -29,6 +29,7 @@ public abstract class CutScene : MonoBehaviour {
 
     public void StartCutScene() {
         if(started) return;
+        gameManager.GetComponent<UIManager>().SetCrosshairActive(false);
         started = true;
 
         if(!gameManager.GetComponent<CharacterManager>().IsPrimaryActive()) {
@@ -45,7 +46,10 @@ public abstract class CutScene : MonoBehaviour {
     }
 
     private void PlayNextAction() {
-        if(actions.Count == 0) return;
+        if(actions.Count == 0) {
+            gameManager.GetComponent<UIManager>().SetCrosshairActive(gameManager.GetComponent<PlayerInventory>().GetCurrentWeapon() != null);
+            return;
+        }
 
         CutSceneAction action = actions.Dequeue();
         action.action();

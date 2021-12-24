@@ -35,6 +35,9 @@ public class UIManager : MonoBehaviour {
     public GameObject secondaryImage;
     public GameObject secondaryHealth;
 
+    [Header("Other")]
+    public GameObject crosshair;
+
     private float xpGain = 0;
     private int goldGain = 0;
     private float damageMultGain = 0;
@@ -78,6 +81,10 @@ public class UIManager : MonoBehaviour {
         shopPanel.SetActive(false);
         interactionText.SetActive(false);
         Cursor.visible = false;
+    }
+
+    public void SetCrosshairActive(bool active) {
+        crosshair.SetActive(active);
     }
 
     private void OnActiveCharacterChange(GameObject newActive) {
@@ -154,7 +161,6 @@ public class UIManager : MonoBehaviour {
         levelUpText.GetComponent<TMP_Text>().text = localeManager.GetString("ui_level_up") + " (" + newLevel + ")";
         levelUpPanel.SetActive(true);
         Invoke("HideLevelUpPanel", expireTime);
-
     }
 
     private void HideXPPanel() {

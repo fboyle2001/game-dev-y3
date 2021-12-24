@@ -23,6 +23,7 @@ public class FirstZiplineInteractable : MonoBehaviour, IInteractable {
     private GameObject primary;
     private float heightOffset;
     private bool triggeredSlowdownMessage = false;
+    private bool used = false;
 
     void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
@@ -54,7 +55,7 @@ public class FirstZiplineInteractable : MonoBehaviour, IInteractable {
 
     private void OnSkeletonZipLineDeath(EnemyBase enemy) {
         if(!(enemy.identifier == "zipLineSkeleton" && enemy.GetStats().IsDead())) return;
-        dialogueManager.QueueDialogue("You", "int_zipline_stuck", 4);
+        dialogueManager.QueueDialogue("speaker_you", "int_zipline_stuck", 4);
         EnableZipline(true);
     }
 
@@ -100,10 +101,11 @@ public class FirstZiplineInteractable : MonoBehaviour, IInteractable {
     }
 
     public void OnInteractPossible() {
-        if(objectiveManager.HasObjective("findSeeds")) {
+        if(objectiveManager.HasObjective("findSeeds") && !used) {
             interactionManager.SetText("int_use_zipline");
             interactionManager.ShowText();
             interactionManager.RegisterInteraction("crossZiplineA", () => {
+                used = true;
                 characterManager.HideSecondary();
                 characterManager.SetSwappingAvailable(false);
                 interactionManager.HideText();

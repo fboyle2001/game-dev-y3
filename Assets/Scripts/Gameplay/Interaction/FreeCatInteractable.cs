@@ -28,17 +28,18 @@ public class FreeCatInteractable : MonoBehaviour, IInteractable
             interactionManager.ShowText();
             interactionManager.RegisterInteraction("freeCatAction", () => {
                 interactionManager.UnregisterInteraction("freeCatAction");
-                gameObject.SetActive(false);
+                gameManager.GetComponent<CharacterManager>().UnlockSecondary();
+                gameManager.GetComponent<CharacterManager>().secondary.GetComponent<CharacterStats>().HealAsPercent(1f);
+                tutorialManager.QueueTutorial("tut_cat_title", "tut_cat_text", 15);
                 interactionManager.HideText();
                 objectiveManager.CompleteObjective("freeCat");
 
                 dialogueManager.QueueDialogue("speaker_you", "txt_freed_cat_1", 3);
                 dialogueManager.QueueDialogue("speaker_you", "txt_freed_cat_2", 7, () => {
                     objectiveManager.AddObjective("returnToCamp", "obj_return_to_camp", new ObjectiveManager.RewardEntry(1000, 20));
-                    tutorialManager.QueueTutorial("tut_cat_title", "tut_cat_text", 15);
-                    gameManager.GetComponent<CharacterManager>().UnlockSecondary();
-                    gameManager.GetComponent<CharacterManager>().secondary.GetComponent<CharacterStats>().HealAsPercent(1f);
                 });
+                
+                gameObject.SetActive(false);
             });
         }
     }

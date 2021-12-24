@@ -26,10 +26,6 @@ public class BasicOrc : EnemyBase {
         stats.SetGoldValue(100 * level);
     }
 
-    void Start() {
-        SetActive(true);
-    }
-
     void FixedUpdate() {
         if(!active) return;
 

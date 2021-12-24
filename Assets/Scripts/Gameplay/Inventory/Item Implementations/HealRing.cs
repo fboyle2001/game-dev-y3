@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealRing : EquippableInventoryItem {
     
-    public HealRing(Sprite itemImage) : base(itemIdentifier: "healRing", itemKey: "item_heal_ring", goldValue: 800, itemImage) {}
+    public HealRing(Sprite itemImage) : base(itemIdentifier: "healRing", itemKey: "item_heal_ring_name", goldValue: 800, itemImage) {}
 
     public override void ApplyItemEffect(GameObject gameManager) {
         PlayerStats playerStats = gameManager.GetComponent<PlayerStats>();

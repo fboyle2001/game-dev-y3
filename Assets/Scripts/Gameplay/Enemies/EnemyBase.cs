@@ -41,9 +41,12 @@ public abstract class EnemyBase : MonoBehaviour {
         xpOrbPrefab = gameManager.GetComponent<PrefabStorage>().xpOrb;
         gameManager.GetComponent<CharacterManager>().RegisterActiveChangeListener(gameObject, OnActiveCharacterChange);
         stats.RegisterDamageListener(OnDamageHandler);
-        
-        nameText.GetComponent<TMP_Text>().text = enemyName;
-        levelText.GetComponent<TMP_Text>().text = "Level " + level;
+    }
+
+    public void Start() {
+        SetActive(true);
+        nameText.GetComponent<TMP_Text>().text = gameManager.GetComponent<LocaleManager>().GetString(enemyName);
+        levelText.GetComponent<TMP_Text>().text = gameManager.GetComponent<LocaleManager>().GetString("txt_enm_level") + " " + level;
     }
 
     public void SetActive(bool active) {

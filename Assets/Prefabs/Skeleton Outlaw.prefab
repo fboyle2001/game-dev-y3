@@ -1986,7 +1986,7 @@ MonoBehaviour:
   nameText: {fileID: 6258193792012805696}
   levelText: {fileID: 6258193791720545407}
   enemyUI: {fileID: 6258193791873619396}
-  enemyName: Skeleton
+  enemyName: enm_skeleton
   identifier: skeleton
   level: 4
 --- !u!114 &2321588321307823119
@@ -3442,7 +3442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8569895303868488071, guid: fe59072bd6bf85346abc08f4d90a3ccd, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8569895303868488071, guid: fe59072bd6bf85346abc08f4d90a3ccd, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3522,7 +3522,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8569895304265624067, guid: fe59072bd6bf85346abc08f4d90a3ccd, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1.6
+      value: 1.8
       objectReference: {fileID: 0}
     - target: {fileID: 8569895304265624067, guid: fe59072bd6bf85346abc08f4d90a3ccd, type: 3}
       propertyPath: m_SizeDelta.y

@@ -27,10 +27,6 @@ public class SpecialAttackerSkeletonOutlaw : EnemyBase {
         stats.SetGoldValue(30 * level);
     }
 
-    void Start() {
-        SetActive(true);
-    }
-
     void FixedUpdate() {
         if(!active) return;
         GetComponent<AnimatedEnemyMovement>().SetTarget(specialTarget);

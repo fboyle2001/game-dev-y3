@@ -41,7 +41,7 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
         bool grounded = Physics.Raycast(GetComponent<Collider>().transform.position, Vector3.down, 0.5f, ~(1 << 8));
 
         if(grounded && jump) {
-            rb.AddForce(Vector3.up * 50, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 85, ForceMode.Impulse);
             grounded = false;
         }
         

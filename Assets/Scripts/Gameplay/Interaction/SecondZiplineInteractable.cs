@@ -20,6 +20,8 @@ public class SecondZiplineInteractable : MonoBehaviour, IInteractable {
     private GameObject primary;
     private float heightOffset;
 
+    private bool used = false;
+
     void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         interactionManager = gameManager.GetComponent<InteractionManager>();
@@ -72,10 +74,11 @@ public class SecondZiplineInteractable : MonoBehaviour, IInteractable {
     }
 
     public void OnInteractPossible() {
-        if(objectiveManager.HasObjective("returnToCamp2")) {
+        if(objectiveManager.HasObjective("returnToCamp2") && !used) {
             interactionManager.SetText("int_use_zipline");
             interactionManager.ShowText();
             interactionManager.RegisterInteraction("crossZiplineB", () => {
+                used = true;
                 characterManager.SetSwappingAvailable(false);
                 dialogueManager.QueueDialogue("speaker_you", "int_zipline_stay_on", 5);
                 interactionManager.UnregisterInteraction("crossZiplineB");

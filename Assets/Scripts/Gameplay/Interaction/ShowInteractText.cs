@@ -36,7 +36,7 @@ public class ShowInteractText : MonoBehaviour {
 
         if(interactable != null) {
             interactable.OnInteractImpossible();
-            currentInteractable = interactable;
+            currentInteractable = null;
         }
     }
 

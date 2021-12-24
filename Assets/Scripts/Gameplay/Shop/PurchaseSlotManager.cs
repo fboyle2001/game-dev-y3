@@ -35,6 +35,10 @@ public class PurchaseSlotManager : MonoBehaviour
         playerInventory.RegisterItemChangeListener((inventory) => {
             CheckIfPurchasable();
         });
+
+        if(ready) {
+            UpdateName();
+        }
     }
 
     void Start() {
@@ -48,18 +52,24 @@ public class PurchaseSlotManager : MonoBehaviour
         heldItem = item;
         goldCost = Mathf.RoundToInt(heldItem.goldValue * markupScalar);
         ready = true;
-        nameText.GetComponent<TMP_Text>().text = heldItem.GetItemName(gameManager.GetComponent<LocaleManager>());
+        UpdateName();
         image.GetComponent<Image>().sprite = heldItem.itemImage;
         CheckIfPurchasable();
+    }
+
+    private void UpdateName() {
+        if(heldItem == null) return;
+        nameText.GetComponent<TMP_Text>().text = heldItem.GetItemName(gameManager.GetComponent<LocaleManager>());
     }
 
     private bool CheckIfPurchasable() {
         if(!ready) return false;
         // Purchasable if they have enough gold and enough space in their inventory
+        // and they don't have it equipped
 
         int playerGold = playerResources.GetGold();
 
-        bool hasSpace = playerInventory.HasSpace(itemIdentifier, 1);
+        bool hasSpace = playerInventory.HasSpace(itemIdentifier, 1) && !playerInventory.IsEquipped(itemIdentifier);
         bool hasGold = playerGold >= goldCost;
 
         if(hasSpace && hasGold) {

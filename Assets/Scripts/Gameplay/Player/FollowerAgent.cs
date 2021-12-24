@@ -20,6 +20,7 @@ public class FollowerAgent : MonoBehaviour {
         Vector3 targetDifference = target.transform.position - transform.position;
 
         if(targetDifference.magnitude > teleportDistance) {
+            MoveTowardsTarget();
             TeleportNearTarget();
         } else {
             MoveTowardsTarget();
@@ -29,20 +30,24 @@ public class FollowerAgent : MonoBehaviour {
     }
 
     private void TeleportNearTarget() {
-        Vector3 teleportTarget = target.transform.position - 2 * Vector3.back + 2 * Vector3.up;
-        Collider[] hits = Physics.OverlapSphere(teleportTarget, 1);
-        bool safe = true;
+        Vector3[] directions = new Vector3[]{Vector3.back, Vector3.left, Vector3.right};
 
-        foreach(Collider c in hits) {
-            if(c.name != "Terrain" && c.name != "Player") {
-                safe = false;
+        foreach(Vector3 direction in directions) {
+            Vector3 teleportTarget = target.transform.position - 4 * direction + 2 * Vector3.up;
+            Collider[] hits = Physics.OverlapSphere(teleportTarget, 1);
+            bool safe = true;
+
+            foreach(Collider c in hits) {
+                if(c.name != "Terrain" && c.name != "Player" && c.name != "Pipe" && c.name != "Floor Smooth 1" && c.name != "Floor Smooth 2") {
+                    Debug.Log("[DIR " + direction + "] unable to teleport due to " + c.name);
+                    safe = false;
+                }
             }
-        }
 
-        if(safe) {
-            transform.position = teleportTarget;
-        } else {
-            Debug.Log("Not safe to teleport");
+            if(safe) {
+                transform.position = teleportTarget;
+                return;
+            }
         }
     }
 
