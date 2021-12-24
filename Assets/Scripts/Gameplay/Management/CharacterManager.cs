@@ -71,6 +71,14 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
+    public void HideSecondary() {
+        secondary.SetActive(false);
+    }
+
+    public void ShowSecondary() {
+        secondary.SetActive(true);
+    }
+
     public void SetSwappingAvailable(bool available) {
         this.swappingAvailable = available;
     }

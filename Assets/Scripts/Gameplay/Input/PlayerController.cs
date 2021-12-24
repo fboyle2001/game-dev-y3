@@ -4,11 +4,11 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 
-    public GameObject inventoryCanvas;
     public GameObject primary;
 
     private ICharacterActions currentController;
     private GameObject gameManager;
+    private UIManager uiManager;
 
     private PlayerInput playerInput;
 
@@ -20,9 +20,11 @@ public class PlayerController : MonoBehaviour
     private InputAction interactAction;
     private InputAction jumpAction;
     private InputAction switchCharacterAction;
+    private InputAction closeUIAction;
 
     private void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
+        uiManager = gameManager.GetComponent<UIManager>();
         playerInput = GetComponent<PlayerInput>();
         
         moveAction = playerInput.actions["Move"];
@@ -33,6 +35,7 @@ public class PlayerController : MonoBehaviour
         interactAction = playerInput.actions["Interact"];
         jumpAction = playerInput.actions["Jump"];
         switchCharacterAction = playerInput.actions["Switch Character"];
+        closeUIAction = playerInput.actions["Close UI"];
 
         currentController = primary.GetComponent<ICharacterActions>();
     }
@@ -59,6 +62,8 @@ public class PlayerController : MonoBehaviour
         jumpAction.performed += OnJumpPerformed;
 
         switchCharacterAction.started += OnSwitchPerformed;
+
+        closeUIAction.started += OnCloseAllUI;
     }
 
     private void OnDisable() {
@@ -83,6 +88,8 @@ public class PlayerController : MonoBehaviour
         jumpAction.performed -= OnJumpPerformed;
 
         switchCharacterAction.started -= OnSwitchPerformed;
+
+        closeUIAction.started -= OnCloseAllUI;
     }
 
     private void OnActiveCharacterChange(GameObject active) {
@@ -90,8 +97,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void ToggleInventory(InputAction.CallbackContext context) {
-        if(currentController.IsFrozen()) return;
-        inventoryCanvas.SetActive(!inventoryCanvas.activeSelf);
+        if(uiManager.shopPanel.activeSelf || currentController.IsFrozen()) return;
+        uiManager.inventoryPanel.SetActive(!uiManager.inventoryPanel.activeSelf);
         Cursor.visible = !Cursor.visible;
     }
 
@@ -112,6 +119,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void StartLookAround(InputAction.CallbackContext context) {
+        if(uiManager.shopPanel.activeSelf || uiManager.inventoryPanel.activeSelf) return;
         currentController.StartLookAround(context.ReadValue<Vector2>());
     }
 
@@ -128,6 +136,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnInteractPerformed(InputAction.CallbackContext context) {
+        if(uiManager.inventoryPanel.activeSelf || currentController.IsFrozen()) return;
         currentController.Interact();
     }
 
@@ -137,6 +146,12 @@ public class PlayerController : MonoBehaviour
 
     private void OnSwitchPerformed(InputAction.CallbackContext context) {
         gameManager.GetComponent<CharacterManager>().SwapActive();
+    }
+
+    private void OnCloseAllUI(InputAction.CallbackContext context) {
+        uiManager.inventoryPanel.SetActive(false);
+        uiManager.shopPanel.SetActive(false);
+        Cursor.visible = false;
     }
 
 }

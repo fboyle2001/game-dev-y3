@@ -30,6 +30,11 @@ public abstract class CutScene : MonoBehaviour {
     public void StartCutScene() {
         if(started) return;
         started = true;
+
+        if(!gameManager.GetComponent<CharacterManager>().IsPrimaryActive()) {
+            gameManager.GetComponent<CharacterManager>().SwapActive();
+        }
+
         PlayNextAction();
     }
 

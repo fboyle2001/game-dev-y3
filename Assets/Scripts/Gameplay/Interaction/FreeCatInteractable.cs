@@ -27,6 +27,7 @@ public class FreeCatInteractable : MonoBehaviour, IInteractable
             interactionManager.SetText("to free <CAT_NAME>");
             interactionManager.ShowText();
             interactionManager.RegisterInteraction("freeCatAction", () => {
+                interactionManager.UnregisterInteraction("freeCatAction");
                 gameObject.SetActive(false);
                 interactionManager.HideText();
                 objectiveManager.CompleteObjective("freeCat");
@@ -38,6 +39,7 @@ public class FreeCatInteractable : MonoBehaviour, IInteractable
                         "Enemies will target your current active character. Both characters must be alive at all times. " + 
                         "Your cat cannot interact but can use the inventory to restore health etc.", 15);
                     gameManager.GetComponent<CharacterManager>().UnlockSecondary();
+                    gameManager.GetComponent<CharacterManager>().secondary.GetComponent<CharacterStats>().HealAsPercent(1f);
                 });
             });
         }

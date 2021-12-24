@@ -6,6 +6,9 @@ public class MapSectionManager : MonoBehaviour {
     
     public GameObject mountainPathParent;
     public GameObject zipLineAttack;
+    public GameObject originalOrcParent;
+    public GameObject finalOrcParent;
+    public GameObject seedParent;
 
     public void EnableMountainPathSection() {
         mountainPathParent.SetActive(true);
@@ -13,6 +16,19 @@ public class MapSectionManager : MonoBehaviour {
 
     public void EnableZipLineAttack() {
         zipLineAttack.SetActive(true);
+    }
+
+    public void DisableOriginalOrcCave() {
+        originalOrcParent.SetActive(false);
+    }
+
+    public void EnableFinalOrcCave() {
+        finalOrcParent.SetActive(true);
+        seedParent.SetActive(false);
+    }
+
+    public void EnableSeedParent() {
+        seedParent.SetActive(true);
     }
 
 }

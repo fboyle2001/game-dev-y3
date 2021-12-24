@@ -57,12 +57,12 @@ public class SpawnInCutScene : MonoBehaviour {
             daylightManager.SetLightIntensity(0);
 
             // Move the character
-            realPlayer.transform.position = new Vector3(gameObject.transform.position.x, 17, gameObject.transform.position.z);
+            realPlayer.transform.position = new Vector3(gameObject.transform.position.x, 16, gameObject.transform.position.z);
             gameObject.SetActive(false);
             realCamera.SetActive(true);
 
             // Could add another step to display some text during the blackout phase
-            Invoke("FinishCutScene", 1);
+            Invoke("FinishCutScene", 2);
             scriptFrozen = true;
         }
     }

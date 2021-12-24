@@ -14,10 +14,13 @@ public class CompletionManager : MonoBehaviour {
 
     void Start() {
         EnemyBase.RegisterGlobalDamageHandler(gameObject, OnDamageHandler);
+        Debug.Log("registered damage handler");
     }
 
     private void OnDamageHandler(EnemyBase enemy) {
         if(!enemy.GetStats().IsDead()) return;
+
+        Debug.Log("Dead: " + enemy.identifier);
 
         switch(enemy.identifier) {
             case "firstOrc":

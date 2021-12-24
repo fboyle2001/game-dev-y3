@@ -14,7 +14,7 @@ public class InitialCampCutScene : CutScene {
 
     private Vector3 playerReturnPosition;
     private Quaternion playerReturnRotation;
-    private Vector3 playerCutScenePosition = new Vector3(624.66f, 12.586f, 426.70f);
+    private Vector3 playerCutScenePosition = new Vector3(624.66f, 12.1f, 426.70f);
     private Vector3 playerCutSceneRotationEulers = new Vector3(0f, -245.3f, -4.519f);
 
     new void OnEnable() {

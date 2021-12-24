@@ -7,7 +7,7 @@ public class FirstZiplineInteractable : MonoBehaviour, IInteractable {
     public GameObject startZipline;
     public GameObject stopPosition;
     public GameObject endZipline;
-    public float speed = 3f;
+    public float speed = 8f;
     public GameObject cutSceneOwner;
 
     private GameObject gameManager;
@@ -100,14 +100,15 @@ public class FirstZiplineInteractable : MonoBehaviour, IInteractable {
     }
 
     public void OnInteractPossible() {
-        if(objectiveManager.HasObjective("crossZiplineA")) {
+        if(objectiveManager.HasObjective("findSeeds")) {
             interactionManager.SetText("to use zip line");
             interactionManager.ShowText();
             interactionManager.RegisterInteraction("crossZiplineA", () => {
+                characterManager.HideSecondary();
                 characterManager.SetSwappingAvailable(false);
-                dialogueManager.QueueDialogue("You", "Hop on <CAT_NAME> we are going across!", 5);
-                interactionManager.UnregisterInteraction("crossZiplineA");
                 interactionManager.HideText();
+                interactionManager.UnregisterInteraction("crossZiplineA");
+                dialogueManager.QueueDialogue("You", "Hop on <CAT_NAME> we are going across!", 5);
                 EnableZipline(false);
             });
         }

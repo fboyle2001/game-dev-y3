@@ -5,6 +5,7 @@ using UnityEngine;
 public class SeedsCutScene : CutScene {
 
     public GameObject cutSceneCamera;
+    public GameObject seeds;
 
     private Vector3 playerReturnPosition;
     private Quaternion playerReturnRotation;
@@ -58,8 +59,10 @@ public class SeedsCutScene : CutScene {
 
             gameManager.GetComponent<CharacterManager>().SetFrozen(false);
             playerCamera.SetActive(true);
+            seeds.SetActive(false);
 
             Debug.Log("Cut scene over");
+            gameManager.GetComponent<CharacterManager>().primary.GetComponent<ShowInteractText>().RecheckInterability();
         }, 0);
     }
 

@@ -11,7 +11,7 @@ public class PlayerResources : MonoBehaviour
     private List<System.Action<PlayerResources, float, int>> resourceUpdateListeners = new List<System.Action<PlayerResources, float, int>>();
     private List<System.Action<int>> levelUpListeners = new List<System.Action<int>>();
 
-    private int gold = 10;
+    private int gold = 0;
     private int currentExperienceLevel = 1;
     private int xpForNextLevel;
     private float xp = 0;
@@ -89,14 +89,12 @@ public class PlayerResources : MonoBehaviour
     }
 
     private void GrantLevelUpReward(int levelReached) {
-        // Rewards are pre-determined for the first 15 levels and then randomised
+        // Rewards are pre-determined for the first 15 levels
         switch(levelReached) {
             case 1:
-                // Increase their max health
                 stats.AddMaxHealthMultiplier(0.1f);
                 break;
             case 2:
-                // Give them some regen
                 stats.AddRegenPerSecond(0.2f);
                 break;
             case 3:
@@ -112,14 +110,32 @@ public class PlayerResources : MonoBehaviour
                 stats.AddMaxHealthMultiplier(0.1f);
                 break;
             case 7:
+                stats.AddArmour(5f);
+                break;
             case 8:
+                stats.AddDamageMultiplier(0.2f);
+                break;
             case 9:
+                stats.AddMaxHealthMultiplier(0.1f);
+                break;
             case 10:
+                stats.AddRegenPerSecond(0.2f);
+                break;
             case 11:
+                stats.AddMaxHealthMultiplier(0.15f);
+                break;
             case 12:
+                stats.AddArmour(5f);
+                break;
             case 13:
+                stats.AddMaxHealthMultiplier(0.2f);
+                break;
             case 14:
+                stats.AddDamageMultiplier(0.2f);
+                break;
             case 15:
+                stats.AddRegenPerSecond(0.2f);
+                break;
             default:
                 break;
         }

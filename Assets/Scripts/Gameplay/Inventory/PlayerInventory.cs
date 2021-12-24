@@ -64,11 +64,6 @@ public class PlayerInventory : MonoBehaviour {
         emptyText.SetActive(true);
     }
 
-    void Start() {
-        AddItemToInventory("wornBow", 1);
-        AddItemToInventory("fullHealthPotion", 1);
-    }
-
     public void RegisterEquipUpdateListener(System.Action<PlayerInventory> action) {
         equipUpdateListeners.Add(action);
         PropagateEquipEvent();

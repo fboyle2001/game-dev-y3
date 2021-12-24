@@ -14,7 +14,7 @@ public class TrustedCutScene : CutScene {
 
     private Vector3 playerReturnPosition;
     private Quaternion playerReturnRotation;
-    private Vector3 playerCutScenePosition = new Vector3(624.66f, 12.586f, 426.70f);
+    private Vector3 playerCutScenePosition = new Vector3(624.66f, 12.1f, 426.70f);
     private Vector3 playerCutSceneRotationEulers = new Vector3(0f, -245.3f, -4.519f);
 
     new void OnEnable() {
@@ -70,8 +70,8 @@ public class TrustedCutScene : CutScene {
                 "It's a good idea to purchase some items every time you are at the camp.", 10);
             gameManager.GetComponent<ObjectiveManager>().CompleteObjective("returnToCamp");
             gameManager.GetComponent<MapSectionManager>().EnableMountainPathSection();
-            gameManager.GetComponent<ObjectiveManager>().AddObjective("climbMountain", "Climb the Mountain", "Climb the Mountain and find clues"
-                , new ObjectiveManager.RewardEntry(0, 0));
+            gameManager.GetComponent<ObjectiveManager>().AddObjective("findSeeds", "Climb the Mountain", "Climb the Mountain and find clues"
+                , new ObjectiveManager.RewardEntry(1000, 25));
 
             cutSceneCamera.SetActive(false);
             
