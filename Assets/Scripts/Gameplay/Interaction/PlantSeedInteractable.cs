@@ -26,7 +26,7 @@ public class PlantSeedInteractable : MonoBehaviour, IInteractable
     public void OnInteractPossible() {
         if(objectiveManager.HasObjective("plantSeeds") && !registered) {
             registered = true;
-            interactionManager.SetText("to plant the Seeds of Life");
+            interactionManager.SetText("int_plant_seeds");
             interactionManager.ShowText();
             interactionManager.RegisterInteraction("plantSeedsAction", () => {
                 interactionManager.UnregisterInteraction("plantSeedsAction");
@@ -35,9 +35,9 @@ public class PlantSeedInteractable : MonoBehaviour, IInteractable
                 objectiveManager.CompleteObjective("plantSeeds");
                 gameManager.GetComponent<MapSectionManager>().EnableSeedParent();
 
-                dialogueManager.QueueDialogue("You", "Woah!", 3);
-                dialogueManager.QueueDialogue("You", "I don't think those seeds just summoned a tree...", 3, () => {
-                    objectiveManager.AddObjective("finish", "Defeat the Ancient Orc", "Defeat the Ancient Orc", new ObjectiveManager.RewardEntry(7500, 150));
+                dialogueManager.QueueDialogue("speaker_you", "int_seeds_initial", 3);
+                dialogueManager.QueueDialogue("speaker_you", "int_seeds_second", 5, () => {
+                    objectiveManager.AddObjective("finish", "obj_defeat_ancient_orc", new ObjectiveManager.RewardEntry(7500, 150));
                     finaleSpawnManager.SetActive(true);
                 });
             });

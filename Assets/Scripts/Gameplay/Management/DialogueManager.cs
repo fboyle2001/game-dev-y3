@@ -12,14 +12,14 @@ public class DialogueManager : MonoBehaviour
     public TMP_Text dialogueText;
 
     struct DialogueEntry {
-        public readonly string speaker;
-        public readonly string text;
+        public readonly string speakerKey;
+        public readonly string textKey;
         public readonly float durationInSeconds;
         public readonly Action startCallback;
 
-        public DialogueEntry(string speaker, string text, float durationInSeconds, Action startCallback) {
-            this.speaker = speaker;
-            this.text = text;
+        public DialogueEntry(string speakerKey, string textKey, float durationInSeconds, Action startCallback) {
+            this.speakerKey = speakerKey;
+            this.textKey = textKey;
             this.durationInSeconds = durationInSeconds;
             this.startCallback = startCallback;
         }
@@ -32,8 +32,8 @@ public class DialogueManager : MonoBehaviour
         ClearDialogue();
     }
 
-    public void QueueDialogue(string speaker, string text, float durationInSeconds, Action startCallback = null) {
-        dialogueQueue.Enqueue(new DialogueEntry(speaker, text, durationInSeconds, startCallback));
+    public void QueueDialogue(string speakerKey, string textKey, float durationInSeconds, Action startCallback = null) {
+        dialogueQueue.Enqueue(new DialogueEntry(speakerKey, textKey, durationInSeconds, startCallback));
 
         if(!activeDialogue) {
             DisplayDialogue();
@@ -48,10 +48,10 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
     }
 
-    void DisplayDialogue(string speaker, string text) {
+    void DisplayDialogue(string speakerKey, string textKey) {
         dialoguePanel.SetActive(true);
-        speakerNameText.text = speaker;
-        dialogueText.text = text;
+        speakerNameText.text = GetComponent<LocaleManager>().GetString(speakerKey);
+        dialogueText.text = GetComponent<LocaleManager>().GetString(textKey);
     }
 
     void DisplayDialogue() {
@@ -70,7 +70,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         // Display the text
-        DisplayDialogue(nextEntry.speaker, nextEntry.text);
+        DisplayDialogue(nextEntry.speakerKey, nextEntry.textKey);
 
         // Display the next text after the delay 
         Invoke("DisplayDialogue", nextEntry.durationInSeconds);

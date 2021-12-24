@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SuperPotion : ConsumableInventoryItem {
 
-    public SuperPotion(Sprite itemImage) : base(itemIdentifier: "superPotion", itemName: "Super Potion", goldValue: 300, itemImage) {}
+    public SuperPotion(Sprite itemImage) : base(itemIdentifier: "superPotion", itemKey: "item_super_potion_name", goldValue: 300, itemImage) {}
 
     public override void ApplyItemEffect(GameObject gameManager) {
         CharacterManager characterManager = gameManager.GetComponent<CharacterManager>();

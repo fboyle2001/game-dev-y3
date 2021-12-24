@@ -13,7 +13,7 @@ public class VendorInteractable : MonoBehaviour, IInteractable {
     }
 
     public void OnInteractPossible() {
-        interactionManager.SetText("to open shop");
+        interactionManager.SetText("int_open_shop");
         interactionManager.ShowText();
         interactionManager.RegisterInteraction("vendor", () => {
             if(shopCanvas.activeSelf) {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RippedArmour : EquippableInventoryItem {
     
-    public RippedArmour(Sprite itemImage) : base(itemIdentifier: "rippedArmour", itemName: "Ripped Armour", goldValue: 250, itemImage) {}
+    public RippedArmour(Sprite itemImage) : base(itemIdentifier: "rippedArmour", itemKey: "item_ripped_armour_name", goldValue: 250, itemImage) {}
 
     public override void ApplyItemEffect(GameObject gameManager) {
         PlayerStats playerStats = gameManager.GetComponent<PlayerStats>();

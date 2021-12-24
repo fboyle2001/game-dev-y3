@@ -145,7 +145,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21910
+  m_Name: pb_Mesh250586
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2642,6 +2642,14 @@ PrefabInstance:
       value: You
       objectReference: {fileID: 0}
     - target: {fileID: 2672261206052390283, guid: 2e44c0bf8a00b77429d0c9aba6d39c2d, type: 3}
+      propertyPath: messageKey
+      value: trg_dirt_path
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672261206052390283, guid: 2e44c0bf8a00b77429d0c9aba6d39c2d, type: 3}
+      propertyPath: speakerKey
+      value: speaker_you
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672261206052390283, guid: 2e44c0bf8a00b77429d0c9aba6d39c2d, type: 3}
       propertyPath: activeOnObjectiveIds.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -3173,7 +3181,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21394
+  m_Name: pb_Mesh244722
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10842,6 +10850,14 @@ PrefabInstance:
       value: You
       objectReference: {fileID: 0}
     - target: {fileID: 2672261206052390283, guid: 2e44c0bf8a00b77429d0c9aba6d39c2d, type: 3}
+      propertyPath: messageKey
+      value: trg_orc_cave
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672261206052390283, guid: 2e44c0bf8a00b77429d0c9aba6d39c2d, type: 3}
+      propertyPath: speakerKey
+      value: speaker_you
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672261206052390283, guid: 2e44c0bf8a00b77429d0c9aba6d39c2d, type: 3}
       propertyPath: activeOnObjectiveIds.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -15807,7 +15823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1218781530
 Transform:
   m_ObjectHideFlags: 0
@@ -15973,6 +15989,14 @@ PrefabInstance:
     - target: {fileID: 2672261206052390283, guid: 2e44c0bf8a00b77429d0c9aba6d39c2d, type: 3}
       propertyPath: speaker
       value: You
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672261206052390283, guid: 2e44c0bf8a00b77429d0c9aba6d39c2d, type: 3}
+      propertyPath: messageKey
+      value: trg_wrong_way
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672261206052390283, guid: 2e44c0bf8a00b77429d0c9aba6d39c2d, type: 3}
+      propertyPath: speakerKey
+      value: speaker_you
       objectReference: {fileID: 0}
     - target: {fileID: 2672261206052390283, guid: 2e44c0bf8a00b77429d0c9aba6d39c2d, type: 3}
       propertyPath: maxTriggerCount
@@ -20840,6 +20864,7 @@ GameObject:
   - component: {fileID: 1661591614}
   - component: {fileID: 1661591615}
   - component: {fileID: 1661591616}
+  - component: {fileID: 1661591617}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Game Manager
@@ -21057,6 +21082,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 0029cefc-4a8f-48dd-990e-b35aab0e565a
     m_ActionName: Land/Switch Character[/Keyboard/v]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1982c186-a2a9-4666-9a5a-1f7749d50e1c
+    m_ActionName: Land/Close UI[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Land
@@ -21197,6 +21226,21 @@ MonoBehaviour:
   originalOrcParent: {fileID: 1824273919}
   finalOrcParent: {fileID: 1061736573}
   seedParent: {fileID: 1603835965}
+--- !u!114 &1661591617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1661591597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03894a0102e5e4488eb08e57b2bb657, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedStringTable:
+    m_TableReference:
+      m_TableCollectionName: GUID:067e4be71c945454c8ba7bbb731b9dd0
 --- !u!850595691 &1668121005
 LightingSettings:
   m_ObjectHideFlags: 0

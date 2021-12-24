@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GodAmuletRing : EquippableInventoryItem {
     
-    public GodAmuletRing(Sprite itemImage) : base(itemIdentifier: "godAmulet", itemName: "God Amulet", goldValue: 15000, itemImage) {}
+    public GodAmuletRing(Sprite itemImage) : base(itemIdentifier: "godAmulet", itemKey: "item_god_amulet_name", goldValue: 15000, itemImage) {}
 
     public override void ApplyItemEffect(GameObject gameManager) {
         PlayerStats playerStats = gameManager.GetComponent<PlayerStats>();

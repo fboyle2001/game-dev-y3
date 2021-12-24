@@ -26,8 +26,6 @@ public class SeedsCutScene : CutScene {
         GameObject playerCamera = gameManager.GetComponent<CharacterManager>().GetActiveCamera();
 
         QueueAction(() => {
-            Debug.Log("Cut scene starting");
-
             // Disable the player and their camera
             gameManager.GetComponent<CharacterManager>().SetFrozen(true);
             playerCamera.SetActive(false);
@@ -41,15 +39,13 @@ public class SeedsCutScene : CutScene {
             
             cutSceneCamera.SetActive(true);
 
-            dialogueManager.QueueDialogue("You", "Wow these must be the Seeds of Life!", 5);
-            dialogueManager.QueueDialogue("You", "Hopefully this will help me get home", 5);
-            dialogueManager.QueueDialogue("You", "I had better get these back to NPC1!", 5);
-        }, 15);
+            dialogueManager.QueueDialogue("speaker_you", "cs_seeds_1", 5);
+            dialogueManager.QueueDialogue("speaker_you", "cs_seeds_2", 5);
+        }, 10);
 
         QueueAction(() => {
             gameManager.GetComponent<ObjectiveManager>().CompleteObjective("findSeeds");
-            gameManager.GetComponent<ObjectiveManager>().AddObjective("returnToCamp2", "Return to Camp", "Return to the camp"
-                , new ObjectiveManager.RewardEntry(3000, 100));
+            gameManager.GetComponent<ObjectiveManager>().AddObjective("returnToCamp2", "obj_return_to_camp", new ObjectiveManager.RewardEntry(3000, 100));
 
             cutSceneCamera.SetActive(false);
             
@@ -61,7 +57,6 @@ public class SeedsCutScene : CutScene {
             playerCamera.SetActive(true);
             seeds.SetActive(false);
 
-            Debug.Log("Cut scene over");
             gameManager.GetComponent<CharacterManager>().primary.GetComponent<ShowInteractText>().RecheckInterability();
         }, 0);
     }

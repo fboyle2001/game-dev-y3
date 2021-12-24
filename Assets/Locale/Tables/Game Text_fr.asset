@@ -1,0 +1,263 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Game Text_fr
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: fr
+  m_SharedData: {fileID: 11400000, guid: 067e4be71c945454c8ba7bbb731b9dd0, type: 2}
+  m_Metadata:
+    m_Items:
+    - id: 0
+  m_TableData:
+  - m_Id: 276173029376
+    m_Localized: AHHHHHHHH!!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10737505402880
+    m_Localized: "Esm\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 569812058112
+    m_Localized: "Quelque chose sent comme si c'\xE9tait en train de br\xFBler. Peut-\xEAtre
+      qu'il y a un camp \xE0 proximit\xE9 ?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 460655296512
+    m_Localized: "O\xF9 suis-je ?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567572299776
+    m_Localized: "O\xF9 est {global.cat_name}?"
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 1503560597504
+    m_Localized: Trouver de l'aide
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8921367576576
+    m_Localized: "Les objectifs apparaissent dans le coin sup\xE9rieur droit de l'\xE9cran
+      et indiquent comment progresser. Le discours appara\xEEt en bas au centre de
+      l'\xE9cran."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8903722139648
+    m_Localized: 'Tutoriel: Afficher'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1524557283328
+    m_Localized: "Utilisez [ZQSD],  [Touches Fl\xE9ch\xE9es] ou [B\xE2ton Gauche]
+      pour vous d\xE9placer dans le monde. Pour faire tourner la cam\xE9ra, utilisez
+      la [souris] ou [B\xE2ton Droit]. Utilisez [Barre d'espace] ou [Bouton Sud]
+      pour sauter."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1522439159808
+    m_Localized: 'Tutoriel: Mouvement'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12587315101696
+    m_Localized: Vous
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19281298456576
+    m_Localized: "Attends, tu fais partie des Chats Assassins? Vous avez d\xFB faire
+      une sacr\xE9e chute pour ne pas savoir o\xF9 vous \xEAtes..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18437421268992
+    m_Localized: Reste en dehors d'ici! Les autres sont sur le chemin du retour,
+      tu ferais mieux de courir... Attends, qui es-tu?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18482547785728
+    m_Localized: "Je suis {global.main_name}, je ne sais pas comment je suis arriv\xE9
+      ici, o\xF9 suis-je?"
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 18484070318080
+    m_Localized: "Hmmm je ne suis pas s\xFBr de le croire, vous me dites que vous
+      n'avez aucune id\xE9e de comment vous avez pu vous retrouver au milieu de la
+      for\xEAt? Ce sont les Orques qui vous ont mis dans cet \xE9tat..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18484661714944
+    m_Localized: "Les Orques? La derni\xE8re chose dont je me souviens, c'est qu'ils
+      sont tomb\xE9s de cette montagne l\xE0-bas!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18485240528896
+    m_Localized: "{global.npc_name} tu n'as pas vu mon chat {global.cat_name} courir
+      quelque part, n'est-ce pas? Je jure qu'ils \xE9taient avec moi..."
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 19339544756224
+    m_Localized: Qu'est-ce que tu veux dire?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19411141525504
+    m_Localized: "Je pense savoir o\xF9 se trouve votre chat mais je ne sais pas
+      si je dois vous faire confiance... il y a une grotte d'Orc juste \xE0 c\xF4t\xE9
+      du chemin que vous avez suivi pour venir ici, \xE7a pourrait valoir le coup
+      d'oeil."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19433769795584
+    m_Localized: "Eliminez les Orques et prouvez que vous n'\xEAtes pas l'un d'entre
+      eux. Vous avez l'air plut\xF4t rude, voici quelque chose pour vous aider...
+      ne faites rien de stupide."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20155580153856
+    m_Localized: 'Tutoriel: Inventaire'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20202770268160
+    m_Localized: "Utilisez [I] ou [Bouton Nord] pour ouvrir votre inventaire. Sur
+      le c\xF4t\xE9 gauche, vous trouverez des objets qui vous rendront plus fort
+      tout au long du jeu. Sur le c\xF4t\xE9 droit, vous pouvez voir les objets que
+      vous avez \xE9quip\xE9s et les statistiques de votre joueur."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21767887388672
+    m_Localized: Trouver la grotte des Orques
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24106635493376
+    m_Localized: "Cela ne semble pas \xEAtre la bonne fa\xE7on"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24203049959424
+    m_Localized: Ce chemin de terre semble prometteur
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24334965014528
+    m_Localized: "\xC7a n'a pas l'air bon ! J'arrive {global.cat_name}!"
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 24749748125696
+    m_Localized: "Wow, \xE7a doit \xEAtre les graines de la vie!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24764642099200
+    m_Localized: "Je ferais mieux de les ramener \xE0 {global.npc_name}!"
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 24945349492736
+    m_Localized: Retour au Camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25310065197056
+    m_Localized: "Courez! Ils arrivent! Attends... tu as trouv\xE9 les graines..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25311239602176
+    m_Localized: Qu'est-ce qui se passe?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25311868747776
+    m_Localized: "Je pouvais entendre les Orques approcher du camp... mais vous avez
+      trouv\xE9 les graines. Vous pouvez mettre fin \xE0 ce tourment."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25603255435264
+    m_Localized: "Retournez \xE0 la grotte des orques o\xF9 je vous ai envoy\xE9
+      lors de notre premi\xE8re rencontre et plantez-y les graines. "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25587178668032
+    m_Localized: "Ils ont l'air \xE9tranges, qu'est-ce qu'ils sont vraiment? Que
+      dois-je faire?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25604413063168
+    m_Localized: "Si la proph\xE9tie est vraie, il te faudra un meilleur \xE9quipement.
+      J'ai r\xE9ussi \xE0 en apporter avec moi en partant."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26141493690368
+    m_Localized: Bonne chance...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26228697464832
+    m_Localized: "Planter les graines de la vie pr\xE8s de la grotte des Orques"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27024872833024
+    m_Localized: "Wow! Je n'arrive pas \xE0 y croire. La proph\xE9tie est vraie..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27839096291328
+    m_Localized: "La proph\xE9tie?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27840526548992
+    m_Localized: "Il y a de nombreuses ann\xE9es, lorsque les Orques sont entr\xE9s
+      dans nos terres et ont d\xE9vast\xE9 nos colonies, on croyait qu'un sauveur
+      sous la forme d'un chat arriverait..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27841235386368
+    m_Localized: "Nous avons longtemps r\xEAv\xE9 du jour o\xF9 nous serions sauv\xE9s
+      de ces mis\xE9rables cr\xE9atures."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28426303045632
+    m_Localized: "Je ne sais pas quoi dire. Est-ce que \xE7a pourrait \xEAtre une
+      simple co\xEFncidence? Je ne sais pas comment je suis arriv\xE9 ici..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28482586411008
+    m_Localized: "Le seul moyen de le savoir est de voir si vous pouvez r\xE9cup\xE9rer
+      les graines de vie."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28541805789184
+    m_Localized: "O\xF9 seraient-ils?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28655999909888
+    m_Localized: "Passez la grotte des Orques et montez la montagne... vous verrez
+      o\xF9 aller."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28920408834048
+    m_Localized: "Vous devriez peut-\xEAtre vous procurer un meilleur \xE9quipement
+      avant d'y aller. J'ai quelques articles \xE0 vendre si tu es int\xE9ress\xE9."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29078949330944
+    m_Localized: 'Tutoriel: Vendeur'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29098905829376
+    m_Localized: "Marchez jusqu'\xE0 {global.npc_name} et appuyez sur [E] ou [Button
+      West] pour acc\xE9der \xE0 sa boutique. Remarque: Vous ne pouvez faire cela
+      que depuis votre joueur principal et non depuis votre chat."
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 30070247915520
+    m_Localized: Grimper la Montagne
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1
+    00000000:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 0000f225840000000000b24dcf100000000032eecf1000000000f2ec211600000000b2f7851600000000f21d771a0000

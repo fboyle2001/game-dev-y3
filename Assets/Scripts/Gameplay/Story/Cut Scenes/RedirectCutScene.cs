@@ -31,8 +31,6 @@ public class RedirectCutScene : CutScene {
         GameObject playerCamera = gameManager.GetComponent<CharacterManager>().GetActiveCamera();
 
         QueueAction(() => {
-            Debug.Log("Cut scene starting");
-
             // Disable the player and their camera
             gameManager.GetComponent<CharacterManager>().SetFrozen(true);
             playerCamera.SetActive(false);
@@ -50,20 +48,18 @@ public class RedirectCutScene : CutScene {
             
             cutSceneCamera.SetActive(true);
 
-            dialogueManager.QueueDialogue("NPC1", "Run! They're coming! Wait... you found the seeds...", 3);
-            dialogueManager.QueueDialogue("You", "What's going on?", 3);
-            dialogueManager.QueueDialogue("NPC1", "I could hear Orcs approaching the camp... but you've found the seeds. You can end this torment.", 3);
-            dialogueManager.QueueDialogue("You", "What are these? What do I need to do?", 3);
-            dialogueManager.QueueDialogue("NPC1", "Go back to the Orc Cave I sent you to when we first met and plant the seeds there.", 3);
-            dialogueManager.QueueDialogue("NPC1", "You'll need to gear up first, I managed to bring some stuff with me.", 3);
-            dialogueManager.QueueDialogue("NPC1", "Good luck...", 3);
-        }, 21);
+            dialogueManager.QueueDialogue("npc_name", "cs_redirect_npc_1", 5);
+            dialogueManager.QueueDialogue("speaker_you", "cs_redirect_you_1", 3);
+            dialogueManager.QueueDialogue("npc_name", "cs_redirect_npc_2", 7);
+            dialogueManager.QueueDialogue("speaker_you", "cs_redirect_you_2", 5);
+            dialogueManager.QueueDialogue("npc_name", "cs_redirect_npc_3", 5);
+            dialogueManager.QueueDialogue("npc_name", "cs_redirect_npc_4", 5);
+            dialogueManager.QueueDialogue("npc_name", "cs_redirect_npc_5", 3);
+        }, 33);
 
         QueueAction(() => {
             gameManager.GetComponent<ObjectiveManager>().CompleteObjective("returnToCamp2");
-            // gameManager.GetComponent<MapSectionManager>().EnableMountainPathSection();
-            gameManager.GetComponent<ObjectiveManager>().AddObjective("plantSeeds", "Plant the Seeds of Life by the Orc Cave", "Summon and defeat the ancient orc"
-                , new ObjectiveManager.RewardEntry(7500, 150));
+            gameManager.GetComponent<ObjectiveManager>().AddObjective("plantSeeds", "obj_plant_seeds", new ObjectiveManager.RewardEntry(7500, 150));
 
             cutSceneCamera.SetActive(false);
             
@@ -79,8 +75,6 @@ public class RedirectCutScene : CutScene {
 
             gameManager.GetComponent<MapSectionManager>().DisableOriginalOrcCave();
             gameManager.GetComponent<MapSectionManager>().EnableFinalOrcCave();
-
-            Debug.Log("Cut scene over");
         }, 0);
     }
 

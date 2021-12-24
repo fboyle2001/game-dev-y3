@@ -10,6 +10,10 @@ public class TutorialManager : MonoBehaviour
     public TMP_Text tutorialTitle;
     public TMP_Text tutorialMessage;
 
+    void Awake() {
+
+    }
+
     struct TutorialEntry {
         public readonly string title;
         public readonly string message;
@@ -45,10 +49,10 @@ public class TutorialManager : MonoBehaviour
         tutorialMessage.text = "";
     }
 
-    void DisplayTutorial(string title, string message) {
+    void DisplayTutorial(string titleKey, string messageKey) {
         tutorialPanel.SetActive(true);
-        tutorialTitle.text = "Tutorial: " + title;
-        tutorialMessage.text = message;
+        tutorialTitle.text = GetComponent<LocaleManager>().GetString(titleKey);
+        tutorialMessage.text = GetComponent<LocaleManager>().GetString(messageKey);
     }
 
     void DisplayTutorial() {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SorcerersPotion : ConsumableInventoryItem {
 
-    public SorcerersPotion(Sprite itemImage) : base(itemIdentifier: "sorcerersPotion", itemName: "Sorcerers' Potion", goldValue: 1000, itemImage) {}
+    public SorcerersPotion(Sprite itemImage) : base(itemIdentifier: "sorcerersPotion", itemKey: "item_sorcerers_potion_name", goldValue: 1000, itemImage) {}
 
     public override void ApplyItemEffect(GameObject gameManager) {
         PlayerStats playerStats = gameManager.GetComponent<PlayerStats>();

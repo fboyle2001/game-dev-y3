@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageRing : EquippableInventoryItem {
     
-    public DamageRing(Sprite itemImage) : base(itemIdentifier: "damageRing", itemName: "Damage Ring", goldValue: 800, itemImage) {}
+    public DamageRing(Sprite itemImage) : base(itemIdentifier: "damageRing", itemKey: "item_damage_ring", goldValue: 800, itemImage) {}
 
     public override void ApplyItemEffect(GameObject gameManager) {
         PlayerStats playerStats = gameManager.GetComponent<PlayerStats>();

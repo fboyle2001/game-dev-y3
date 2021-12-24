@@ -5,8 +5,8 @@ using UnityEngine;
 public class MessageTrigger : MonoBehaviour
 {
 
-    public string speaker;
-    public string message;
+    public string speakerKey;
+    public string messageKey;
     public int messageDisplayTime = 5;
     public string[] activeOnObjectiveIds = null;
     public string triggerTag = "Primary Character";
@@ -43,7 +43,7 @@ public class MessageTrigger : MonoBehaviour
             triggeredCount += 1;
             timeSinceLastTrigger = 0;
 
-            dialogueManager.QueueDialogue(speaker, message, messageDisplayTime);
+            dialogueManager.QueueDialogue(speakerKey, messageKey, messageDisplayTime);
 
             if(additionalTriggerAction != null) {
                 additionalTriggerAction.PerformAction();

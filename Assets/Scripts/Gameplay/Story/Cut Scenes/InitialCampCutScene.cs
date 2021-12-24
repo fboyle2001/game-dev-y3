@@ -33,8 +33,6 @@ public class InitialCampCutScene : CutScene {
         GameObject playerCamera = gameManager.GetComponent<CharacterManager>().GetActiveCamera();
 
         QueueAction(() => {
-            Debug.Log("Cut scene starting");
-
             // Disable the player and their camera
             gameManager.GetComponent<CharacterManager>().SetFrozen(true);
             playerCamera.SetActive(false);
@@ -52,30 +50,23 @@ public class InitialCampCutScene : CutScene {
             
             cutSceneCamera.SetActive(true);
 
-            dialogueManager.QueueDialogue("NPC1", "Stay out of here! The others are on their way back you'd better get running... wait who are you?", 3);
-            dialogueManager.QueueDialogue("You", "I'm <CHARACTER NAME> I don't know how I got here, where am I?", 3);
-            dialogueManager.QueueDialogue("NPC1", "Hmmm I'm not sure I believe that, we're the furtherest camp from <THE TOWN>." + 
-                "How did you end up so far lost? Did the Orcs put you up to this?", 3);
-            dialogueManager.QueueDialogue("You", "The Orcs? Last I remember was falling down that mountain over there <FOR WHAT REASON>.", 3);
-            dialogueManager.QueueDialogue("You", "NPC1 you haven't seen a small cat running about anywhere have you? I swear they were with me...", 3);
-            dialogueManager.QueueDialogue("NPC1", "Wait you're part of the Assassin Cats group? You must have taken some fall to not know where you are...", 3);
-            dialogueManager.QueueDialogue("You", "What do you mean?", 3);
-            dialogueManager.QueueDialogue("NPC1", "I think I might know where your cat is but I don't know whether to trust you..." + 
-                "there is an Orc's cave just off the path you followed to get here, might be worth a look.", 3);
-            dialogueManager.QueueDialogue("NPC1", "Take out the Orc and then come back here and I'll explain everything you want to know." + 
-                "Here's some stuff to help you out, don't do anything stupid...", 3);
-        }, 27);
+            dialogueManager.QueueDialogue("npc_name", "cs_camp_npc_1", 5);
+            dialogueManager.QueueDialogue("speaker_you", "cs_camp_you_1", 5);
+            dialogueManager.QueueDialogue("npc_name", "cs_camp_npc_2", 7);
+            dialogueManager.QueueDialogue("speaker_you", "cs_camp_you_2", 5);
+            dialogueManager.QueueDialogue("speaker_you", "cs_camp_you_3", 5);
+            dialogueManager.QueueDialogue("npc_name", "cs_camp_npc_3", 5);
+            dialogueManager.QueueDialogue("speaker_you", "cs_camp_you_4", 3);
+            dialogueManager.QueueDialogue("npc_name", "cs_camp_npc_4", 5);
+            dialogueManager.QueueDialogue("npc_name", "cs_camp_npc_5", 5);
+        }, 45);
 
         QueueAction(() => {
             gameManager.GetComponent<PlayerInventory>().AddItemToInventory("fullHealthPotion", 1);
             gameManager.GetComponent<PlayerInventory>().AddItemToInventory("wornBow", 1);
-            gameManager.GetComponent<TutorialManager>().QueueTutorial("Inventory",
-                "Press [I] to open your inventory. On the left side you will find items that give you helpful bonuses throughout the game." + 
-                " On the right side is your character, stats and equipped weaponry. NPC1 has gifted you a <WEAPON_NAME> and a full health potion." + 
-                " Equip the weapon by clicking 'Equip Item' and drink the potion by clicking 'Use Item' - it will help a lot in the Orc cave!", 15);
+            gameManager.GetComponent<TutorialManager>().QueueTutorial("tut_inventory_title", "tut_inventory_text", 15);
             gameManager.GetComponent<ObjectiveManager>().CompleteObjective("findInitialCamp");
-            gameManager.GetComponent<ObjectiveManager>().AddObjective("findFirstOrcCave", "Find an Orc", "Find an Orc Cave and see if they have your cat"
-                , new ObjectiveManager.RewardEntry(300, 10));
+            gameManager.GetComponent<ObjectiveManager>().AddObjective("findFirstOrcCave", "obj_find_orc", new ObjectiveManager.RewardEntry(300, 10));
 
             cutSceneCamera.SetActive(false);
             

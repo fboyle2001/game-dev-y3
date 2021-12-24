@@ -18,7 +18,6 @@ public class WeaponManager : MonoBehaviour {
 
     private WeaponInventoryItem equippedWeapon;
     private float maxWidth;
-    private GameObject gameManager;
     private PlayerStats playerStats;
     private CharacterManager characterManager;
 
@@ -26,9 +25,8 @@ public class WeaponManager : MonoBehaviour {
     private float timeSinceLastShot = 0;
 
     void Awake() {
-        gameManager = GameObject.FindGameObjectWithTag("Game Manager");
-        playerStats = gameManager.GetComponent<PlayerStats>();
-        characterManager = gameManager.GetComponent<CharacterManager>();
+        playerStats = GetComponent<PlayerStats>();
+        characterManager = GetComponent<CharacterManager>();
         maxWidth = (chargeBackgroundBar.transform as RectTransform).sizeDelta.x;
     }
 
@@ -51,7 +49,7 @@ public class WeaponManager : MonoBehaviour {
             weaponPanel.SetActive(true);
             crosshair.SetActive(false);
             weaponImage.GetComponent<Image>().sprite = null;
-            weaponName.GetComponent<TMP_Text>().text = "Claws";
+            weaponName.GetComponent<TMP_Text>().text = equippedWeapon.GetItemName(GetComponent<LocaleManager>());
             this.timeBetweenShots = 60 / equippedWeapon.roundsPerMinute;
             this.timeSinceLastShot = 0;
         }
@@ -80,7 +78,7 @@ public class WeaponManager : MonoBehaviour {
             weaponPanel.SetActive(true);
             crosshair.SetActive(true);
             weaponImage.GetComponent<Image>().sprite = equippedWeapon.itemImage;
-            weaponName.GetComponent<TMP_Text>().text = equippedWeapon.itemName;
+            weaponName.GetComponent<TMP_Text>().text = equippedWeapon.GetItemName(GetComponent<LocaleManager>());
             timeBetweenShots = 60 / equippedWeapon.roundsPerMinute;
         }
 
@@ -92,9 +90,9 @@ public class WeaponManager : MonoBehaviour {
         (chargeBar.transform as RectTransform).sizeDelta = new Vector2(chargeBarWidth, (chargeBar.transform as RectTransform).sizeDelta.y);
 
         if(chargeBarWidth >= maxWidth) {
-            chargeText.GetComponent<TMP_Text>().text = "Charged!";
+            chargeText.GetComponent<TMP_Text>().text = GetComponent<LocaleManager>().GetString("ui_weapon_charged");
         } else {
-            chargeText.GetComponent<TMP_Text>().text = "Charging...";
+            chargeText.GetComponent<TMP_Text>().text = GetComponent<LocaleManager>().GetString("ui_weapon_charging");
         }
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlatedArmour : EquippableInventoryItem {
     
-    public PlatedArmour(Sprite itemImage) : base(itemIdentifier: "platedArmour", itemName: "Plated Armour", goldValue: 750, itemImage) {}
+    public PlatedArmour(Sprite itemImage) : base(itemIdentifier: "platedArmour", itemKey: "item_plated_armour_name", goldValue: 750, itemImage) {}
 
     public override void ApplyItemEffect(GameObject gameManager) {
         PlayerStats playerStats = gameManager.GetComponent<PlayerStats>();

@@ -1,0 +1,427 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Game Text Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Game Text
+  m_TableCollectionNameGuidString: 067e4be71c945454c8ba7bbb731b9dd0
+  m_Entries:
+  - m_Id: 276173029376
+    m_Key: cs_spawn_falling
+    m_Metadata:
+      m_Items: []
+  - m_Id: 569812058112
+    m_Key: cs_spawn_nearby_camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 460655296512
+    m_Key: cs_spawn_where
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567572299776
+    m_Key: cs_spawn_where_cat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10737505402880
+    m_Key: npc_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1503560597504
+    m_Key: obj_find_help
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8921367576576
+    m_Key: tut_display_text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8903722139648
+    m_Key: tut_display_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1524557283328
+    m_Key: tut_movement_text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1522439159808
+    m_Key: tut_movement_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12587315101696
+    m_Key: speaker_you
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18437421268992
+    m_Key: cs_camp_npc_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18482547785728
+    m_Key: cs_camp_you_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18484070318080
+    m_Key: cs_camp_npc_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18484661714944
+    m_Key: cs_camp_you_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18485240528896
+    m_Key: cs_camp_you_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19281298456576
+    m_Key: cs_camp_npc_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19339544756224
+    m_Key: cs_camp_you_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19411141525504
+    m_Key: cs_camp_npc_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19433769795584
+    m_Key: cs_camp_npc_5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20155580153856
+    m_Key: tut_inventory_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20202770268160
+    m_Key: tut_inventory_text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21767887388672
+    m_Key: obj_find_orc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24106635493376
+    m_Key: trg_wrong_way
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24203049959424
+    m_Key: trg_dirt_path
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24334965014528
+    m_Key: trg_orc_cave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24749748125696
+    m_Key: cs_seeds_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24764642099200
+    m_Key: cs_seeds_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24945349492736
+    m_Key: obj_return_to_camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25310065197056
+    m_Key: cs_redirect_npc_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25311239602176
+    m_Key: cs_redirect_you_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25311868747776
+    m_Key: cs_redirect_npc_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25587178668032
+    m_Key: cs_redirect_you_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25603255435264
+    m_Key: cs_redirect_npc_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25604413063168
+    m_Key: cs_redirect_npc_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26141493690368
+    m_Key: cs_redirect_npc_5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26228697464832
+    m_Key: obj_plant_seeds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27024872833024
+    m_Key: cs_trusted_npc_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27839096291328
+    m_Key: cs_trusted_you_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27840526548992
+    m_Key: cs_trusted_npc_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27841235386368
+    m_Key: cs_trusted_npc_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28426303045632
+    m_Key: cs_trusted_you_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28482586411008
+    m_Key: cs_trusted_npc_4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28541805789184
+    m_Key: cs_trusted_you_3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28655999909888
+    m_Key: cs_trusted_npc_5
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28920408834048
+    m_Key: cs_trusted_npc_6
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29078949330944
+    m_Key: tut_vendor_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29098905829376
+    m_Key: tut_vendor_text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 30070247915520
+    m_Key: obj_climb_mountain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31138507784192
+    m_Key: fnl_phase_2_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31265913962496
+    m_Key: fnl_phase_2_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31267755261952
+    m_Key: fnl_phase_3_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31268476682240
+    m_Key: fnl_ancient_speak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31489701052416
+    m_Key: speaker_ancient
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31538522750976
+    m_Key: fnl_phase_3_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31650993012736
+    m_Key: fnl_celebrate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32093240426496
+    m_Key: ui_ps_no_space
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32562977308672
+    m_Key: ui_weapon_charged
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32564457897984
+    m_Key: ui_weapon_charging
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32766405246976
+    m_Key: ui_gain_armour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32784243621888
+    m_Key: ui_gain_regen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32846466121728
+    m_Key: ui_gain_max_health
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33013885960192
+    m_Key: ui_gain_dmg_mult
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33079581343744
+    m_Key: ui_level_up
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33526174056448
+    m_Key: ui_interact_text_start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33994317103104
+    m_Key: obj_free_cat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34086843449344
+    m_Key: txt_go_free_cat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34463559057408
+    m_Key: ui_inventory_player_only
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34484895481856
+    m_Key: ui_inventory_equip_item
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34510891778048
+    m_Key: ui_inventory_use_one
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34953306963968
+    m_Key: item_claws_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34992670507008
+    m_Key: item_crafted_bow_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34993324818432
+    m_Key: item_crystal_armour_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34994763464704
+    m_Key: item_damage_ring
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34995451330560
+    m_Key: item_expert_bow_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34996042727424
+    m_Key: item_full_health_potion_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34996655095808
+    m_Key: item_god_amulet_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34997175189504
+    m_Key: item_heal_ring_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35421710057472
+    m_Key: item_health_potion_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35422309842944
+    m_Key: item_plated_armour_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35422859296768
+    m_Key: item_ripped_armour_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35423425527808
+    m_Key: item_sorcerers_potion_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35423954010112
+    m_Key: item_super_potion_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35656221982720
+    m_Key: item_worn_bow_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38833784750080
+    m_Key: int_zipline_stuck
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38857042165760
+    m_Key: int_zipline_slow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39034322812928
+    m_Key: int_zipline_skeleton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39106611642368
+    m_Key: int_use_zipline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39395620159488
+    m_Key: int_zipline_hop_on
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39598960017408
+    m_Key: int_open_shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39735463641088
+    m_Key: int_zipline_stay_on
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39989378416640
+    m_Key: int_plant_seeds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40032139345920
+    m_Key: int_seeds_initial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40141082198016
+    m_Key: int_seeds_second
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40174556938240
+    m_Key: obj_defeat_ancient_orc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40445513170944
+    m_Key: int_free_cat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40524881985536
+    m_Key: txt_freed_cat_1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40566749528064
+    m_Key: txt_freed_cat_2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40721775198208
+    m_Key: tut_cat_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40741496815616
+    m_Key: tut_cat_text
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    id: 0
+  references:
+    version: 1
+    00000000:
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1640344460743

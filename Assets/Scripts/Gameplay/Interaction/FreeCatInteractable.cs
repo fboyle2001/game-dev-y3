@@ -24,7 +24,7 @@ public class FreeCatInteractable : MonoBehaviour, IInteractable
     public void OnInteractPossible() {
         if(objectiveManager.HasObjective("freeCat") && !registered) {
             registered = true;
-            interactionManager.SetText("to free <CAT_NAME>");
+            interactionManager.SetText("int_free_cat");
             interactionManager.ShowText();
             interactionManager.RegisterInteraction("freeCatAction", () => {
                 interactionManager.UnregisterInteraction("freeCatAction");
@@ -32,12 +32,10 @@ public class FreeCatInteractable : MonoBehaviour, IInteractable
                 interactionManager.HideText();
                 objectiveManager.CompleteObjective("freeCat");
 
-                dialogueManager.QueueDialogue("You", "You're alive! I can't believe it!", 3);
-                dialogueManager.QueueDialogue("You", "We'd better go back to this camp I've found hopefully they'll believe I'm not one of these Orcs now.", 3, () => {
-                    objectiveManager.AddObjective("returnToCamp", "Return to the camp", "Return to the camp to prove you aren't an Orc", new ObjectiveManager.RewardEntry(1000, 20));
-                    tutorialManager.QueueTutorial("Assassin Cat Unlocked", "You've now unlocked your assassin cat. Press [SWAP_KEY] to switch between your player and cat. " + 
-                        "Enemies will target your current active character. Both characters must be alive at all times. " + 
-                        "Your cat cannot interact but can use the inventory to restore health etc.", 15);
+                dialogueManager.QueueDialogue("speaker_you", "txt_freed_cat_1", 3);
+                dialogueManager.QueueDialogue("speaker_you", "txt_freed_cat_2", 7, () => {
+                    objectiveManager.AddObjective("returnToCamp", "obj_return_to_camp", new ObjectiveManager.RewardEntry(1000, 20));
+                    tutorialManager.QueueTutorial("tut_cat_title", "tut_cat_text", 15);
                     gameManager.GetComponent<CharacterManager>().UnlockSecondary();
                     gameManager.GetComponent<CharacterManager>().secondary.GetComponent<CharacterStats>().HealAsPercent(1f);
                 });

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CraftedBowWeapon : WeaponInventoryItem {
     
-    public CraftedBowWeapon(Sprite itemImage) : base(itemIdentifier: "craftedBow", itemName: "Crafted Bow", goldValue: 500, itemImage, roundsPerMinute: 120, damagePerRound: 6) {}
+    public CraftedBowWeapon(Sprite itemImage) : base(itemIdentifier: "craftedBow", itemKey: "item_crafted_bow_name", goldValue: 500, itemImage, roundsPerMinute: 120, damagePerRound: 6) {}
 
     public override void ApplyItemEffect(GameObject gameManager) {
         gameManager.GetComponent<PlayerInventory>().EquipItem(this, "weapon");

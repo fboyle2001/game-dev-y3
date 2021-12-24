@@ -9,7 +9,7 @@ public class DaylightManager : MonoBehaviour
     
     private int currentTime = 0;
     // m = mins per in-game day then TIPS = 86400 / (m * 60)
-    private int timeIncrementPerSecond = 72; // 1440 = 60s per day, 72 = 20mins per in-game day
+    private int timeIncrementPerSecond = 18; // 1440 = 60s per day, 72 = 20 mins per in-game day, 18 = 8 mins per in-game day
     private bool timeFrozen = false;
 
     void FixedUpdate() {

@@ -23,14 +23,12 @@ public class ObjectiveManager : MonoBehaviour
 
     struct ObjectiveEntry {
         public readonly string identifier;
-        public readonly string title;
-        public readonly string description;
+        public readonly string titleKey;
         public readonly RewardEntry reward;
 
-        public ObjectiveEntry(string identifier, string title, string description, RewardEntry reward) {
+        public ObjectiveEntry(string identifier, string titleKey, RewardEntry reward) {
             this.identifier = identifier;
-            this.title = title;
-            this.description = description;
+            this.titleKey = titleKey;
             this.reward = reward;
         }
         
@@ -81,14 +79,14 @@ public class ObjectiveManager : MonoBehaviour
                 text += "\n";
             }
 
-            text += "□ " + entry.title + "\n";
+            text += GetComponent<LocaleManager>().GetString(entry.titleKey) + "\n";
         }
 
         objectiveTextList.text = text;
     }
 
-    public void AddObjective(string identifier, string title, string description, RewardEntry reward) {
-        objectives.Add(identifier, new ObjectiveEntry(identifier, title, description, reward));
+    public void AddObjective(string identifier, string title, RewardEntry reward) {
+        objectives.Add(identifier, new ObjectiveEntry(identifier, title, reward));
         UpdateObjectiveDisplay();
     }
 

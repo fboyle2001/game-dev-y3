@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealthPotionItem  : ConsumableInventoryItem {
 
-    public HealthPotionItem(Sprite itemImage) : base(itemIdentifier: "healthPotion", itemName: "Health Potion", goldValue: 100, itemImage) {}
+    public HealthPotionItem(Sprite itemImage) : base(itemIdentifier: "healthPotion", itemKey: "item_health_potion_name", goldValue: 100, itemImage) {}
 
     public override void ApplyItemEffect(GameObject gameManager) {
         CharacterManager characterManager = gameManager.GetComponent<CharacterManager>();

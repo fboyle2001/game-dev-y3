@@ -52,26 +52,22 @@ public class TrustedCutScene : CutScene {
             
             cutSceneCamera.SetActive(true);
 
-            dialogueManager.QueueDialogue("NPC1", "Wow! I can't believe it. The prophecy is true...", 3);
-            dialogueManager.QueueDialogue("You", "The prophecy?", 3);
-            dialogueManager.QueueDialogue("NPC1", "Years ago the elders mentioned this day would come. " + 
-            "The Orcs arrived in our territory 432 years ago and have wrecked havoc on our lands and settlements ever since. " +
-            "It has long been dreamt that an assassin cat would come and rescue us from these wretched creatures.", 3);
-            dialogueManager.QueueDialogue("You", "Well I don't know what to say. Could it just be coincidence? I have no idea how I got here...", 3);
-            dialogueManager.QueueDialogue("NPC1", "The only way to tell is to see if you can retrieve the Seeds of Life.", 3);
-            dialogueManager.QueueDialogue("You", "Where would they be?", 3);
-            dialogueManager.QueueDialogue("NPC1", "Go past the Orc cave to the river... you'll see where to go", 3);
-            dialogueManager.QueueDialogue("NPC1", "If you need anything before your journey come and have a look at my shop under the wood canopy", 3);
-        }, 24);
+            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_1", 5);
+            dialogueManager.QueueDialogue("speaker_you", "cs_trusted_you_1", 3);
+            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_2", 7);
+            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_3", 5);
+            dialogueManager.QueueDialogue("speaker_you", "cs_trusted_you_2", 5);
+            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_4", 5);
+            dialogueManager.QueueDialogue("speaker_you", "cs_trusted_you_3", 3);
+            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_5", 7);
+            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_6", 7);
+        }, 47);
 
         QueueAction(() => {
-            gameManager.GetComponent<TutorialManager>().QueueTutorial("Vendor",
-                "Get close to NPC1 and press [Interact] to visit their shop. You can only do this from the main character and not your cat. " + 
-                "It's a good idea to purchase some items every time you are at the camp.", 10);
+            gameManager.GetComponent<TutorialManager>().QueueTutorial("tut_vendor_title", "tut_vendor_text", 12);
             gameManager.GetComponent<ObjectiveManager>().CompleteObjective("returnToCamp");
             gameManager.GetComponent<MapSectionManager>().EnableMountainPathSection();
-            gameManager.GetComponent<ObjectiveManager>().AddObjective("findSeeds", "Climb the Mountain", "Climb the Mountain and find clues"
-                , new ObjectiveManager.RewardEntry(1000, 25));
+            gameManager.GetComponent<ObjectiveManager>().AddObjective("findSeeds", "obj_climb_mountain", new ObjectiveManager.RewardEntry(1000, 25));
 
             cutSceneCamera.SetActive(false);
             
@@ -84,8 +80,6 @@ public class TrustedCutScene : CutScene {
 
             gameManager.GetComponent<CharacterManager>().SetFrozen(false);
             playerCamera.SetActive(true);
-
-            Debug.Log("Cut scene over");
         }, 0);
     }
 

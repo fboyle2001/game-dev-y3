@@ -6,6 +6,11 @@ public class InteractionManager : MonoBehaviour {
 
     public GameObject interactText;
     private Dictionary<string, System.Action> registeredInteractions = new Dictionary<string, System.Action>();
+    private LocaleManager localeManager;
+
+    void Awake() {
+        localeManager = GetComponent<LocaleManager>();
+    }
 
     public void HideText() {
         interactText.SetActive(false);
@@ -15,8 +20,8 @@ public class InteractionManager : MonoBehaviour {
         interactText.SetActive(true);
     }
 
-    public void SetText(string text) {
-        interactText.GetComponent<TMP_Text>().text = "Press [Interact] " + text;
+    public void SetText(string textKey) {
+        interactText.GetComponent<TMP_Text>().text = localeManager.GetString("ui_interact_text_start") + " " + localeManager.GetString(textKey);
     }
 
     public void RegisterInteraction(string key, System.Action action) {

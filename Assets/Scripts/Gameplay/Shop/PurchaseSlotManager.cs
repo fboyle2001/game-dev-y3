@@ -48,7 +48,7 @@ public class PurchaseSlotManager : MonoBehaviour
         heldItem = item;
         goldCost = Mathf.RoundToInt(heldItem.goldValue * markupScalar);
         ready = true;
-        nameText.GetComponent<TMP_Text>().text = heldItem.itemName;
+        nameText.GetComponent<TMP_Text>().text = heldItem.GetItemName(gameManager.GetComponent<LocaleManager>());
         image.GetComponent<Image>().sprite = heldItem.itemImage;
         CheckIfPurchasable();
     }
@@ -63,12 +63,12 @@ public class PurchaseSlotManager : MonoBehaviour
         bool hasGold = playerGold >= goldCost;
 
         if(hasSpace && hasGold) {
-            buttonText.GetComponent<TMP_Text>().text = "Buy (" + heldItem.goldValue + "G)";
+            buttonText.GetComponent<TMP_Text>().text = heldItem.goldValue + "G";
             buttonText.GetComponent<TMP_Text>().color = Color.black;
             purchaseButton.GetComponent<Button>().interactable = true;
             return true;
         } else if (!hasSpace) {
-            buttonText.GetComponent<TMP_Text>().text = "No Space!";
+            buttonText.GetComponent<TMP_Text>().text = gameManager.GetComponent<LocaleManager>().GetString("ui_ps_no_space");
             buttonText.GetComponent<TMP_Text>().color = Color.red;
             purchaseButton.GetComponent<Button>().interactable = false;
         } else {

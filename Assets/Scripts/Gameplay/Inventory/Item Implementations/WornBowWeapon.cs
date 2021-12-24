@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WornBowWeapon : WeaponInventoryItem {
     
-    public WornBowWeapon(Sprite itemImage) : base(itemIdentifier: "wornBow", itemName: "Worn Bow", goldValue: 0, itemImage, roundsPerMinute: 90, damagePerRound: 4) {}
+    public WornBowWeapon(Sprite itemImage) : base(itemIdentifier: "wornBow", itemKey: "item_worn_bow_name", goldValue: 0, itemImage, roundsPerMinute: 90, damagePerRound: 4) {}
 
     public override void ApplyItemEffect(GameObject gameManager) {
         PlayerStats stats = gameManager.GetComponent<PlayerStats>();

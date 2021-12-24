@@ -1,0 +1,268 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Game Text_en-US
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en-US
+  m_SharedData: {fileID: 11400000, guid: 067e4be71c945454c8ba7bbb731b9dd0, type: 2}
+  m_Metadata:
+    m_Items:
+    - id: 0
+  m_TableData:
+  - m_Id: 276173029376
+    m_Localized: AHHHHHHHH!!!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 460655296512
+    m_Localized: Where am I?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 569812058112
+    m_Localized: Something smells like it's burning. Maybe there is a camp nearby?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 567572299776
+    m_Localized: Where is {global.cat_name}?
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 1503560597504
+    m_Localized: Find Help
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1522439159808
+    m_Localized: 'Tutorial: Movement'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8921367576576
+    m_Localized: Objectives appear in the top right corner of the screen and indicate
+      how to progress. Speech appears in the bottom center of the screen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1524557283328
+    m_Localized: Use [WASD], [Arrow Keys] or [Left Stick] to move around the world.
+      To turn the camera, use [Mouse] and [Right Stick]. Use [Space] and [Button
+      South] to jump.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8903722139648
+    m_Localized: 'Tutorial: Display'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10737505402880
+    m_Localized: Michelle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 12587315101696
+    m_Localized: You
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18437421268992
+    m_Localized: Stay out of here! The others are on their way back you'd better
+      get running... wait who are you?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18482547785728
+    m_Localized: I'm {global.main_name}, I don't know how I got here, where am I?
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 18484070318080
+    m_Localized: Hmmm I'm not sure I believe that, you're telling me you have no
+      idea how you've ended up in the middle of the forest? Did the Orcs put you
+      up to this...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18484661714944
+    m_Localized: The Orcs? Last I remember was falling down that mountain over there!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18485240528896
+    m_Localized: '{global.npc_name} you haven''t seen my cat {global.cat_name} running
+      about anywhere have you? I swear they were with me...'
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 19281298456576
+    m_Localized: Wait you're part of the Assassin Cats? You must have taken some
+      fall to not know where you are...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19339544756224
+    m_Localized: What do you mean?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19411141525504
+    m_Localized: I think I might know where your cat is but I don't know whether
+      to trust you... there is an Orc's cave just off the path you followed to get
+      here, might be worth a look.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19433769795584
+    m_Localized: Take out the Orc and prove you aren't one of them. You look pretty
+      rough, here's something to help you out... don't do anything stupid
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20155580153856
+    m_Localized: 'Tutorial: Inventory'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 20202770268160
+    m_Localized: Use [I] or [Button North] to open your inventory. On the left hand
+      side you will find items that will make you stronger throughout the game. On
+      the right hand side you can see what items you have equipped and your player's
+      stats.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 21767887388672
+    m_Localized: Find the Orc Cave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24106635493376
+    m_Localized: This doesn't seem like the right way
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24203049959424
+    m_Localized: That dirt path looks promising
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24334965014528
+    m_Localized: That doesn't sound good! I'm coming {global.cat_name}!
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 24749748125696
+    m_Localized: Wow these must be the Seeds of Life!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 24764642099200
+    m_Localized: "Je ferais mieux de les ramener \xE0 {global.npc_name}!"
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 24945349492736
+    m_Localized: Return to Camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25310065197056
+    m_Localized: Run! They're coming! Wait... you found the seeds...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25311239602176
+    m_Localized: What's going on?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25311868747776
+    m_Localized: I could hear Orcs approaching the camp... but you've found the seeds.
+      You can end this torment.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25587178668032
+    m_Localized: They look strange, what are they really? What do I need to do?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25603255435264
+    m_Localized: 'Go back to the Orc Cave I sent you to when we first met and plant
+      the seeds there. '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25604413063168
+    m_Localized: If the prophecy is true you'll need some better gear. I managed
+      to bring some with me on the way out.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26141493690368
+    m_Localized: Good luck...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 26228697464832
+    m_Localized: Plant the Seeds of Life by the Orc Cave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27024872833024
+    m_Localized: Wow! I can't believe it. The prophecy is true...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27839096291328
+    m_Localized: The prophecy?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27840526548992
+    m_Localized: Many years ago when the Orcs entered our lands and wrecked havoc
+      on our settlements it was believed a saviour in the form of a cat would arrive...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 27841235386368
+    m_Localized: We've long dreamt of the day of rescue from these wretched creatures
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28426303045632
+    m_Localized: Well I don't know what to say. Could it just be coincidence? I have
+      no idea how I got here...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28482586411008
+    m_Localized: The only way to tell is to see if you can retrieve the Seeds of
+      Life.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28541805789184
+    m_Localized: Where would they be?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28655999909888
+    m_Localized: Go past the Orc cave up the mountain... you'll see where to go
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28920408834048
+    m_Localized: You might want to get some better equipment before you go up there
+      though. I've got some items for sale if you're interested.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29078949330944
+    m_Localized: 'Tutorial: Vendor'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 29098905829376
+    m_Localized: 'Walk up to {global.npc_name} and press [E] or [Button West] to
+      access their shop. Note: You can only do this from your main player and not
+      your cat.'
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 30070247915520
+    m_Localized: Climb the Mountain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31267755261952
+    m_Localized: 
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32766405246976
+    m_Localized: Armor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35422309842944
+    m_Localized: Plated Armor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35422859296768
+    m_Localized: Ripped Armor
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1
+    00000000:
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 0000f225840000000000b24dcf100000000032eecf1000000000f2ec211600000000b2f7851600000000f21d771a0000

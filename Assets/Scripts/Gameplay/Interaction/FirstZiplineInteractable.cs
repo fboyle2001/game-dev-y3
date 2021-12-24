@@ -54,7 +54,7 @@ public class FirstZiplineInteractable : MonoBehaviour, IInteractable {
 
     private void OnSkeletonZipLineDeath(EnemyBase enemy) {
         if(!(enemy.identifier == "zipLineSkeleton" && enemy.GetStats().IsDead())) return;
-        dialogueManager.QueueDialogue("You", "Ah there we go we're moving again, phew!", 4);
+        dialogueManager.QueueDialogue("You", "int_zipline_stuck", 4);
         EnableZipline(true);
     }
 
@@ -74,7 +74,7 @@ public class FirstZiplineInteractable : MonoBehaviour, IInteractable {
         if(difference.magnitude < 40) {
             if(!triggeredSlowdownMessage) {
                 gameManager.GetComponent<MapSectionManager>().EnableZipLineAttack();
-                dialogueManager.QueueDialogue("You", "Errrr... why are we slowing down...", 3);
+                dialogueManager.QueueDialogue("speaker_you", "int_zipline_slow", 4);
                 triggeredSlowdownMessage = true;
             }
 
@@ -88,7 +88,7 @@ public class FirstZiplineInteractable : MonoBehaviour, IInteractable {
         if(difference.magnitude < 5) {
             if(!postPosFreeze) {
                 hasStopped = true;
-                dialogueManager.QueueDialogue("You", "Ah the skeleton is going for the zip line! Better take it out!", 5);
+                dialogueManager.QueueDialogue("speaker_you", "int_zipline_skeleton", 5);
                 return;
             } else {
                 DisableZipline();
@@ -101,14 +101,14 @@ public class FirstZiplineInteractable : MonoBehaviour, IInteractable {
 
     public void OnInteractPossible() {
         if(objectiveManager.HasObjective("findSeeds")) {
-            interactionManager.SetText("to use zip line");
+            interactionManager.SetText("int_use_zipline");
             interactionManager.ShowText();
             interactionManager.RegisterInteraction("crossZiplineA", () => {
                 characterManager.HideSecondary();
                 characterManager.SetSwappingAvailable(false);
                 interactionManager.HideText();
                 interactionManager.UnregisterInteraction("crossZiplineA");
-                dialogueManager.QueueDialogue("You", "Hop on <CAT_NAME> we are going across!", 5);
+                dialogueManager.QueueDialogue("speaker_you", "int_zipline_hop_on", 5);
                 EnableZipline(false);
             });
         }

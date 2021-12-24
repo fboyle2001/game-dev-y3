@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CrystalArmour : EquippableInventoryItem {
     
-    public CrystalArmour(Sprite itemImage) : base(itemIdentifier: "crystalArmour", itemName: "Crystal Armour", goldValue: 2000, itemImage) {}
+    public CrystalArmour(Sprite itemImage) : base(itemIdentifier: "crystalArmour", itemKey: "item_crystal_armour_name", goldValue: 2000, itemImage) {}
 
     public override void ApplyItemEffect(GameObject gameManager) {
         PlayerStats playerStats = gameManager.GetComponent<PlayerStats>();

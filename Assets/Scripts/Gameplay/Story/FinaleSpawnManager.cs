@@ -63,28 +63,28 @@ public class FinaleSpawnManager : MonoBehaviour {
     
     private void TrySpawnPhaseTwo() {
         if(deadPhaseOne < 6) return;
-        dialogueManager.QueueDialogue("You", "That wasn't so bad!", 5);
+        dialogueManager.QueueDialogue("speaker_you", "fnl_phase_2_1", 5);
         Invoke("SpawnPhaseTwo", 5);
     }
 
     private void SpawnPhaseTwo() {
         tree.transform.localScale = new Vector3(maxScale, maxScale, maxScale);
         maxScale = 8;
-        dialogueManager.QueueDialogue("You", "More... of course", 3);
+        dialogueManager.QueueDialogue("speaker_you", "fnl_phase_2_2", 3);
         phaseTwoParent.SetActive(true);
     }
 
     private void TrySpawnPhaseThree() {
         if(deadPhaseTwo < 5) return;
-        dialogueManager.QueueDialogue("You", "Phew that was a tough one <CAT_NAME>!", 5);
+        dialogueManager.QueueDialogue("speaker_you", "fnl_phase_3_1", 5);
         Invoke("SpawnPhaseThree", 5);
     }
 
     private void SpawnPhaseThree() {
         tree.transform.localScale = new Vector3(maxScale, maxScale, maxScale);
         maxScale = 16;
-        dialogueManager.QueueDialogue("The Ancient Orc", "Who dares challenge the Ancient One!", 5);
-        dialogueManager.QueueDialogue("You", "Here he is...", 3);
+        dialogueManager.QueueDialogue("speaker_ancient", "fnl_ancient_speak", 5);
+        dialogueManager.QueueDialogue("speaker_you", "fnl_phase_3_2", 3);
         phaseThreeParent.SetActive(true);
     }
 
@@ -92,7 +92,7 @@ public class FinaleSpawnManager : MonoBehaviour {
         if(deadPhaseThree < 4) return;
         tree.transform.localScale = new Vector3(maxScale, maxScale, maxScale);
         maxScale = 24;
-        dialogueManager.QueueDialogue("You", "We did it <CAT_NAME>!", 8);
+        dialogueManager.QueueDialogue("speaker_you", "fnl_celebrate", 8);
         Invoke("EndGame", 5f);
     }
 

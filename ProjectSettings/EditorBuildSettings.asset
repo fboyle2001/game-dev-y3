@@ -14,4 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TerrainTestScene.unity
     guid: 3428f5cc1362fd04fba92048c8ef72bb
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: ee5ea9bc35a41424691f384429c17f60, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 2762cbf8c7e57e34ea8d59cce4556c43, type: 2}

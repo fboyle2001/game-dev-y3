@@ -32,7 +32,7 @@ public class SpawnInCutScene : MonoBehaviour {
         
         // TODO: Localise
         gameManager.GetComponent<CharacterManager>().SetFrozen(true);
-        dialogueManager.QueueDialogue("You", "AHHHHHHHH!!!", 8);
+        dialogueManager.QueueDialogue("speaker_you", "cs_spawn_falling", 8);
         gameManager.GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>().ApplyDamageOverTime(99, 16);
     }
 
@@ -71,14 +71,12 @@ public class SpawnInCutScene : MonoBehaviour {
     void FinishCutScene() {
         realCamera.GetComponent<Camera>().cullingMask = -1;
         realCamera.GetComponent<Camera>().clearFlags = CameraClearFlags.Skybox;
-        gameManager.GetComponent<TutorialManager>().QueueTutorial("Movement and Display",
-            "To move your character around use WASD and your mouse to look around. In the top left corner you will see your health." +
-            " Right now you are on the verge of death! Objectives appear in the top right corner in case you forget what you are aiming for." + 
-            " Speech appears in the bottom middle of the screen when interacting with others.", 15);
-        dialogueManager.QueueDialogue("You", "Where am I?", 3);
-        dialogueManager.QueueDialogue("You", "Where is <CAT NAME>?", 3);
-        dialogueManager.QueueDialogue("You", "Something smells like it's burning. Maybe there is a camp nearby?", 5, () => {
-            objectiveManager.AddObjective("findInitialCamp", "Find help", "Someone might be nearby", new ObjectiveManager.RewardEntry(300, 10));
+        gameManager.GetComponent<TutorialManager>().QueueTutorial("tut_movement_title", "tut_movement_text", 10);
+        gameManager.GetComponent<TutorialManager>().QueueTutorial("tut_display_title", "tut_display_text", 10);
+        dialogueManager.QueueDialogue("speaker_you", "cs_spawn_where", 3);
+        dialogueManager.QueueDialogue("speaker_you", "cs_spawn_where_cat", 3);
+        dialogueManager.QueueDialogue("speaker_you", "cs_spawn_nearby_camp", 5, () => {
+            objectiveManager.AddObjective("findInitialCamp", "obj_find_help", new ObjectiveManager.RewardEntry(300, 10));
             objectiveManager.ShowObjectives();
         });
     }

@@ -42,6 +42,12 @@ public class UIManager : MonoBehaviour {
     private float maxHealthGain = 0;
     private float regenGain = 0;
 
+    private LocaleManager localeManager;
+
+    void Awake() {
+        localeManager = GetComponent<LocaleManager>();
+    }
+
     void Start() {
         GetComponent<CharacterManager>().RegisterActiveChangeListener(gameObject, OnActiveCharacterChange);
         GetComponent<PlayerResources>().RegisterResourceUpdateListener(OnResourceUpdate);
@@ -90,7 +96,7 @@ public class UIManager : MonoBehaviour {
             CancelInvoke("HideMaxHealthPanel");
             maxHealthGain += maxHealthChange;
             string symbol = maxHealthGain >= 0 ? "+" : "-";
-            maxHealthText.GetComponent<TMP_Text>().text = symbol + " " + (Mathf.Abs(maxHealthGain) * 100).ToString("0") + "% Max Health";
+            maxHealthText.GetComponent<TMP_Text>().text = symbol + " " + (Mathf.Abs(maxHealthGain) * 100).ToString("0") + "% " + localeManager.GetString("ui_gain_max_health");
             maxHealthPanel.SetActive(true);
             Invoke("HideMaxHealthPanel", expireTime);
         }
@@ -99,7 +105,7 @@ public class UIManager : MonoBehaviour {
             CancelInvoke("HideDamageMultPanel");
             damageMultGain += dmgChange;
             string symbol = damageMultGain >= 0 ? "+" : "-";
-            damageMultText.GetComponent<TMP_Text>().text = symbol + " " + (Mathf.Abs(damageMultGain) * 100) + "% Damage";
+            damageMultText.GetComponent<TMP_Text>().text = symbol + " " + (Mathf.Abs(damageMultGain) * 100) + "% " + localeManager.GetString("ui_gain_dmg_mult");
             damageMultPanel.SetActive(true);
             Invoke("HideDamageMultPanel", expireTime);
         }
@@ -108,7 +114,7 @@ public class UIManager : MonoBehaviour {
             CancelInvoke("HideRegenPanel");
             regenGain += regenChange;
             string symbol = regenGain >= 0 ? "+" : "-";
-            regenText.GetComponent<TMP_Text>().text = symbol + " " + Mathf.Abs(regenGain).ToString("0.0") + " Regen/Sec";
+            regenText.GetComponent<TMP_Text>().text = symbol + " " + Mathf.Abs(regenGain).ToString("0.0") + " " + localeManager.GetString("ui_gain_regen");
             regenPanel.SetActive(true);
             Invoke("HideRegenPanel", expireTime);
         }
@@ -117,7 +123,7 @@ public class UIManager : MonoBehaviour {
             CancelInvoke("HideArmourPanel");
             armourGain += armourChange;
             string symbol = armourGain >= 0 ? "+" : "-";
-            armourText.GetComponent<TMP_Text>().text = symbol + " " + Mathf.Abs(armourGain) + " Armour";
+            armourText.GetComponent<TMP_Text>().text = symbol + " " + Mathf.Abs(armourGain) + " " + localeManager.GetString("ui_gain_armour");
             armourPanel.SetActive(true);
             Invoke("HideArmourPanel", expireTime);
         }
@@ -145,7 +151,7 @@ public class UIManager : MonoBehaviour {
 
     private void OnLevelUp(int newLevel) {
         CancelInvoke("HideLevelUpPanel");
-        levelUpText.GetComponent<TMP_Text>().text = "Level Up! (" + newLevel + ")";
+        levelUpText.GetComponent<TMP_Text>().text = localeManager.GetString("ui_level_up") + " (" + newLevel + ")";
         levelUpPanel.SetActive(true);
         Invoke("HideLevelUpPanel", expireTime);
 

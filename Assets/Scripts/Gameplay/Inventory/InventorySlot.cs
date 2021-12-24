@@ -76,14 +76,15 @@ public class InventorySlot : MonoBehaviour {
             return;
         }
 
-        itemNameText.GetComponent<TMP_Text>().SetText(occupyingItem.itemName);
+        itemNameText.GetComponent<TMP_Text>().SetText(occupyingItem.GetItemName(gameManager.GetComponent<LocaleManager>()));
         useButton.GetComponent<Button>().onClick.RemoveAllListeners();
 
         if(occupyingItem is WeaponInventoryItem && !gameManager.GetComponent<CharacterManager>().IsPrimaryActive()) {
-            useButtonText.GetComponent<TMP_Text>().SetText("Player Only");
+            useButtonText.GetComponent<TMP_Text>().SetText(gameManager.GetComponent<LocaleManager>().GetString("ui_inventory_player_only"));
             useButton.GetComponent<Button>().interactable = false;
         } else {
-            useButtonText.GetComponent<TMP_Text>().SetText(occupyingItem.equippable ? "Equip Item" : "Use One");
+            string useKey = occupyingItem.equippable ? "ui_inventory_equip_item" : "ui_inventory_use_one";
+            useButtonText.GetComponent<TMP_Text>().SetText(gameManager.GetComponent<LocaleManager>().GetString(useKey));
             useButton.GetComponent<Button>().onClick.AddListener(() => {
                 occupyingItem.ApplyItemEffect(gameManager);
                 UpdateQuantity(-1);

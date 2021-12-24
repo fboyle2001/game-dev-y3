@@ -3,15 +3,15 @@ using UnityEngine;
 public abstract class InventoryItem {
 
     public readonly string itemIdentifier;
-    public readonly string itemName;
+    public readonly string itemKey;
     public readonly int goldValue;
     public readonly Sprite itemImage;
     public readonly bool equippable;
     public readonly int maxQuantity;
     
-    public InventoryItem(string itemIdentifier, string itemName, int goldValue, Sprite itemImage, int maxQuantity, bool equippable) {
+    public InventoryItem(string itemIdentifier, string itemKey, int goldValue, Sprite itemImage, int maxQuantity, bool equippable) {
         this.itemIdentifier = itemIdentifier;
-        this.itemName = itemName;
+        this.itemKey = itemKey;
         this.goldValue = goldValue;
         this.equippable = equippable;
         this.itemImage = itemImage;
@@ -19,5 +19,9 @@ public abstract class InventoryItem {
     }
 
     public abstract void ApplyItemEffect(GameObject gameManager);
+
+    public string GetItemName(LocaleManager localeManager) {
+        return localeManager.GetString(itemKey);
+    }
 
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class ConsumableInventoryItem : InventoryItem {
 
-    public ConsumableInventoryItem(string itemIdentifier, string itemName, int goldValue, Sprite itemImage)
-     : base(itemIdentifier, itemName, goldValue, itemImage, maxQuantity: 99, equippable: false) {}
+    public ConsumableInventoryItem(string itemIdentifier, string itemKey, int goldValue, Sprite itemImage)
+     : base(itemIdentifier, itemKey, goldValue, itemImage, maxQuantity: 99, equippable: false) {}
 
 }

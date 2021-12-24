@@ -73,11 +73,11 @@ public class SecondZiplineInteractable : MonoBehaviour, IInteractable {
 
     public void OnInteractPossible() {
         if(objectiveManager.HasObjective("returnToCamp2")) {
-            interactionManager.SetText("to use zip line");
+            interactionManager.SetText("int_use_zipline");
             interactionManager.ShowText();
             interactionManager.RegisterInteraction("crossZiplineB", () => {
                 characterManager.SetSwappingAvailable(false);
-                dialogueManager.QueueDialogue("You", "Stay on my back <CAT_NAME> we are going back!", 5);
+                dialogueManager.QueueDialogue("speaker_you", "int_zipline_stay_on", 5);
                 interactionManager.UnregisterInteraction("crossZiplineB");
                 interactionManager.HideText();
                 EnableZipline();
