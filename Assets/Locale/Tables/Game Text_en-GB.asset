@@ -258,7 +258,7 @@ MonoBehaviour:
       m_Items:
       - id: 0
   - m_Id: 31268476682240
-    m_Localized: Who dares challenge me!
+    m_Localized: Who dares challenge me?
     m_Metadata:
       m_Items: []
   - m_Id: 31489701052416
@@ -275,7 +275,7 @@ MonoBehaviour:
       m_Items:
       - id: 0
   - m_Id: 32093240426496
-    m_Localized: '"No Space!";'
+    m_Localized: No Space!
     m_Metadata:
       m_Items: []
   - m_Id: 32564457897984
@@ -313,7 +313,8 @@ MonoBehaviour:
   - m_Id: 33994317103104
     m_Localized: Free {global.cat_name}
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - id: 0
   - m_Id: 34086843449344
     m_Localized: Time to go free {global.cat_name}! I can hear them just inside the
       cave.
@@ -325,11 +326,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 34484895481856
-    m_Localized: Equip Item
+    m_Localized: Equip
     m_Metadata:
       m_Items: []
   - m_Id: 34510891778048
-    m_Localized: Use One
+    m_Localized: Use
     m_Metadata:
       m_Items: []
   - m_Id: 34953306963968
@@ -459,9 +460,49 @@ MonoBehaviour:
       The cat cannot interact with objects but can use your shared inventory.
     m_Metadata:
       m_Items: []
+  - m_Id: 46046557372416
+    m_Localized: Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46719575392256
+    m_Localized: Armour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46720519110656
+    m_Localized: Ring
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46967618142208
+    m_Localized: Current Stats
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47076460331008
+    m_Localized: 'Armour:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47203019259904
+    m_Localized: 'Max Health:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47364156030976
+    m_Localized: 'Dmg Mult:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47451607269376
+    m_Localized: 'Regen:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47599980773376
+    m_Localized: Inventory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47738405388288
+    m_Localized: Shop
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 0000f225840000000000b24dcf100000000032eecf1000000000f2ec211600000000b2f78516000000007217701c000000003252c91c00000000f21d771a000000003276001f00000000f281d4230000000032a223240000000072f4c8240000
+        m_Entries: 0000f225840000000000b24dcf100000000032eecf1000000000f2ec211600000000b2f78516000000007217701c000000003252c91c00000000f21d771a000000003276001f00000000f281d4230000000032a223240000000072f4c8240000000032ebea1e0000

@@ -415,6 +415,46 @@ MonoBehaviour:
     m_Key: tut_cat_text
     m_Metadata:
       m_Items: []
+  - m_Id: 46046557372416
+    m_Key: ui_inventory_weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46719575392256
+    m_Key: ui_inventory_armour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46720519110656
+    m_Key: ui_inventory_ring
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46967618142208
+    m_Key: ui_inventory_current_stats
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47076460331008
+    m_Key: ui_inventory_stats_armour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47203019259904
+    m_Key: ui_inventory_stats_max_health
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47364156030976
+    m_Key: ui_inventory_stats_dmg_mult
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47451607269376
+    m_Key: ui_inventory_stats_regen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47599980773376
+    m_Key: ui_inventory_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47738405388288
+    m_Key: ui_vendor_title
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

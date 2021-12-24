@@ -245,9 +245,10 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 31267755261952
-    m_Localized: 
+    m_Localized: Phew that was a tough one {global.cat_name}!
     m_Metadata:
-      m_Items: []
+      m_Items:
+      - id: 0
   - m_Id: 32766405246976
     m_Localized: Armor
     m_Metadata:
@@ -260,9 +261,248 @@ MonoBehaviour:
     m_Localized: Ripped Armor
     m_Metadata:
       m_Items: []
+  - m_Id: 31138507784192
+    m_Localized: That wasn't so bad!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31265913962496
+    m_Localized: More... of course
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31268476682240
+    m_Localized: Who dares challenge me?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31489701052416
+    m_Localized: The Ancient Orc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31538522750976
+    m_Localized: Here he is...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32093240426496
+    m_Localized: No Space!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32562977308672
+    m_Localized: Charged!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31650993012736
+    m_Localized: We did it {global.cat_name}!
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 32564457897984
+    m_Localized: Charging...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32784243621888
+    m_Localized: Regen/Sec
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32846466121728
+    m_Localized: Max Health
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33013885960192
+    m_Localized: Damage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33079581343744
+    m_Localized: Level Up!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33526174056448
+    m_Localized: Press [E] or [Button West]
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33994317103104
+    m_Localized: Free {global.cat_name}
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 34086843449344
+    m_Localized: Time to go free {global.cat_name}! I can hear them just inside the
+      cave.
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 34463559057408
+    m_Localized: Player Only
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34484895481856
+    m_Localized: Equip
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34510891778048
+    m_Localized: Use
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34953306963968
+    m_Localized: Claws
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34992670507008
+    m_Localized: Crafted Bow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34993324818432
+    m_Localized: Crystal Armour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34994763464704
+    m_Localized: Damage Ring
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34995451330560
+    m_Localized: Expert Bow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34996042727424
+    m_Localized: Full Heal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34996655095808
+    m_Localized: God Amulet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34997175189504
+    m_Localized: Heal Ring
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35421710057472
+    m_Localized: Health Potion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35423425527808
+    m_Localized: Sorcerers' Potion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35423954010112
+    m_Localized: Super Potion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35656221982720
+    m_Localized: Worn Bow
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38833784750080
+    m_Localized: Ah! There we go we're moving again!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38857042165760
+    m_Localized: Errrr... why are we slowing down...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39034322812928
+    m_Localized: Ah the skeleton is going for the zip line! Better take it out!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39106611642368
+    m_Localized: to use zip line
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39395620159488
+    m_Localized: Hop on {global.cat_name} we're going across!
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 39598960017408
+    m_Localized: to open shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39735463641088
+    m_Localized: Stay on my back {global.cat_name} we're going back!
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 39989378416640
+    m_Localized: to plant the seeds
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40032139345920
+    m_Localized: Woah!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40141082198016
+    m_Localized: I don't think those seeds just summoned a tree...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40174556938240
+    m_Localized: Defeat the Ancient Orc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40445513170944
+    m_Localized: to free {global.cat_name}
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 40524881985536
+    m_Localized: You're alive! I can't believe it!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40566749528064
+    m_Localized: We'd better go back to this camp I've found. Hopefully they'll believe
+      I'm not one of these Orcs now.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40721775198208
+    m_Localized: 'Tutorial: Assassin Cat Unlocked'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40741496815616
+    m_Localized: Press [V] or [Button East] to swap from your player to your Assassin
+      Cat (and vice versa). The Assassin Cat deals splash damage but has less health
+      and is more vulnerable. Enemies will target your current active character.
+      The cat cannot interact with objects but can use your shared inventory.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46046557372416
+    m_Localized: Weapon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46719575392256
+    m_Localized: Armour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46720519110656
+    m_Localized: Ring
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47076460331008
+    m_Localized: 'Armor:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47203019259904
+    m_Localized: 'Max Health:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46967618142208
+    m_Localized: Current Stats
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47364156030976
+    m_Localized: 'Dmg Mult:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47451607269376
+    m_Localized: 'Regen:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47599980773376
+    m_Localized: Inventory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47738405388288
+    m_Localized: Shop
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 0000f225840000000000b24dcf100000000032eecf1000000000f2ec211600000000b2f7851600000000f21d771a0000
+        m_Entries: 0000f225840000000000b24dcf100000000032eecf1000000000f2ec211600000000b2f7851600000000f21d771a000000007217701c000000003252c91c0000000032ebea1e000000003276001f00000000f281d4230000000032a223240000000072f4c8240000

@@ -29,11 +29,11 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 569812058112
     m_Localized: "Quelque chose sent comme si c'\xE9tait en train de br\xFBler. Peut-\xEAtre
-      qu'il y a un camp \xE0 proximit\xE9 ?"
+      qu'il y a un camp \xE0 proximit\xE9?"
     m_Metadata:
       m_Items: []
   - m_Id: 460655296512
-    m_Localized: "O\xF9 suis-je ?"
+    m_Localized: "O\xF9 suis-je?"
     m_Metadata:
       m_Items: []
   - m_Id: 567572299776
@@ -255,9 +255,265 @@ MonoBehaviour:
     m_Localized: Grimper la Montagne
     m_Metadata:
       m_Items: []
+  - m_Id: 31138507784192
+    m_Localized: "Ce n'\xE9tait pas si mal!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31265913962496
+    m_Localized: "Plus... bien s\xFBr"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31267755261952
+    m_Localized: "Ouf, c'\xE9tait difficile {global.cat_name}!"
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 31268476682240
+    m_Localized: "Qui ose me d\xE9fier?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31489701052416
+    m_Localized: L'ancien Orque
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31538522750976
+    m_Localized: Le voici...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 31650993012736
+    m_Localized: Nous l'avons fait {global.cat_name}!
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 32093240426496
+    m_Localized: Pas de place!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32562977308672
+    m_Localized: "Charg\xE9!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32564457897984
+    m_Localized: Chargement...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32766405246976
+    m_Localized: Armure
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32784243621888
+    m_Localized: "R\xE9g\xE9n / Sec"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 32846466121728
+    m_Localized: "Sant\xE9 Max"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33013885960192
+    m_Localized: "D\xE9g\xE2ts"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33079581343744
+    m_Localized: "Niveau Sup\xE9rieur!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33526174056448
+    m_Localized: Appuyez sur [E] ou [Bouton Ouest].
+    m_Metadata:
+      m_Items: []
+  - m_Id: 33994317103104
+    m_Localized: Gratuit {global.cat_name}
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 34086843449344
+    m_Localized: "Il est temps de lib\xE9rer {global.cat_name} ! Je peux les entendre
+      juste \xE0 l'int\xE9rieur de la grotte."
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 34463559057408
+    m_Localized: Joueur Seulement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34484895481856
+    m_Localized: "\r\xC9quiper"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34510891778048
+    m_Localized: Utiliser
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34953306963968
+    m_Localized: Griffes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34993324818432
+    m_Localized: Armure de Cristal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34994763464704
+    m_Localized: "Anneau de D\xE9g\xE2ts"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34995451330560
+    m_Localized: Arc Expert
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34996042727424
+    m_Localized: "Gu\xE9rison Compl\xE8te"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34996655095808
+    m_Localized: Amulette du Dieu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34997175189504
+    m_Localized: "Anneau de Gu\xE9rison"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35421710057472
+    m_Localized: "Potion de Sant\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35422309842944
+    m_Localized: "Armure Plaqu\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35422859296768
+    m_Localized: "Armure D\xE9chir\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35423425527808
+    m_Localized: Potion des Sorciers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34992670507008
+    m_Localized: Noeud Artisanal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35423954010112
+    m_Localized: Super Potion
+    m_Metadata:
+      m_Items: []
+  - m_Id: 35656221982720
+    m_Localized: "Arc Us\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38833784750080
+    m_Localized: "Voil\xE0, on bouge \xE0 nouveau!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38857042165760
+    m_Localized: Errrr... pourquoi on ralentit...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39034322812928
+    m_Localized: Ah le squelette va vers la tyrolienne! Il vaut mieux le faire sortir!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39106611642368
+    m_Localized: pour utiliser la tyrolienne
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39395620159488
+    m_Localized: Hop sur {global.cat_name} nous allons traverser!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39598960017408
+    m_Localized: pour ouvrir un magasin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39735463641088
+    m_Localized: Reste sur mon dos {global.cat_name} on y retourne!
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 39989378416640
+    m_Localized: pour planter les graines
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40032139345920
+    m_Localized: Wouah!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40141082198016
+    m_Localized: "Je ne pense pas que ces graines aient juste invoqu\xE9 un arbre..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40174556938240
+    m_Localized: Vaincre l'Ancien Orque
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40445513170944
+    m_Localized: "pour lib\xE9rer {global.cat_name}"
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 40524881985536
+    m_Localized: "Tu es vivant! Je n'arrive pas \xE0 y croire!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40566749528064
+    m_Localized: "Nous ferions mieux de retourner \xE0 ce camp que j'ai trouv\xE9.
+      Esp\xE9rons qu'ils croiront que je ne suis pas un de ces Orques maintenant."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40721775198208
+    m_Localized: "Tutoriel: Chat d'assassin d\xE9bloqu\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40741496815616
+    m_Localized: "Appuyez sur [V] ou sur le [Bouton Est] pour passer de votre joueur
+      \xE0 votre chat assassin (et vice versa). Le chat assassin inflige des d\xE9g\xE2ts
+      par \xE9claboussures, mais il a moins de points de vie et est plus vuln\xE9rable.
+      Les ennemis ciblent votre personnage actif. Le chat ne peut pas interagir avec
+      les objets mais peut utiliser votre inventaire commun."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46046557372416
+    m_Localized: Armes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46719575392256
+    m_Localized: Armure
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46720519110656
+    m_Localized: Bague
+    m_Metadata:
+      m_Items: []
+  - m_Id: 46967618142208
+    m_Localized: Statistiques Actuelles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47076460331008
+    m_Localized: 'Armure:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47203019259904
+    m_Localized: "Sant\xE9 Max:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47364156030976
+    m_Localized: "Mult D\xE9g:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47451607269376
+    m_Localized: "R\xE9g\xE9n:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47599980773376
+    m_Localized: Inventaire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47738405388288
+    m_Localized: Boutique
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 0000f225840000000000b24dcf100000000032eecf1000000000f2ec211600000000b2f7851600000000f21d771a0000
+        m_Entries: 0000f225840000000000b24dcf100000000032eecf1000000000f2ec211600000000b2f7851600000000f21d771a000000007217701c000000003252c91c0000000032ebea1e000000003276001f0000000032a223240000000072f4c8240000
