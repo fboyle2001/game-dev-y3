@@ -10,10 +10,12 @@ public class FollowerAgent : MonoBehaviour {
 
     private NavMeshAgent agent;
     private Animator animator;
+    private AudioSource audioSource;
 
     void Awake() {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate() {
@@ -26,7 +28,18 @@ public class FollowerAgent : MonoBehaviour {
             MoveTowardsTarget();
         }
 
-        animator.SetFloat("speed", agent.velocity.magnitude);
+        float horizontalVelocity = Mathf.Sqrt(Mathf.Pow(agent.velocity.x, 2) + Mathf.Pow(agent.velocity.z, 2));
+
+        if(horizontalVelocity > 0.2f) {
+            audioSource.pitch = Mathf.Min(Mathf.Max(0.2f, horizontalVelocity / 11), 1.1f);
+            if(!audioSource.isPlaying) {
+                audioSource.Play();
+            }
+        } else {
+            audioSource.Stop();
+        }
+
+        animator.SetFloat("speed", horizontalVelocity);
     }
 
     private void TeleportNearTarget() {

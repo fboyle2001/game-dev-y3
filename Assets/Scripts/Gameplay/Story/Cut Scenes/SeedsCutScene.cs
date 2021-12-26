@@ -39,8 +39,8 @@ public class SeedsCutScene : CutScene {
             
             cutSceneCamera.SetActive(true);
 
-            dialogueManager.QueueDialogue("speaker_you", "cs_seeds_1", 5);
-            dialogueManager.QueueDialogue("speaker_you", "cs_seeds_2", 5);
+            dialogueManager.QueueDialogue("speaker_you", "cs_seeds_1", 5, voice: "player");
+            dialogueManager.QueueDialogue("speaker_you", "cs_seeds_2", 5, voice: "player");
         }, 10);
 
         QueueAction(() => {

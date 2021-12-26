@@ -11,6 +11,7 @@ public class PlayerInventory : MonoBehaviour {
         registeredItems.Add(item.itemIdentifier, item);
     }
 
+    public AudioClip potionClip;
     public GameObject weaponSlot;
     public GameObject armourSlot;
     public GameObject ringSlot;
@@ -40,14 +41,14 @@ public class PlayerInventory : MonoBehaviour {
         RegisterItem(new CrystalArmour(spriteMap["crystalArmour"]));
         RegisterItem(new DamageRing(spriteMap["damageRing"]));
         RegisterItem(new ExpertBowWeapon(spriteMap["expertBow"]));
-        RegisterItem(new FullHealthPotion(spriteMap["fullHealthPotion"]));
+        RegisterItem(new FullHealthPotion(spriteMap["fullHealthPotion"], potionClip));
         RegisterItem(new GodAmuletRing(spriteMap["godAmulet"]));
         RegisterItem(new HealRing(spriteMap["healRing"]));
-        RegisterItem(new HealthPotionItem(spriteMap["healthPotion"]));
+        RegisterItem(new HealthPotionItem(spriteMap["healthPotion"], potionClip));
         RegisterItem(new PlatedArmour(spriteMap["platedArmour"]));
         RegisterItem(new RippedArmour(spriteMap["rippedArmour"]));
         RegisterItem(new SorcerersPotion(spriteMap["sorcerersPotion"]));
-        RegisterItem(new SuperPotion(spriteMap["superPotion"]));
+        RegisterItem(new SuperPotion(spriteMap["superPotion"], potionClip));
         RegisterItem(new WornBowWeapon(spriteMap["wornBow"]));
     }
 

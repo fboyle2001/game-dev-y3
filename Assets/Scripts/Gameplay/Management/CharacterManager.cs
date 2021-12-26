@@ -24,6 +24,8 @@ public class CharacterManager : MonoBehaviour
         secondary.GetComponent<NavMeshObstacle>().enabled = false;
         secondary.GetComponent<NavMeshAgent>().enabled = true;
         secondary.GetComponent<FollowerAgent>().enabled = true;
+        secondary.GetComponent<ICharacterActions>().StopMovement();
+        secondary.GetComponent<ICharacterActions>().SetFrozen(true);
 
         GetComponent<UIManager>().DisplaySecondaryPanel(true);
         

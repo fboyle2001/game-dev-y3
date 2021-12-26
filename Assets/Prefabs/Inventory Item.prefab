@@ -50,6 +50,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07a8e558387c06a4786c952edb8fd0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiAudioSource: {fileID: 0}
+  usedClip: {fileID: 8300000, guid: 030515f205b54fc478961cbe39c4e75e, type: 3}
   inventoryManager: {fileID: 0}
   quantityText: {fileID: 2755514914648424859}
   useButton: {fileID: 8000920334793915049}

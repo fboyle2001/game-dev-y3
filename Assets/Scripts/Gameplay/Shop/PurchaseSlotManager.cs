@@ -14,10 +14,15 @@ public class PurchaseSlotManager : MonoBehaviour
     public GameObject buttonText;
     public GameObject image;
 
+    [Header("Audio")]
+    public AudioClip successClip;
+    public AudioClip notAllowedClip;
+
     private GameObject gameManager;
     private PlayerInventory playerInventory;
     private PlayerResources playerResources;
     private InventoryItem heldItem;
+    private AudioSource audioSource;
     private int goldCost;
     private bool ready = false;
 
@@ -25,6 +30,7 @@ public class PurchaseSlotManager : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         playerInventory = gameManager.GetComponent<PlayerInventory>();
         playerResources = gameManager.GetComponent<PlayerResources>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void OnEnable() {
@@ -92,10 +98,15 @@ public class PurchaseSlotManager : MonoBehaviour
 
     public void BuyItem() {
         bool purchasable = CheckIfPurchasable();
-        if(!purchasable) return;
+
+        if(!purchasable) {
+            audioSource.PlayOneShot(notAllowedClip);
+            return;
+        }
 
         playerResources.AddGold(-goldCost);
         playerInventory.AddItemToInventory(heldItem.itemIdentifier, 1);
+        audioSource.PlayOneShot(successClip);
 
         CheckIfPurchasable();
     }

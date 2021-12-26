@@ -6,6 +6,7 @@ public class PlantSeedInteractable : MonoBehaviour, IInteractable
 {
 
     public GameObject finaleSpawnManager;
+    public AudioClip seedsPlantedClip;
 
     private GameObject gameManager;
     private DialogueManager dialogueManager;
@@ -30,6 +31,7 @@ public class PlantSeedInteractable : MonoBehaviour, IInteractable
             interactionManager.ShowText();
             interactionManager.RegisterInteraction("plantSeedsAction", () => {
                 interactionManager.UnregisterInteraction("plantSeedsAction");
+                AudioSource.PlayClipAtPoint(seedsPlantedClip, transform.position);
                 gameObject.SetActive(false);
                 interactionManager.HideText();
                 objectiveManager.CompleteObjective("plantSeeds");

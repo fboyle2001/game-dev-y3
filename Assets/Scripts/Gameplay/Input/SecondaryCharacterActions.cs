@@ -16,6 +16,7 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
     private GameObject gameManager;
     private WeaponManager weaponManager;
     private Animator animator;
+    private AudioSource audioSource;
 
     private bool sprinting = false;
     private Vector2 movementDirection = new Vector2(0, 0);
@@ -29,6 +30,7 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
         animator = GetComponent<Animator>();
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         weaponManager = gameManager.GetComponent<WeaponManager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate() {
@@ -48,7 +50,18 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
         jump = false;
 
         Move();
-        animator.SetFloat("speed", Mathf.Sqrt(Mathf.Pow(rb.velocity.x, 2) + Mathf.Pow(rb.velocity.z, 2)));
+        float horizontalVelocity = Mathf.Sqrt(Mathf.Pow(rb.velocity.x, 2) + Mathf.Pow(rb.velocity.z, 2));
+
+        if(horizontalVelocity > 0.2f) {
+            audioSource.pitch = Mathf.Min(Mathf.Max(0.2f, horizontalVelocity / 11), 1.1f);
+            if(!audioSource.isPlaying) {
+                audioSource.Play();
+            }
+        } else {
+            audioSource.Stop();
+        }
+
+        animator.SetFloat("speed", horizontalVelocity);
     }
 
     void Update() {

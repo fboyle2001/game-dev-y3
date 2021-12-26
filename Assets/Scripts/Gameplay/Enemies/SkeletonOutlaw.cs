@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class SkeletonOutlaw : EnemyBase {
     
+    public AudioClip skeletonAttackClip;
+    public AudioClip skeletonDamageClip;
+    public AudioClip skeletonDeathClip;
+
+    private AudioSource audioSource;
+
     private float timeBetweenAttacks = 1.5f;
     private float attackRange = 5;
     private float targetGap = 4;
@@ -14,6 +20,7 @@ public class SkeletonOutlaw : EnemyBase {
 
     new void Awake() {
         base.Awake();
+        audioSource = GetComponent<AudioSource>();
         damagePerAttack = 2 * level;
     }
     
@@ -57,6 +64,7 @@ public class SkeletonOutlaw : EnemyBase {
     }
 
     private void Attack() {
+        AudioSource.PlayClipAtPoint(skeletonAttackClip, transform.position);
         attacking = true;
         movementController.SetSpeedFactor(0f);
         Invoke("StopAttackAnimation", 0.5f);
@@ -68,6 +76,22 @@ public class SkeletonOutlaw : EnemyBase {
         animator.SetBool("waiting_to_attack", true);
         animator.SetBool("attacking", false);
         attacking = false;
+    }
+
+    protected override void OnDeath() {
+        base.OnDeath();
+        audioSource.Stop();
+        audioSource.clip = skeletonDeathClip;
+        audioSource.loop = false;
+        audioSource.Play();
+    }
+
+    protected override void OnDamageHandler(EnemyStats stats, float damage) {
+        base.OnDamageHandler(stats, damage);
+        
+        if(!stats.IsDead()) {
+            AudioSource.PlayClipAtPoint(skeletonDamageClip, transform.position, 0.6f);
+        }
     }
 
 }

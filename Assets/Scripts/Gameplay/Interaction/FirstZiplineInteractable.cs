@@ -51,6 +51,7 @@ public class FirstZiplineInteractable : MonoBehaviour, IInteractable {
         this.postPosFreeze = postPosFreeze;
         enableZipline = true;
         primary.GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<AudioSource>().Play();
     }
 
     private void OnSkeletonZipLineDeath(EnemyBase enemy) {
@@ -61,6 +62,7 @@ public class FirstZiplineInteractable : MonoBehaviour, IInteractable {
 
     private void DisableZipline() {
         enableZipline = false;
+        GetComponent<AudioSource>().Stop();
         primary.GetComponent<Rigidbody>().isKinematic = false;
         primary.transform.position = new Vector3(196.68f, 78.857f, 747.6f);
         cutSceneOwner.GetComponent<SeedsCutScene>().StartCutScene();

@@ -52,15 +52,15 @@ public class TrustedCutScene : CutScene {
             
             cutSceneCamera.SetActive(true);
 
-            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_1", 5);
-            dialogueManager.QueueDialogue("speaker_you", "cs_trusted_you_1", 3);
-            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_2", 7);
-            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_3", 5);
-            dialogueManager.QueueDialogue("speaker_you", "cs_trusted_you_2", 5);
-            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_4", 5);
-            dialogueManager.QueueDialogue("speaker_you", "cs_trusted_you_3", 3);
-            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_5", 7);
-            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_6", 7);
+            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_1", 5, voice: "npc");
+            dialogueManager.QueueDialogue("speaker_you", "cs_trusted_you_1", 3, voice: "player");
+            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_2", 7, voice: "player");
+            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_3", 5, voice: "player");
+            dialogueManager.QueueDialogue("speaker_you", "cs_trusted_you_2", 5, voice: "player");
+            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_4", 5, voice: "player");
+            dialogueManager.QueueDialogue("speaker_you", "cs_trusted_you_3", 3, voice: "player");
+            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_5", 7, voice: "player");
+            dialogueManager.QueueDialogue("npc_name", "cs_trusted_npc_6", 7, voice: "player");
         }, 47);
 
         QueueAction(() => {

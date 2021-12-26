@@ -50,15 +50,15 @@ public class InitialCampCutScene : CutScene {
             
             cutSceneCamera.SetActive(true);
 
-            dialogueManager.QueueDialogue("npc_name", "cs_camp_npc_1", 5);
-            dialogueManager.QueueDialogue("speaker_you", "cs_camp_you_1", 5);
-            dialogueManager.QueueDialogue("npc_name", "cs_camp_npc_2", 7);
-            dialogueManager.QueueDialogue("speaker_you", "cs_camp_you_2", 5);
-            dialogueManager.QueueDialogue("speaker_you", "cs_camp_you_3", 5);
-            dialogueManager.QueueDialogue("npc_name", "cs_camp_npc_3", 5);
-            dialogueManager.QueueDialogue("speaker_you", "cs_camp_you_4", 3);
-            dialogueManager.QueueDialogue("npc_name", "cs_camp_npc_4", 5);
-            dialogueManager.QueueDialogue("npc_name", "cs_camp_npc_5", 5);
+            dialogueManager.QueueDialogue("npc_name", "cs_camp_npc_1", 5, voice: "npc");
+            dialogueManager.QueueDialogue("speaker_you", "cs_camp_you_1", 5, voice: "player");
+            dialogueManager.QueueDialogue("npc_name", "cs_camp_npc_2", 7, voice: "npc");
+            dialogueManager.QueueDialogue("speaker_you", "cs_camp_you_2", 5, voice: "player");
+            dialogueManager.QueueDialogue("speaker_you", "cs_camp_you_3", 5, voice: "player");
+            dialogueManager.QueueDialogue("npc_name", "cs_camp_npc_3", 5, voice: "npc");
+            dialogueManager.QueueDialogue("speaker_you", "cs_camp_you_4", 3, voice: "player");
+            dialogueManager.QueueDialogue("npc_name", "cs_camp_npc_4", 5, voice: "npc");
+            dialogueManager.QueueDialogue("npc_name", "cs_camp_npc_5", 5, voice: "npc");
         }, 45);
 
         QueueAction(() => {

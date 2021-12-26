@@ -1660,6 +1660,7 @@ GameObject:
   - component: {fileID: 6713360439650791331}
   - component: {fileID: 5731256614967067008}
   - component: {fileID: 6713360439650791359}
+  - component: {fileID: 502030392099338024}
   m_Layer: 0
   m_Name: Orc
   m_TagString: Untagged
@@ -1743,8 +1744,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5.5
-  m_Acceleration: 8
+  m_Speed: 7
+  m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 1
@@ -1773,6 +1774,10 @@ MonoBehaviour:
   enemyName: enm_orc
   identifier: orc
   level: 1
+  orcAttackClip: {fileID: 8300000, guid: bae66989b249cba44a1d475d2f7ce832, type: 3}
+  orcAttentionClip: {fileID: 8300000, guid: 98d3058025299fa469b1342a852910cc, type: 3}
+  orcDeathClip: {fileID: 8300000, guid: 85e4d051b2687834bb3944c65526cf69, type: 3}
+  orcDamageClip: {fileID: 8300000, guid: 81dd3ab3de966d64b8240effdbf013ab, type: 3}
 --- !u!114 &5731256614967067008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1804,6 +1809,105 @@ MonoBehaviour:
   cornerB: {fileID: 0}
   home: {fileID: 0}
   animatorSpeedName: speed
+  walkingClip: {fileID: 8300000, guid: b4ac6be2b5661294baad052e1788f5a8, type: 3}
+  timeBetweenWalkingClip: 0.85
+  minVelocityForWalkingClip: 0.5
+--- !u!82 &502030392099338024
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731256614967067039}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.6
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 55
+  Pan2D: 0
+  rolloffMode: 2
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.18055555
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6243537158311675844
 GameObject:
   m_ObjectHideFlags: 0

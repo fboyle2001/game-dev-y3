@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class XPOrbSteering : MonoBehaviour {
 
+    public AudioClip xpAbsorbedClip;
 
     private GameObject gameManager;
     private GameObject target;
@@ -57,6 +58,7 @@ public class XPOrbSteering : MonoBehaviour {
 
     private void AbsorbXpOrb() {
         gameManager.GetComponent<PlayerResources>().AddExperience(xpValue);
+        AudioSource.PlayClipAtPoint(xpAbsorbedClip, transform.position, 0.4f);
         GameObject.Destroy(gameObject);
     }
 

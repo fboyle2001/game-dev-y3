@@ -48,13 +48,13 @@ public class RedirectCutScene : CutScene {
             
             cutSceneCamera.SetActive(true);
 
-            dialogueManager.QueueDialogue("npc_name", "cs_redirect_npc_1", 5);
-            dialogueManager.QueueDialogue("speaker_you", "cs_redirect_you_1", 3);
-            dialogueManager.QueueDialogue("npc_name", "cs_redirect_npc_2", 7);
-            dialogueManager.QueueDialogue("speaker_you", "cs_redirect_you_2", 5);
-            dialogueManager.QueueDialogue("npc_name", "cs_redirect_npc_3", 5);
-            dialogueManager.QueueDialogue("npc_name", "cs_redirect_npc_4", 5);
-            dialogueManager.QueueDialogue("npc_name", "cs_redirect_npc_5", 3);
+            dialogueManager.QueueDialogue("npc_name", "cs_redirect_npc_1", 5, voice: "npc");
+            dialogueManager.QueueDialogue("speaker_you", "cs_redirect_you_1", 3, voice: "player");
+            dialogueManager.QueueDialogue("npc_name", "cs_redirect_npc_2", 7, voice: "npc");
+            dialogueManager.QueueDialogue("speaker_you", "cs_redirect_you_2", 5, voice: "player");
+            dialogueManager.QueueDialogue("npc_name", "cs_redirect_npc_3", 5, voice: "npc");
+            dialogueManager.QueueDialogue("npc_name", "cs_redirect_npc_4", 5, voice: "npc");
+            dialogueManager.QueueDialogue("npc_name", "cs_redirect_npc_5", 3, voice: "npc");
         }, 33);
 
         QueueAction(() => {

@@ -6,11 +6,12 @@ public class CharacterStats : MonoBehaviour
 {
 
     public float maxHealth;
-    private float currentHealth;
+    public AudioClip damageClip;
 
     private List<System.Action<CharacterStats, float>> healthUpdateListeners = new List<System.Action<CharacterStats, float>>();
     private List<System.Action<CharacterStats>> statUpdateListeners = new List<System.Action<CharacterStats>>();
 
+    private float currentHealth;
     private float originalMaxHealth;
     private float currentDOTEffect = 0;
     private float appliedDOTTime = 0;
@@ -73,6 +74,7 @@ public class CharacterStats : MonoBehaviour
         // e.g. 100 damage with 0 armour = 100 health taken, 100 damage with 100 armour = 20 health taken
         float realDamage = damage / (0.04f * stats.GetArmour() + 1);
         currentHealth = Mathf.Clamp(currentHealth - realDamage, 0, maxHealth);
+        AudioSource.PlayClipAtPoint(damageClip, transform.position);
         PropagateHealthEvent(-realDamage);
     }
 

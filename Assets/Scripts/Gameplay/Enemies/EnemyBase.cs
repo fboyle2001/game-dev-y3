@@ -65,7 +65,7 @@ public abstract class EnemyBase : MonoBehaviour {
         movementController.SetTarget(newActive);
     }
 
-    private void OnDamageHandler(EnemyStats stats, float damage) {
+    protected virtual void OnDamageHandler(EnemyStats stats, float damage) {
         if(stats.IsDead()) {
             OnDeath();
             gameManager.GetComponent<CharacterManager>().DeregisterActiveChangeListener(gameObject);
@@ -79,7 +79,7 @@ public abstract class EnemyBase : MonoBehaviour {
         }
     }
 
-    protected void OnDeath() {
+    protected virtual void OnDeath() {
         GameObject xpOrb = Instantiate(xpOrbPrefab, transform.position + GetComponent<Collider>().bounds.extents.y * Vector3.up, xpOrbPrefab.transform.rotation);
         xpOrb.GetComponent<XPOrbSteering>().SetXpValue(stats.GetXPValue());
         gameManager.GetComponent<PlayerResources>().AddGold(stats.GetGoldValue());

@@ -130,6 +130,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnAttackPerformed(InputAction.CallbackContext context) {
+        if(uiManager.shopPanel.activeSelf || uiManager.inventoryPanel.activeSelf) return;
         currentController.StartAttack();
     }
 

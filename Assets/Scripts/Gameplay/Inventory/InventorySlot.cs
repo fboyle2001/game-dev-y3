@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour {
 
+    public AudioSource uiAudioSource;
+    public AudioClip usedClip;
+
     public PlayerInventory inventoryManager;
     public GameObject quantityText;
     public GameObject useButton;
@@ -86,6 +89,7 @@ public class InventorySlot : MonoBehaviour {
             string useKey = occupyingItem.equippable ? "ui_inventory_equip_item" : "ui_inventory_use_one";
             useButtonText.GetComponent<TMP_Text>().SetText(gameManager.GetComponent<LocaleManager>().GetString(useKey));
             useButton.GetComponent<Button>().onClick.AddListener(() => {
+                uiAudioSource.PlayOneShot(usedClip);
                 occupyingItem.ApplyItemEffect(gameManager);
                 UpdateQuantity(-1);
 

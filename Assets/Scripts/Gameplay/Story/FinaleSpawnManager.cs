@@ -29,9 +29,14 @@ public class FinaleSpawnManager : MonoBehaviour {
     }
 
     void Update() {
-        if(tree.transform.localScale.y >= maxScale) return;
+        if(tree.transform.localScale.y >= maxScale) {
+            tree.GetComponent<AudioSource>().Stop();
+            return;
+        }
+
         float scaleFactor = Time.deltaTime;
         tree.transform.localScale += Vector3.one * scaleFactor;
+        tree.GetComponent<AudioSource>().Play();
     }
 
     private void OnDamageHandler(EnemyBase enemy) {

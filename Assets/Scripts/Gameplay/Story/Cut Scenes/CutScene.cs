@@ -30,10 +30,15 @@ public abstract class CutScene : MonoBehaviour {
     public void StartCutScene() {
         if(started) return;
         gameManager.GetComponent<UIManager>().SetCrosshairActive(false);
+        gameManager.GetComponent<CharacterManager>().primary.GetComponent<AudioSource>().Stop();
         started = true;
 
         if(!gameManager.GetComponent<CharacterManager>().IsPrimaryActive()) {
             gameManager.GetComponent<CharacterManager>().SwapActive();
+        }
+
+        if(gameManager.GetComponent<CharacterManager>().IsSecondaryUnlocked()) {
+            gameManager.GetComponent<CharacterManager>().secondary.GetComponent<AudioSource>().Stop();
         }
 
         PlayNextAction();

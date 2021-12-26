@@ -39,10 +39,12 @@ public class SecondZiplineInteractable : MonoBehaviour, IInteractable {
 
         enableZipline = true;
         primary.GetComponent<Rigidbody>().isKinematic = true;
+        GetComponent<AudioSource>().Play();
     }
 
     private void DisableZipline() {
         enableZipline = false;
+        GetComponent<AudioSource>().Stop();
         primary.GetComponent<Rigidbody>().isKinematic = false;
         primary.transform.position = new Vector3(481.66f, 49.92f, 711.97f);
         npc.transform.position = new Vector3(651.77f, 15.04f, 629.11f);

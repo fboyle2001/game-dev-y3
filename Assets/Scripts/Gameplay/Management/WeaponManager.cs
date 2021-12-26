@@ -15,6 +15,7 @@ public class WeaponManager : MonoBehaviour {
     public GameObject crosshair;
     public GameObject fireSource;
     public GameObject primaryCamera;
+    public AudioSource secondaryWeaponAudioSource;
 
     [Header("Crosshair Feedback")]
     public Sprite hitCrosshairSprite;
@@ -26,6 +27,7 @@ public class WeaponManager : MonoBehaviour {
     private PlayerStats playerStats;
     private CharacterManager characterManager;
     private Sprite defaultCrosshairSprite;
+    private AudioSource weaponAudioSource;
 
     private float timeBetweenShots = 0;
     private float timeSinceLastShot = 0;
@@ -35,6 +37,7 @@ public class WeaponManager : MonoBehaviour {
         characterManager = GetComponent<CharacterManager>();
         maxWidth = (chargeBackgroundBar.transform as RectTransform).sizeDelta.x;
         defaultCrosshairSprite = crosshair.GetComponent<Image>().sprite;
+        weaponAudioSource = fireSource.GetComponent<AudioSource>();
     }
 
     void Start() {
@@ -122,6 +125,9 @@ public class WeaponManager : MonoBehaviour {
                     damagables.Add(hitStats);
                 }
             }
+
+            secondaryWeaponAudioSource.Stop();
+            secondaryWeaponAudioSource.Play();
         } else {
             RaycastHit hit;
             bool didHit = Physics.Raycast(fireSource.transform.position, primaryCamera.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, ~(1 << 8 | 1 << 2));
@@ -137,6 +143,8 @@ public class WeaponManager : MonoBehaviour {
             } 
 
             ChangeCrosshair(hitCrosshair);
+            weaponAudioSource.Stop();
+            weaponAudioSource.Play();
         }
 
         damagables.ForEach(stats => stats.Damage(equippedWeapon.damagePerRound * playerStats.GetDamageMultiplier()));

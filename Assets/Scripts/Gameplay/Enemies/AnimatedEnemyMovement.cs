@@ -9,6 +9,9 @@ public class AnimatedEnemyMovement : MonoBehaviour {
     public GameObject cornerB;
     public GameObject home;
     public string animatorSpeedName;
+    public AudioClip walkingClip;
+    public float timeBetweenWalkingClip;
+    public float minVelocityForWalkingClip;
 
     private Animator animator;
     private GameObject target;
@@ -21,11 +24,16 @@ public class AnimatedEnemyMovement : MonoBehaviour {
     private float minZ;
     private float maxZ;
     private float speedFactor = 1;
+    private float timeSinceLastWalkPlayed;
+
+    private GameObject currentAim;
+    private AudioSource audioSource;
 
     void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         minX = Mathf.Min(cornerA.transform.position.x, cornerB.transform.position.x);
         maxX = Mathf.Max(cornerA.transform.position.x, cornerB.transform.position.x);
@@ -37,7 +45,13 @@ public class AnimatedEnemyMovement : MonoBehaviour {
         agent.velocity = agent.velocity * speedFactor;
         animator.SetFloat(animatorSpeedName, agent.velocity.magnitude);
         if(!active) return;
+        timeSinceLastWalkPlayed += Time.fixedDeltaTime;
         MoveTowardsTarget();
+
+        if(timeSinceLastWalkPlayed >= timeBetweenWalkingClip && agent.velocity.magnitude > minVelocityForWalkingClip) {
+            timeSinceLastWalkPlayed = 0;
+            audioSource.PlayOneShot(walkingClip, 0.4f);
+        }
     }
 
     private void MoveTowardsTarget() {
@@ -45,14 +59,17 @@ public class AnimatedEnemyMovement : MonoBehaviour {
 
         if(targetPosition.x > maxX || targetPosition.x < minX) {
             agent.SetDestination(home.transform.position);
+            currentAim = home;
             return;
         }
 
         if(targetPosition.z > maxZ || targetPosition.z < minZ) {
             agent.SetDestination(home.transform.position);
+            currentAim = home;
             return;
         }
 
+        currentAim = target;
         agent.SetDestination(targetPosition);
         Quaternion lookAt = Quaternion.LookRotation(targetPosition - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, 10 * Time.fixedDeltaTime);
@@ -61,6 +78,10 @@ public class AnimatedEnemyMovement : MonoBehaviour {
     public void SetActive(bool active) {
         this.active = active;
         agent.enabled = active;
+    }
+
+    public GameObject GetCurrentTarget() {
+        return currentAim;
     }
 
     public void SetTarget(GameObject target) {

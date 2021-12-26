@@ -3,7 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BasicOrc : EnemyBase {
+
+    public AudioClip orcAttackClip;
+    public AudioClip orcAttentionClip;
+    public AudioClip orcDeathClip;
+    public AudioClip orcDamageClip;
     
+    private AudioSource audioSource;
+
     private float timeBetweenAttacks = 2;
     private float attackRange = 10;
     private float targetGap = 4;
@@ -11,9 +18,11 @@ public class BasicOrc : EnemyBase {
 
     private float timeSinceLastAttack = 0;
     private bool attacking = false;
+    private string lastTargetName = null;
 
     new void Awake() {
         base.Awake();
+        audioSource = GetComponent<AudioSource>();
         damagePerAttack = 8 * level;
     }
 
@@ -28,6 +37,14 @@ public class BasicOrc : EnemyBase {
 
     void FixedUpdate() {
         if(!active) return;
+
+        if(lastTargetName == null) {
+            lastTargetName = movementController.GetCurrentTarget()?.name;
+        } else if (lastTargetName == movementController.home.name && movementController.GetCurrentTarget()?.name != lastTargetName) {
+            audioSource.PlayOneShot(orcAttentionClip);
+        }
+
+        lastTargetName = movementController.GetCurrentTarget()?.name;
 
         Vector3 targetDirection = (target.transform.position - transform.position);
         float distanceToTarget = targetDirection.magnitude;
@@ -57,6 +74,7 @@ public class BasicOrc : EnemyBase {
     }
 
     private void Attack() {
+        AudioSource.PlayClipAtPoint(orcAttackClip, transform.position);
         attacking = true;
         movementController.SetSpeedFactor(0f);
         Invoke("StopAttackAnimation", 0.5f);
@@ -68,6 +86,22 @@ public class BasicOrc : EnemyBase {
         animator.SetBool("waiting_to_attack", true);
         animator.SetBool("attacking", false);
         attacking = false;
+    }
+
+    protected override void OnDeath() {
+        base.OnDeath();
+        audioSource.Stop();
+        audioSource.clip = orcDeathClip;
+        audioSource.loop = false;
+        audioSource.Play();
+    }
+
+    protected override void OnDamageHandler(EnemyStats stats, float damage) {
+        base.OnDamageHandler(stats, damage);
+        
+        if(!stats.IsDead()) {
+            AudioSource.PlayClipAtPoint(orcDamageClip, transform.position, 0.6f);
+        }
     }
 
 }
