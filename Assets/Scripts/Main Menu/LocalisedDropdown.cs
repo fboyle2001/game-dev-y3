@@ -28,7 +28,13 @@ public class LocalisedDropdown : MonoBehaviour {
     private TMP_Dropdown dropdown;
 
     void Awake() {
-        localeManager = GameObject.FindGameObjectWithTag("Locale").GetComponent<LocaleManager>();
+        GameObject localeOwner = GameObject.FindGameObjectWithTag("Locale");
+
+        if(localeOwner == null) {
+            localeOwner = GameObject.FindGameObjectWithTag("Game Manager");
+        }
+
+        localeManager = localeOwner.GetComponent<LocaleManager>();
         dropdown = GetComponent<TMP_Dropdown>();
     }
 

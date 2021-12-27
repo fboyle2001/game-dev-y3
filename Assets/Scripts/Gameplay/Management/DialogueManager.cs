@@ -38,6 +38,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     void OnEnable() {
+        GlobalSettings.UpdateNames(GetComponent<LocaleManager>());
         ClearDialogue();
     }
 

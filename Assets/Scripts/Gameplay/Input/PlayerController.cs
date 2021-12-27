@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private InputAction interactAction;
     private InputAction jumpAction;
     private InputAction switchCharacterAction;
-    private InputAction closeUIAction;
+    private InputAction pauseAction;
 
     private void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         interactAction = playerInput.actions["Interact"];
         jumpAction = playerInput.actions["Jump"];
         switchCharacterAction = playerInput.actions["Switch Character"];
-        closeUIAction = playerInput.actions["Close UI"];
+        pauseAction = playerInput.actions["Pause"];
 
         currentController = primary.GetComponent<ICharacterActions>();
     }
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
 
         switchCharacterAction.started += OnSwitchPerformed;
 
-        closeUIAction.started += OnCloseAllUI;
+        pauseAction.started += OnPause;
     }
 
     private void OnDisable() {
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
         switchCharacterAction.started -= OnSwitchPerformed;
 
-        closeUIAction.started -= OnCloseAllUI;
+        pauseAction.started -= OnPause;
     }
 
     private void OnActiveCharacterChange(GameObject active) {
@@ -151,10 +151,11 @@ public class PlayerController : MonoBehaviour
         gameManager.GetComponent<CharacterManager>().SwapActive();
     }
 
-    private void OnCloseAllUI(InputAction.CallbackContext context) {
+    private void OnPause(InputAction.CallbackContext context) {
         uiManager.inventoryPanel.SetActive(false);
         uiManager.shopPanel.SetActive(false);
-        Cursor.visible = false;
+        uiManager.pausePanel.SetActive(!uiManager.pausePanel.activeSelf);
+        Cursor.visible = uiManager.pausePanel.activeSelf;
     }
 
 }

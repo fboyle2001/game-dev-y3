@@ -70,17 +70,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Close UI",
+                    "name": "Pause",
                     "type": "Button",
                     "id": "1982c186-a2a9-4666-9a5a-1f7749d50e1c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Test Action",
-                    "type": "Button",
-                    "id": "3ddbfa7f-afb0-4801-977b-66381bab5fb4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -369,18 +361,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Close UI",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "150c753d-92a9-489f-9bcb-14af56f5efcb",
-                    "path": "<Keyboard>/p",
+                    "id": "f58bc702-39be-4e4f-bb63-883c24e8773d",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Test Action",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

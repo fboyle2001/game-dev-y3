@@ -7,6 +7,11 @@ public class GlobalSettings {
     public static float horizontalMouseSensitivity = 0.5f;
     public static float verticalMouseSensitivity = 0.5f;
 
+    public static void UpdateNames(LocaleManager localeManager) {
+        localeManager.UpdateGlobalVariable("main_name", primaryName);
+        localeManager.UpdateGlobalVariable("cat_name", secondaryName);
+    }
+
     public static float GetEnemyHealthScalar() {
         return difficulty == 3 ? 1.3f : 1.0f;
     }

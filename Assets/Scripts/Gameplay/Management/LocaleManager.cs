@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Tables;
 using UnityEngine.Localization.Settings;
+using UnityEngine.Localization.SmartFormat;
+using UnityEngine.Localization.SmartFormat.Extensions;
+using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class LocaleManager : MonoBehaviour {
     
@@ -23,11 +26,15 @@ public class LocaleManager : MonoBehaviour {
     }
 
     void Awake() {
-        ChangeLocale("en-GB");
         LoadStringTable();
         localizedStringTable.TableChanged += (a) => {
             LoadStringTable();
         };
+    }
+
+    public void UpdateGlobalVariable(string key, string value) {
+        PersistentVariablesSource source = LocalizationSettings.StringDatabase.SmartFormatter.GetSourceExtension<PersistentVariablesSource>();
+        (source["global"][key] as StringVariable).Value = value;
     }
 
     public void ChangeLocale(string ietfCode) {

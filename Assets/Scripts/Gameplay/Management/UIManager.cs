@@ -37,6 +37,7 @@ public class UIManager : MonoBehaviour {
 
     [Header("Other")]
     public GameObject crosshair;
+    public GameObject pausePanel;
 
     private float xpGain = 0;
     private int goldGain = 0;

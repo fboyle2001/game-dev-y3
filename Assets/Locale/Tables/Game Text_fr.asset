@@ -661,6 +661,10 @@ MonoBehaviour:
     m_Localized: Verticale
     m_Metadata:
       m_Items: []
+  - m_Id: 1095557912330240
+    m_Localized: Fermer le Menu
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:

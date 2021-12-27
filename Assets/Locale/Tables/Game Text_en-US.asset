@@ -647,6 +647,10 @@ MonoBehaviour:
     m_Localized: Horizontal
     m_Metadata:
       m_Items: []
+  - m_Id: 1095557912330240
+    m_Localized: Close Menu
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:
