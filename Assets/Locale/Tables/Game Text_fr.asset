@@ -528,9 +528,142 @@ MonoBehaviour:
     m_Localized: Exil
     m_Metadata:
       m_Items: []
+  - m_Id: 831813768577024
+    m_Localized: Fin du Jeu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 832111459303424
+    m_Localized: Tu es mort! Plus de chance la prochaine fois!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 832169181315072
+    m_Localized: Retour au Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 835658322149376
+    m_Localized: "F\xE9licitations! Vous avez battu le jeu!"
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 835643382038528
+    m_Localized: "Termin\xE9!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 855998431625216
+    m_Localized: Les Aventures du Chat Assassin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 856007990444032
+    m_Localized: Nouveau Jeu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 856026101448704
+    m_Localized: "Param\xE8tres"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 856039141539840
+    m_Localized: "Arr\xEAtez"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 859341975584768
+    m_Localized: Entrez le texte...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 859730137448448
+    m_Localized: 'Votre Nom:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 859751100579840
+    m_Localized: 'Nom du Chat:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 860668466167808
+    m_Localized: Commencer un Nouveau Jeu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 861159455588352
+    m_Localized: Dos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 882716940828672
+    m_Localized: "Cr\xE9dits"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 886955658313728
+    m_Localized: Facile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 886956463620096
+    m_Localized: Moyen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 886957088571392
+    m_Localized: Difficile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 886961031217152
+    m_Localized: Impossible
+    m_Metadata:
+      m_Items: []
+  - m_Id: 887349557985280
+    m_Localized: "Difficult\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 889311531761664
+    m_Localized: "Commencez avec 20 armures, 40% de d\xE9g\xE2ts suppl\xE9mentaires,
+      le double de la sant\xE9 maximale et 0,5 r\xE9g\xE9n\xE9ration de sant\xE9
+      par seconde."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 890191937142784
+    m_Localized: "Commencez avec 5 d'armure, 20% de d\xE9g\xE2ts suppl\xE9mentaires
+      et 0,2 de r\xE9g\xE9n\xE9ration de sant\xE9 par seconde."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 890192687923200
+    m_Localized: "Pas de bonus de statistiques de d\xE9part"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 890193417732096
+    m_Localized: "Les ennemis ont 30% de sant\xE9 en plus, re\xE7oivent 30% de r\xE9compenses
+      en moins et commencent avec 80% de la sant\xE9 maximale normale."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 891534164754432
+    m_Localized: "D\xE9but"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 895624508735488
+    m_Localized: Anglais
+    m_Metadata:
+      m_Items: []
+  - m_Id: 895632926703616
+    m_Localized: "Fran\xE7ais"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 895628099059712
+    m_Localized: Anglais (US)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 894990388690944
+    m_Localized: 'Langue:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 909614089633792
+    m_Localized: "Sensibilit\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 914084764712960
+    m_Localized: Horizontale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 914123432001536
+    m_Localized: Verticale
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:
       type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
       data:
-        m_Entries: 0000f225840000000000b24dcf100000000032eecf1000000000f2ec211600000000b2f7851600000000f21d771a000000007217701c000000003252c91c0000000032ebea1e000000003276001f0000000032a223240000000072f4c82400000000f281d4230000
+        m_Entries: 0000f225840000000000b24dcf100000000032eecf1000000000f2ec211600000000b2f7851600000000f21d771a000000007217701c000000003252c91c0000000032ebea1e000000003276001f0000000032a223240000000072f4c82400000000f281d4230000000072dd06f80200

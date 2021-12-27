@@ -10,8 +10,7 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     public float sprintScalar = 2;
     public float maxWalkVelocity = 10;
     public float maxSprintVelocity = 15;
-    public float mouseSensitivityX = 5;
-    public float mouseSensitivityY = 5;
+    public float mouseSpeed = 200;
     public GameObject primaryCamera;
 
     private Rigidbody rb;
@@ -134,8 +133,8 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     private void LookAround() {
-        float right = lookDirection.x * mouseSensitivityX;
-        float up = -lookDirection.y * mouseSensitivityY;
+        float right = lookDirection.x * GlobalSettings.horizontalMouseSensitivity * mouseSpeed;
+        float up = -lookDirection.y * GlobalSettings.verticalMouseSensitivity * mouseSpeed;
         
         Vector3 vectorCameraRot = primaryCamera.transform.rotation.eulerAngles + new Vector3(up, 0, 0);
         Quaternion cameraRot = Quaternion.Slerp(primaryCamera.transform.rotation, Quaternion.Euler(vectorCameraRot), Time.deltaTime);

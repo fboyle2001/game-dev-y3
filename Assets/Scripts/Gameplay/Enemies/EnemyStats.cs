@@ -23,6 +23,7 @@ public class EnemyStats : MonoBehaviour {
     private bool dead = false;
 
     void Awake() {
+        maxHealth *= GlobalSettings.GetEnemyHealthScalar();
         health = maxHealth;
         maxHealthBarWidth = (healthBarBackground.transform as RectTransform).rect.width;
         healthBarTransform = (healthBar.transform as RectTransform);

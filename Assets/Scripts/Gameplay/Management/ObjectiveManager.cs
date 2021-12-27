@@ -105,8 +105,8 @@ public class ObjectiveManager : MonoBehaviour
         // TODO: Give rewards
         RewardEntry reward = objective.reward;
 
-        playerResources.AddExperience(reward.xp * rewardScalar);
-        playerResources.AddGold(Mathf.RoundToInt(reward.gold * rewardScalar));
+        playerResources.AddExperience(reward.xp * rewardScalar * GlobalSettings.GetRewardScalar());
+        playerResources.AddGold(Mathf.RoundToInt(reward.gold * rewardScalar * GlobalSettings.GetRewardScalar()));
     }
 
     public List<string> GetCompletedObjectives() {

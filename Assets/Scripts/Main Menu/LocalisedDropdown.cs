@@ -1,0 +1,68 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+
+public class LocalisedDropdown : MonoBehaviour {
+    
+    [System.Serializable]
+    public struct DropdownEntry {
+
+        public string localisationKey;
+        public Sprite sprite;
+        public bool def;
+
+        public DropdownEntry(string localisationKey, Sprite sprite, bool def) {
+            this.localisationKey = localisationKey;
+            this.sprite = sprite;
+            this.def = def;
+        }
+
+    }
+
+    public DropdownEntry[] entries;
+    public int overrideDefault = -1;
+
+    private LocaleManager localeManager;
+    private TMP_Dropdown dropdown;
+
+    void Awake() {
+        localeManager = GameObject.FindGameObjectWithTag("Locale").GetComponent<LocaleManager>();
+        dropdown = GetComponent<TMP_Dropdown>();
+    }
+
+    void OnEnable() {
+        FillDropdownOptions();
+        localeManager.SubscribeToLocaleChange(gameObject, OnLocaleChange);
+    }
+
+    void OnDisable() {
+        localeManager.UnsubscribeFromLocaleChange(gameObject);
+    }
+
+    private void OnLocaleChange(LocaleManager locale) {
+        FillDropdownOptions();
+    }
+
+    private void FillDropdownOptions() {
+        dropdown.ClearOptions();
+        List<TMP_Dropdown.OptionData> data = new List<TMP_Dropdown.OptionData>();
+        int index = 0;
+        int defIndex = 0;
+
+        foreach(DropdownEntry entry in entries) {
+            data.Add(new TMP_Dropdown.OptionData(localeManager.GetString(entry.localisationKey), entry.sprite));
+
+            if(entry.def) {
+                defIndex = index;
+            }
+
+            index++;
+        }
+
+        dropdown.AddOptions(data);
+        dropdown.value = overrideDefault == -1 ? defIndex : overrideDefault;
+    }
+
+}

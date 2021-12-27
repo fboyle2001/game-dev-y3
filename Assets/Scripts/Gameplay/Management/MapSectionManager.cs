@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class MapSectionManager : MonoBehaviour {
     
+    public GameObject nonPlayableLayer;
     public GameObject mountainPathParent;
     public GameObject zipLineAttack;
     public GameObject originalOrcParent;
     public GameObject finalOrcParent;
     public GameObject seedParent;
+
+    void Start() {
+        nonPlayableLayer.SetActive(true);
+    }
 
     public void EnableMountainPathSection() {
         mountainPathParent.SetActive(true);

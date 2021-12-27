@@ -18,6 +18,11 @@ public class CharacterManager : MonoBehaviour
 
     private Dictionary<int, System.Action<GameObject>> activeChangeListeners = new Dictionary<int, System.Action<GameObject>>();
 
+    void OnEnable() {
+        // Spawn in, give them their stats
+        GlobalSettings.GiveBonusStats(GetComponent<PlayerStats>());
+    }
+
     public void UnlockSecondary() {
         secondaryUnlocked = true;
 

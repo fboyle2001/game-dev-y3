@@ -516,6 +516,137 @@ MonoBehaviour:
     m_Localized: Exile
     m_Metadata:
       m_Items: []
+  - m_Id: 831813768577024
+    m_Localized: Game Over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 832111459303424
+    m_Localized: You died! Better luck next time!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 832169181315072
+    m_Localized: Back to Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 835643382038528
+    m_Localized: Finished!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 835658322149376
+    m_Localized: Congratulations! You beat the game!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 855998431625216
+    m_Localized: The Assassin Cat Adventures
+    m_Metadata:
+      m_Items: []
+  - m_Id: 856007990444032
+    m_Localized: New Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 856026101448704
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 856039141539840
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 859341975584768
+    m_Localized: Enter text...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 859730137448448
+    m_Localized: 'Your Name:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 859751100579840
+    m_Localized: 'Cat Name:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 860668466167808
+    m_Localized: Start New Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 861159455588352
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 882716940828672
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 886955658313728
+    m_Localized: Easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 886956463620096
+    m_Localized: Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 886957088571392
+    m_Localized: Hard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 886961031217152
+    m_Localized: Impossible
+    m_Metadata:
+      m_Items: []
+  - m_Id: 887349557985280
+    m_Localized: Difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 889311531761664
+    m_Localized: Start with 20 armour, 40% increased damage, double maximum health
+      and 0.5 health regen per second
+    m_Metadata:
+      m_Items: []
+  - m_Id: 890191937142784
+    m_Localized: Start with 5 armour, 20% increased damage and 0.2 health regen per
+      second
+    m_Metadata:
+      m_Items: []
+  - m_Id: 890192687923200
+    m_Localized: No bonus starting stats
+    m_Metadata:
+      m_Items: []
+  - m_Id: 890193417732096
+    m_Localized: Enemies have 30% more health, receive 30% less rewards, start with
+      80% of normal maximum health
+    m_Metadata:
+      m_Items: []
+  - m_Id: 891534164754432
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 894990388690944
+    m_Localized: 'Language:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 895624508735488
+    m_Localized: English
+    m_Metadata:
+      m_Items: []
+  - m_Id: 895628099059712
+    m_Localized: English (US)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 895632926703616
+    m_Localized: French
+    m_Metadata:
+      m_Items: []
+  - m_Id: 909614089633792
+    m_Localized: Sensitivity
+    m_Metadata:
+      m_Items: []
+  - m_Id: 914084764712960
+    m_Localized: Horizontal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 914123432001536
+    m_Localized: Vertical
+    m_Metadata:
+      m_Items: []
   references:
     version: 1
     00000000:

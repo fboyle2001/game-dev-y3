@@ -30,10 +30,9 @@ public class SpawnInCutScene : MonoBehaviour {
         realPlayer.SetActive(true);
         realCamera.SetActive(false);
         
-        // TODO: Localise
         gameManager.GetComponent<CharacterManager>().SetFrozen(true);
         dialogueManager.QueueDialogue("speaker_you", "cs_spawn_falling", 8);
-        gameManager.GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>().ApplyDamageOverTime(99, 16);
+        gameManager.GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>().ApplyDamageOverTimeWithGoal(1, 17);
     }
 
     void FixedUpdate() {

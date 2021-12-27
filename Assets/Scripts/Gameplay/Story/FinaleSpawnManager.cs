@@ -2,11 +2,18 @@ using UnityEngine;
 
 public class FinaleSpawnManager : MonoBehaviour {
 
+    [Header("Finish")]
+    public GameObject playableParent;
+    public GameObject finishCamera;
+    public GameObject winUI;
+
+    [Header("Finale")]
     public GameObject phaseOneParent;
     public GameObject phaseTwoParent;
     public GameObject phaseThreeParent;
     public GameObject treeParent;
     public GameObject tree;
+    public SpawnerEffect spawnerEffect;
 
     private int deadPhaseOne = 0;
     private int deadPhaseTwo = 0;
@@ -61,6 +68,7 @@ public class FinaleSpawnManager : MonoBehaviour {
     }
 
     private void SpawnPhaseOne() {
+        spawnerEffect.RestartEffect();
         maxScale = 2;
         treeParent.SetActive(true);
         phaseOneParent.SetActive(true);
@@ -73,6 +81,7 @@ public class FinaleSpawnManager : MonoBehaviour {
     }
 
     private void SpawnPhaseTwo() {
+        spawnerEffect.RestartEffect();
         tree.transform.localScale = new Vector3(maxScale, maxScale, maxScale);
         maxScale = 8;
         dialogueManager.QueueDialogue("speaker_you", "fnl_phase_2_2", 3);
@@ -86,6 +95,7 @@ public class FinaleSpawnManager : MonoBehaviour {
     }
 
     private void SpawnPhaseThree() {
+        spawnerEffect.RestartEffect();
         tree.transform.localScale = new Vector3(maxScale, maxScale, maxScale);
         maxScale = 16;
         dialogueManager.QueueDialogue("speaker_ancient", "fnl_ancient_speak", 5);
@@ -97,12 +107,15 @@ public class FinaleSpawnManager : MonoBehaviour {
         if(deadPhaseThree < 4) return;
         tree.transform.localScale = new Vector3(maxScale, maxScale, maxScale);
         maxScale = 24;
-        dialogueManager.QueueDialogue("speaker_you", "fnl_celebrate", 8);
+        dialogueManager.QueueDialogue("speaker_you", "fnl_celebrate", 4);
+        spawnerEffect.gameObject.SetActive(false);
         Invoke("EndGame", 5f);
     }
 
     private void EndGame() {
-        Debug.Log("Now end the game!");
+        playableParent.SetActive(false);
+        finishCamera.SetActive(true);
+        winUI.SetActive(true);
     }
 
 }

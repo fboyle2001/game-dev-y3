@@ -471,6 +471,134 @@ MonoBehaviour:
     m_Key: enm_exile
     m_Metadata:
       m_Items: []
+  - m_Id: 831813768577024
+    m_Key: ui_game_over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 832111459303424
+    m_Key: ui_you_died
+    m_Metadata:
+      m_Items: []
+  - m_Id: 832169181315072
+    m_Key: ui_back_to_menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 835643382038528
+    m_Key: ui_finished
+    m_Metadata:
+      m_Items: []
+  - m_Id: 835658322149376
+    m_Key: ui_beat_game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 855998431625216
+    m_Key: mm_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 856007990444032
+    m_Key: mm_new_game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 856026101448704
+    m_Key: mm_settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 856039141539840
+    m_Key: mm_quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 859341975584768
+    m_Key: mm_input_placeholder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 859730137448448
+    m_Key: mm_your_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 859751100579840
+    m_Key: mm_cat_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 860668466167808
+    m_Key: mm_start_new_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 861159455588352
+    m_Key: mm_back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 882716940828672
+    m_Key: mm_credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 886955658313728
+    m_Key: mm_difficulty_easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 886956463620096
+    m_Key: mm_difficulty_normal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 886957088571392
+    m_Key: mm_difficulty_hard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 886961031217152
+    m_Key: mm_difficulty_impossible
+    m_Metadata:
+      m_Items: []
+  - m_Id: 887349557985280
+    m_Key: mm_difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 889311531761664
+    m_Key: mm_diff_desc_easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 890191937142784
+    m_Key: mm_diff_desc_normal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 890192687923200
+    m_Key: mm_diff_desc_hard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 890193417732096
+    m_Key: mm_diff_desc_impossible
+    m_Metadata:
+      m_Items: []
+  - m_Id: 891534164754432
+    m_Key: mm_start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 894990388690944
+    m_Key: mm_language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 895624508735488
+    m_Key: mm_lang_en_gb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 895628099059712
+    m_Key: mm_lang_en_us
+    m_Metadata:
+      m_Items: []
+  - m_Id: 895632926703616
+    m_Key: mm_lang_fr
+    m_Metadata:
+      m_Items: []
+  - m_Id: 909614089633792
+    m_Key: mm_sens
+    m_Metadata:
+      m_Items: []
+  - m_Id: 914084764712960
+    m_Key: mm_sens_horz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 914123432001536
+    m_Key: mm_sens_vert
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
