@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.UI;
-using UnityEngine.InputSystem.Users;
 using UnityEngine.InputSystem.LowLevel;
 
 public class ImprovedMouse : MonoBehaviour {
@@ -26,7 +23,6 @@ public class ImprovedMouse : MonoBehaviour {
 
     void Awake() {
         virtualMouse = InputSystem.AddDevice("VirtualMouse") as Mouse;
-        Debug.Log($"VM Added: {virtualMouse.enabled}");
         InputSystem.DisableDevice(virtualMouse);
     }
 

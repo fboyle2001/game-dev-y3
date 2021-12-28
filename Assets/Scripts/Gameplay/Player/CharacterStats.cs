@@ -95,7 +95,7 @@ public class CharacterStats : MonoBehaviour
     }
 
     public void ApplyDamageOverTimeWithGoal(float goal, float time) {
-        float damagePerSecond = (maxHealth - goal) / time;
+        float damagePerSecond = (currentHealth - goal) / time;
         currentDOTEffect = damagePerSecond;
         maxDOTTime = time;
     }

@@ -133,7 +133,6 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     private void LookAround() {
-        Debug.Log(GlobalSettings.verticalMouseSensitivity * mouseSpeed + " , " + GlobalSettings.horizontalMouseSensitivity * mouseSpeed);
         float right = lookDirection.x * GlobalSettings.horizontalMouseSensitivity * mouseSpeed;
         float up = -lookDirection.y * GlobalSettings.verticalMouseSensitivity * mouseSpeed; // Inverts if sens goes to high!
         

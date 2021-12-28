@@ -32,6 +32,7 @@ public class SpawnInCutScene : MonoBehaviour {
         
         gameManager.GetComponent<CharacterManager>().SetFrozen(true);
         dialogueManager.QueueDialogue("speaker_you", "cs_spawn_falling", 8);
+        gameManager.GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>().HealAsPercent(1);
         gameManager.GetComponent<CharacterManager>().primary.GetComponent<CharacterStats>().ApplyDamageOverTimeWithGoal(1, 17);
     }
 
