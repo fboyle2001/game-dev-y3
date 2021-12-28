@@ -22,7 +22,7 @@ public class GlobalSettings {
 
     public static void GiveBonusStats(PlayerStats stats) {
         if(difficulty == 3) {
-            stats.AddDamageMultiplier(-0.2f);
+            stats.AddMaxHealthMultiplier(-0.2f);
         }
 
         if(difficulty >= 2) return;

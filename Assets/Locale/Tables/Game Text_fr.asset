@@ -128,7 +128,8 @@ MonoBehaviour:
     m_Localized: "Utilisez [I] ou [Bouton Nord] pour ouvrir votre inventaire. Sur
       le c\xF4t\xE9 gauche, vous trouverez des objets qui vous rendront plus fort
       tout au long du jeu. Sur le c\xF4t\xE9 droit, vous pouvez voir les objets que
-      vous avez \xE9quip\xE9s et les statistiques de votre joueur."
+      vous avez \xE9quip\xE9s et les statistiques de votre joueur. Utilisez le [LMB]
+      ou la [G\xE2chette Droite] pour tirer avec votre arme."
     m_Metadata:
       m_Items: []
   - m_Id: 21767887388672
@@ -663,6 +664,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1095557912330240
     m_Localized: Fermer le Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1285594473955328
+    m_Localized: Chargement du Jeu...
     m_Metadata:
       m_Items: []
   references:

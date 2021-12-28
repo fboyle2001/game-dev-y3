@@ -12,7 +12,7 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     public float maxSprintVelocity = 15;
     public GameObject primaryCamera;
 
-    private float mouseSpeed = 80;
+    private float mouseSpeed = 20;
     private Rigidbody rb;
     private GameObject gameManager;
     private WeaponManager weaponManager;
@@ -133,8 +133,9 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     private void LookAround() {
+        Debug.Log(GlobalSettings.verticalMouseSensitivity * mouseSpeed + " , " + GlobalSettings.horizontalMouseSensitivity * mouseSpeed);
         float right = lookDirection.x * GlobalSettings.horizontalMouseSensitivity * mouseSpeed;
-        float up = -lookDirection.y * GlobalSettings.verticalMouseSensitivity * mouseSpeed;
+        float up = -lookDirection.y * GlobalSettings.verticalMouseSensitivity * mouseSpeed; // Inverts if sens goes to high!
         
         Vector3 vectorCameraRot = primaryCamera.transform.rotation.eulerAngles + new Vector3(up, 0, 0);
         Quaternion cameraRot = Quaternion.Slerp(primaryCamera.transform.rotation, Quaternion.Euler(vectorCameraRot), Time.deltaTime);

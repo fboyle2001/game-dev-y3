@@ -603,6 +603,10 @@ MonoBehaviour:
     m_Key: pm_close
     m_Metadata:
       m_Items: []
+  - m_Id: 1285594473955328
+    m_Key: mm_game_loading
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

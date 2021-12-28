@@ -10,7 +10,7 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
     public float maxSprintVelocity = 15;
     public GameObject primaryCamera;
 
-    public float mouseSpeed = 80;
+    private float mouseSpeed = 20;
     private Rigidbody rb;
     private GameObject gameManager;
     private WeaponManager weaponManager;

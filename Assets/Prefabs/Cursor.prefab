@@ -33,11 +33,11 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 940, y: 520}
-  m_SizeDelta: {x: 40, y: 40}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2981541023089698128
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -109,6 +109,14 @@ MonoBehaviour:
       - m_Name: 
         m_Id: f2b98b1b-fee1-478f-bfe5-ef882da98e70
         m_Path: <Mouse>/delta
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Move Prop
+        m_Flags: 0
+      - m_Name: 
+        m_Id: f37beba3-be7e-4ae0-a662-a6ab051a483f
+        m_Path: <Gamepad>/rightStick
         m_Interactions: 
         m_Processors: 
         m_Groups: 

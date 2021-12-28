@@ -121,7 +121,7 @@ MonoBehaviour:
     m_Localized: Use [I] or [Button North] to open your inventory. On the left hand
       side you will find items that will make you stronger throughout the game. On
       the right hand side you can see what items you have equipped and your player's
-      stats.
+      stats. Use [LMB] or [Right Trigger] to fire your weapon.
     m_Metadata:
       m_Items: []
   - m_Id: 21767887388672
@@ -649,6 +649,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1095557912330240
     m_Localized: Close Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1285594473955328
+    m_Localized: Game Loading...
     m_Metadata:
       m_Items: []
   references:

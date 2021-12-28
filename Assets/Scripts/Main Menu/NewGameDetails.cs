@@ -12,6 +12,7 @@ public class NewGameDetails : MonoBehaviour {
     public TMP_InputField secondaryNameInput;
     public TMP_Text difficultyText;
     public Button startButton;
+    public GameObject loadingText;
 
     private LocaleManager localeManager;
     private string primaryName;
@@ -20,8 +21,8 @@ public class NewGameDetails : MonoBehaviour {
 
     void Awake() {
         localeManager = GameObject.FindGameObjectWithTag("Locale").GetComponent<LocaleManager>();
-        primaryName = null;
-        secondaryName = null;
+        primaryName = primaryNameInput.text;
+        secondaryName = secondaryNameInput.text;
         difficulty = 1;
     }
 
@@ -52,6 +53,8 @@ public class NewGameDetails : MonoBehaviour {
     }
 
     public void StartGame() {
+        loadingText.SetActive(true);
+        startButton.interactable = false;
         GlobalSettings.difficulty = difficulty;
         GlobalSettings.primaryName = primaryName;
         GlobalSettings.secondaryName = secondaryName;

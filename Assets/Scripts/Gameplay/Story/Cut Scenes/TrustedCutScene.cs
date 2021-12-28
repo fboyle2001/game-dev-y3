@@ -33,8 +33,6 @@ public class TrustedCutScene : CutScene {
         GameObject playerCamera = gameManager.GetComponent<CharacterManager>().GetActiveCamera();
 
         QueueAction(() => {
-            Debug.Log("Cut scene starting");
-
             // Disable the player and their camera
             gameManager.GetComponent<CharacterManager>().SetFrozen(true);
             playerCamera.SetActive(false);

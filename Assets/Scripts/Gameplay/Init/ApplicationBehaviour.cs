@@ -12,10 +12,9 @@ public class ApplicationBehaviour : MonoBehaviour
 
         if(localeOwner == null) {
             localeOwner = GameObject.FindGameObjectWithTag("Game Manager");
+        } else {
+            localeOwner.GetComponent<LocaleManager>().ChangeLocale("en-GB");
         }
-
-        localeManager = localeOwner.GetComponent<LocaleManager>();
-        localeManager.ChangeLocale("en-GB");
     }
 
     void Start() {

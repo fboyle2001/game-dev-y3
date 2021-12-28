@@ -89,7 +89,6 @@ public class InventorySlot : MonoBehaviour {
             string useKey = occupyingItem.equippable ? "ui_inventory_equip_item" : "ui_inventory_use_one";
             useButtonText.GetComponent<TMP_Text>().SetText(gameManager.GetComponent<LocaleManager>().GetString(useKey));
             useButton.GetComponent<Button>().onClick.AddListener(() => {
-                Debug.Log("clicked!");
                 uiAudioSource.PlayOneShot(usedClip);
                 occupyingItem.ApplyItemEffect(gameManager);
                 UpdateQuantity(-1);

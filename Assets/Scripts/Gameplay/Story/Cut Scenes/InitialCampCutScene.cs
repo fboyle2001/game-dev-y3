@@ -79,8 +79,6 @@ public class InitialCampCutScene : CutScene {
 
             gameManager.GetComponent<CharacterManager>().SetFrozen(false);
             playerCamera.SetActive(true);
-
-            Debug.Log("Cut scene over");
         }, 0);
     }
 
