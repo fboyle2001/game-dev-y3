@@ -14,7 +14,7 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
     public float maxSprintVelocity = 15;
     public GameObject primaryCamera;
 
-    private float mouseSpeed = 20;
+    private float mouseSpeed = 0.24f;
     private Rigidbody rb;
     private GameObject gameManager;
     private WeaponManager weaponManager;
@@ -156,31 +156,27 @@ public class PrimaryCharacterActions : MonoBehaviour, ICharacterActions {
         // The character's camera is not fixed to the character, rather it orbits them
         // Calculate the amount to rotate or move the camera
         float right = lookDirection.x * GlobalSettings.horizontalMouseSensitivity * mouseSpeed;
-        float up = -lookDirection.y * GlobalSettings.verticalMouseSensitivity * mouseSpeed; // Inverts if sens goes to high!
+        float up = -lookDirection.y * GlobalSettings.verticalMouseSensitivity * mouseSpeed * 0.5f; // Inverts if sens goes to high!
         
         // Looking up and down changes the camera rotation
         Vector3 vectorCameraRot = primaryCamera.transform.rotation.eulerAngles + new Vector3(up, 0, 0);
-        // Smoothly move up and down
-        Quaternion cameraRot = Quaternion.Slerp(primaryCamera.transform.rotation, Quaternion.Euler(vectorCameraRot), Time.deltaTime);
-        // Convert back to a vector so we can clip the angles
-        Vector3 cameraEulerAngles = cameraRot.eulerAngles;
+        vectorCameraRot = Quaternion.Euler(vectorCameraRot).eulerAngles;
         
-        cameraEulerAngles.x = Mathf.Clamp(cameraRot.eulerAngles.x, 0, 360);
+        vectorCameraRot.x = Mathf.Clamp(vectorCameraRot.x, 0, 360);
 
         // Prevents looking too far up and down
-        if(cameraEulerAngles.x > 60 && cameraEulerAngles.x < 150) {
-            cameraEulerAngles.x = 60;
-        } else if(cameraEulerAngles.x < 300 && cameraEulerAngles.x > 180) {
-            cameraEulerAngles.x = 300;
+        if(vectorCameraRot.x > 60 && vectorCameraRot.x < 150) {
+            vectorCameraRot.x = 60;
+        } else if(vectorCameraRot.x < 300 && vectorCameraRot.x > 180) {
+            vectorCameraRot.x = 300;
         }
 
         // Update the camera rotation
-        primaryCamera.transform.rotation = Quaternion.Euler(cameraEulerAngles);
+        primaryCamera.transform.rotation = Quaternion.Euler(vectorCameraRot); 
 
         // Looking left and right orbits the camera around the character
-        // Slerp smooths this motion
-        Quaternion playerRot = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, right, 0)), Time.deltaTime);
         // Orbit around the character's transform
+        Quaternion playerRot = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, right, 0));
         primaryCamera.transform.RotateAround(transform.position, Vector3.up, playerRot.eulerAngles.x);
         transform.rotation = playerRot;
     }

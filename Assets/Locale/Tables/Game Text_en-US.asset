@@ -146,7 +146,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 24764642099200
-    m_Localized: "Je ferais mieux de les ramener \xE0 {global.npc_name}!"
+    m_Localized: I had better get these back to {global.npc_name}!
     m_Metadata:
       m_Items:
       - id: 0

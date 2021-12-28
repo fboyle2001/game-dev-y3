@@ -38,7 +38,7 @@ public class StatDisplayHandler : MonoBehaviour {
         // Display the stats 
         armourText.GetComponent<TMP_Text>().SetText(stats.GetArmour().ToString("0.0"));
         regenText.GetComponent<TMP_Text>().SetText(stats.GetRegenPerSecond().ToString("0.0"));
-        damageMultiplierText.GetComponent<TMP_Text>().SetText(Mathf.RoundToInt(stats.GetDamageMultiplier() * 100) + " %");
+        damageMultiplierText.GetComponent<TMP_Text>().SetText(Mathf.RoundToInt(stats.GetDamageMultiplier() * 100) + "%");
 
         float maxHealthMult = stats.GetMaxHealthMultiplier();
         string maxHealthTextString = Mathf.RoundToInt(maxHealthMult * characterManager.primary.GetComponent<CharacterStats>().GetOriginalMaxHealth()).ToString("0");

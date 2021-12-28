@@ -32413,7 +32413,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 30}
+  m_SizeDelta: {x: 60, y: 30}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1155937564
 MonoBehaviour:
@@ -34454,7 +34454,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1218781530
 Transform:
   m_ObjectHideFlags: 0
@@ -41286,6 +41286,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 0a2db64e-c5c3-410b-a1b1-bb28fc4d3f2f
     m_ActionName: UI/Point
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f51640de-3539-4c8f-9557-4d17f6950df1
+    m_ActionName: UI/Scroll
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Land
@@ -43160,7 +43164,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 30}
+  m_SizeDelta: {x: 60, y: 30}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1765928534
 MonoBehaviour:
@@ -43182,7 +43186,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1.00
+  m_text: 999%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

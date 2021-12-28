@@ -13,7 +13,7 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
     public float maxSprintVelocity = 15;
     public GameObject primaryCamera;
 
-    private float mouseSpeed = 20;
+    private float mouseSpeed = 0.24f;
     private Rigidbody rb;
     private GameObject gameManager;
     private WeaponManager weaponManager;
@@ -126,23 +126,22 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
     private void LookAround() {
         // See PrimaryCharacterActions.LookAround for details
         float right = lookDirection.x * GlobalSettings.horizontalMouseSensitivity * mouseSpeed;
-        float up = -lookDirection.y * GlobalSettings.verticalMouseSensitivity * mouseSpeed;
+        float up = -lookDirection.y * GlobalSettings.verticalMouseSensitivity * mouseSpeed * 0.5f;
         
         Vector3 vectorCameraRot = primaryCamera.transform.rotation.eulerAngles + new Vector3(up, 0, 0);
-        Quaternion cameraRot = Quaternion.Slerp(primaryCamera.transform.rotation, Quaternion.Euler(vectorCameraRot), Time.deltaTime);
-        Vector3 cameraEulerAngles = cameraRot.eulerAngles;
+        vectorCameraRot = Quaternion.Euler(vectorCameraRot).eulerAngles;
         
-        cameraEulerAngles.x = Mathf.Clamp(cameraRot.eulerAngles.x, 0, 360);
+        vectorCameraRot.x = Mathf.Clamp(vectorCameraRot.x, 0, 360);
 
-        if(cameraEulerAngles.x > 60 && cameraEulerAngles.x < 150) {
-            cameraEulerAngles.x = 60;
-        } else if(cameraEulerAngles.x < 300 && cameraEulerAngles.x > 180) {
-            cameraEulerAngles.x = 300;
+        if(vectorCameraRot.x > 60 && vectorCameraRot.x < 150) {
+            vectorCameraRot.x = 60;
+        } else if(vectorCameraRot.x < 300 && vectorCameraRot.x > 180) {
+            vectorCameraRot.x = 300;
         }
 
-        primaryCamera.transform.rotation = Quaternion.Euler(cameraEulerAngles);
+        primaryCamera.transform.rotation = Quaternion.Euler(vectorCameraRot);
 
-        Quaternion playerRot = Quaternion.Slerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, right, 0)), Time.deltaTime);
+        Quaternion playerRot = Quaternion.Euler(transform.rotation.eulerAngles + new Vector3(0, right, 0));
         primaryCamera.transform.RotateAround(transform.position, Vector3.up, playerRot.eulerAngles.x);
         transform.rotation = playerRot;
     }
