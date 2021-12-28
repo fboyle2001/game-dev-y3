@@ -1953,8 +1953,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4291430656
+  m_fontColor: {r: 0, g: 0.036125597, b: 0.7924528, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -30527,8 +30527,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294911232
-  m_fontColor: {r: 0, g: 0.14509805, b: 1, a: 1}
+    rgba: 4279697152
+  m_fontColor: {r: 0, g: 1, b: 0.08776283, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -41127,7 +41127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d90922ec8679ae74f8065a69b8268664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localeManager: {fileID: 1661591617}
 --- !u!114 &1661591603
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,9 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
 
+/**
+* Used to show the FPS
+**/
 public class FPSCounter : MonoBehaviour {
     
     private TMP_Text fpsText;
@@ -15,6 +17,7 @@ public class FPSCounter : MonoBehaviour {
     }
 
     void Update() {
+        // Show the FPS this frame as well as a running average over the past averageOverFrames frames
         int currentFps = (int)(1 / Time.unscaledDeltaTime);
         frameDeltaTimes.Enqueue(Time.unscaledDeltaTime); 
 

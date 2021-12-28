@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Used to grant resources, stats, objectives and items in play testing
+**/
 public class TestingOverrides : MonoBehaviour {
 
     void Start() {
-        Invoke("Delayed", 0.2f);
+        // Invoke("Delayed", 0.2f);
     }
 
     void Delayed() {

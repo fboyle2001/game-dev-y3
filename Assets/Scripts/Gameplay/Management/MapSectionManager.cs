@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Handles revealing of map sections as story progresses
+**/
 public class MapSectionManager : MonoBehaviour {
     
     public GameObject nonPlayableLayer;
@@ -14,6 +15,8 @@ public class MapSectionManager : MonoBehaviour {
     void Start() {
         nonPlayableLayer.SetActive(true);
     }
+
+    // These just activate specific areas of the map
 
     public void EnableMountainPathSection() {
         mountainPathParent.SetActive(true);

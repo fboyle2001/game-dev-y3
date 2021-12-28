@@ -1,9 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/**
+* Handles firing and charging of weapon
+**/
 public class WeaponManager : MonoBehaviour {
 
     public GameObject weaponPanel;
@@ -55,6 +57,8 @@ public class WeaponManager : MonoBehaviour {
         if(primary) {
             OnEquipmentChange(GetComponent<PlayerInventory>());
         } else {
+            // Override for when playing as the cat
+            // They use the claw item regardless of the inventory setting
             equippedWeapon = PlayerInventory.registeredItems["claws"] as WeaponInventoryItem;
             weaponPanel.SetActive(true);
             crosshair.SetActive(false);
@@ -66,6 +70,7 @@ public class WeaponManager : MonoBehaviour {
     }
 
     private void OnEquipmentChange(PlayerInventory inventory) {
+        // Update the fire rate and weapon UI
         if(inventory.GetCurrentWeapon() == null) {
             weaponPanel.SetActive(false);
             crosshair.SetActive(false);
@@ -96,6 +101,7 @@ public class WeaponManager : MonoBehaviour {
     }
 
     private void UpdateUI() {
+        // Updates the charging UI of the weapon 
         float chargeBarWidth = Mathf.Clamp(maxWidth * timeSinceLastShot / timeBetweenShots, 0, maxWidth);
         (chargeBar.transform as RectTransform).sizeDelta = new Vector2(chargeBarWidth, (chargeBar.transform as RectTransform).sizeDelta.y);
 
@@ -116,6 +122,7 @@ public class WeaponManager : MonoBehaviour {
         List<EnemyStats> damagables = new List<EnemyStats>(); 
 
         if(equippedWeapon.itemIdentifier == "claws") {
+            // Claws are area of effect damage, ignores players
             Collider[] hitColliders = Physics.OverlapSphere(characterManager.secondary.transform.position, 5, ~(1 << 8 | 1 << 2));
 
             foreach(Collider hitCollider in hitColliders)  {
@@ -129,6 +136,7 @@ public class WeaponManager : MonoBehaviour {
             secondaryWeaponAudioSource.Stop();
             secondaryWeaponAudioSource.Play();
         } else {
+            // Raycast in the direction of the camera, take the first hit. Ignores players
             RaycastHit hit;
             bool didHit = Physics.Raycast(fireSource.transform.position, primaryCamera.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, ~(1 << 8 | 1 << 2));
             bool hitCrosshair = false;
@@ -147,11 +155,13 @@ public class WeaponManager : MonoBehaviour {
             weaponAudioSource.Play();
         }
 
+        // Apply damage to everything hit, scale by the player's damage stat
         damagables.ForEach(stats => stats.Damage(equippedWeapon.damagePerRound * playerStats.GetDamageMultiplier()));
         this.timeSinceLastShot = 0;
     }
 
     private void ChangeCrosshair(bool hit) {
+        // Change the crosshair based on if we hit an enemy
         CancelInvoke("RevertCrosshair");
         crosshair.GetComponent<Image>().sprite = hit ? hitCrosshairSprite : missCrosshairSprite;
         Invoke("RevertCrosshair", revertTime);        

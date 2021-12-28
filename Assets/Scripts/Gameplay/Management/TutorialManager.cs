@@ -1,8 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/**
+* Handles displaying tutorial information to the user
+**/
 public class TutorialManager : MonoBehaviour
 {
     
@@ -10,10 +12,7 @@ public class TutorialManager : MonoBehaviour
     public TMP_Text tutorialTitle;
     public TMP_Text tutorialMessage;
 
-    void Awake() {
-
-    }
-
+    // Queuable tutorial entry
     struct TutorialEntry {
         public readonly string title;
         public readonly string message;
@@ -56,6 +55,7 @@ public class TutorialManager : MonoBehaviour
     }
 
     void DisplayTutorial() {
+        // Very similar idea to DialogueManager
         if(tutorialQueue.Count == 0) {
             ClearTutorial();
             return;

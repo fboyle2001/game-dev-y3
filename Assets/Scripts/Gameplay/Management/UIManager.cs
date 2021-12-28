@@ -1,8 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/**
+* Makes accessing and activating UI items easier.
+* Also handles updating of health, crosshair and showing resource gains.
+**/
 public class UIManager : MonoBehaviour {
     
     [Header("Resource Gains")]
@@ -53,6 +55,7 @@ public class UIManager : MonoBehaviour {
     }
 
     void Start() {
+        // Register events to display the UI related to them
         GetComponent<CharacterManager>().RegisterActiveChangeListener(gameObject, OnActiveCharacterChange);
         GetComponent<PlayerResources>().RegisterResourceUpdateListener(OnResourceUpdate);
         GetComponent<PlayerResources>().RegisterLevelUpListener(OnLevelUp);
@@ -99,6 +102,8 @@ public class UIManager : MonoBehaviour {
         CloseAllOpenUI();
     }
 
+    // Show the resource/stat gains
+    
     private void OnGlobalStatsUpdate(PlayerStats globalStats, float maxHealthChange, float dmgChange, float regenChange, float armourChange) {
         if(maxHealthChange != 0) {
             CancelInvoke("HideMaxHealthPanel");

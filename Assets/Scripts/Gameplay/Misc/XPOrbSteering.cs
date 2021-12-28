@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Implements steering behaviour for the XP orbs that seek the player
+**/
 public class XPOrbSteering : MonoBehaviour {
 
     public AudioClip xpAbsorbedClip;
@@ -49,7 +50,7 @@ public class XPOrbSteering : MonoBehaviour {
             newVelocity = newVelocity.normalized * maxVelocity * braking;
         }
 
-        // Steering direction
+        // Steering direction debug
         // Debug.DrawRay(transform.position, newVelocity, Color.red, Time.fixedDeltaTime); 
         
         // Update velocity
@@ -57,6 +58,7 @@ public class XPOrbSteering : MonoBehaviour {
     }
 
     private void AbsorbXpOrb() {
+        // Grant the player XP when it hits them
         gameManager.GetComponent<PlayerResources>().AddExperience(xpValue);
         AudioSource.PlayClipAtPoint(xpAbsorbedClip, transform.position, 0.4f);
         GameObject.Destroy(gameObject);

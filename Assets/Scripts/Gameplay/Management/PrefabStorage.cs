@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Stores prefabs for instantiation
+**/
 public class PrefabStorage : MonoBehaviour {
     
     public GameObject xpOrb;

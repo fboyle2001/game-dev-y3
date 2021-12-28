@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CutSceneTrigger : MonoBehaviour
-{
+/**
+* Attach to an object to form a trigger that begins the specific CutScene
+**/
+public class CutSceneTrigger : MonoBehaviour {
 
     public CutScene cutScene;
 

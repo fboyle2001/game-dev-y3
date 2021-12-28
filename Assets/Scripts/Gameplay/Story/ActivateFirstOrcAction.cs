@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Trigger action that activates the first Orc to begin path finding
+**/
 public class ActivateFirstOrcAction : MonoBehaviour, ITriggerAction {
 
     public GameObject orc;

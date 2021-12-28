@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Interactable that allows the player to use the shop
+**/
 public class VendorInteractable : MonoBehaviour, IInteractable {
     
     public GameObject shopCanvas;
@@ -16,6 +17,7 @@ public class VendorInteractable : MonoBehaviour, IInteractable {
         interactionManager.SetText("int_open_shop");
         interactionManager.ShowText();
         interactionManager.RegisterInteraction("vendor", () => {
+            // Open and close the shop
             if(shopCanvas.activeSelf) {
                 shopCanvas.SetActive(false);
                 interactionManager.ShowText();

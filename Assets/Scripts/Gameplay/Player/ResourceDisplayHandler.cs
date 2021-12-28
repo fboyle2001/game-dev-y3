@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ResourceDisplayHandler : MonoBehaviour
-{
+/**
+* Automatically updates the resource display in the shop and inventory UIs
+**/
+public class ResourceDisplayHandler : MonoBehaviour {
 
     public GameObject goldText;
     public GameObject xpText;

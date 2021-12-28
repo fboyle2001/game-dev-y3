@@ -1,9 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerResources : MonoBehaviour
-{
+/**
+* Manages the players resources - XP and gold
+**/
+public class PlayerResources : MonoBehaviour {
 
     private static readonly float xpPowerScalar = Mathf.Log(2) / 5;
     private static readonly float xpScalar = 10;
@@ -33,10 +34,13 @@ public class PlayerResources : MonoBehaviour
         return Mathf.CeilToInt(Mathf.Clamp(xpScalar * Mathf.Exp(xpPowerScalar * (level - 1)), 0, 999));
     }
 
+    // Other objects can track resource gains
+
     public void RegisterResourceUpdateListener(System.Action<PlayerResources, float, int> listener) {
         resourceUpdateListeners.Add(listener);
         PropagateResourceEvent(0, 0);
     }
+
     public void RegisterLevelUpListener(System.Action<int> listener) {
         levelUpListeners.Add(listener);
     }
@@ -52,6 +56,8 @@ public class PlayerResources : MonoBehaviour
     public void AddExperience(float amount) {
         this.xp += amount; 
 
+        // If they receive enough XP to take them from level L to L + K (K >= 1) then make
+        // sure we grant them all the rewards for L + 1, L + 2, ..., L + K as well
         while(xp >= xpForNextLevel) {
             xp -= xpForNextLevel;
             GrantLevelUpReward(currentExperienceLevel);
@@ -68,6 +74,7 @@ public class PlayerResources : MonoBehaviour
     }
 
     public void AddGold(int amount) {
+        // Can't be indebted
         this.gold = Mathf.Max(this.gold + amount, 0);
         PropagateResourceEvent(0, amount);
     }
@@ -90,6 +97,7 @@ public class PlayerResources : MonoBehaviour
 
     private void GrantLevelUpReward(int levelReached) {
         // Rewards are pre-determined for the first 22 levels which seems to be max level
+        // Gives bonus stats when they level up
         switch(levelReached) {
             case 1:
                 stats.AddMaxHealthMultiplier(0.1f);

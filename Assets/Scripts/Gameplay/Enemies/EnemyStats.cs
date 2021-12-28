@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -23,8 +22,10 @@ public class EnemyStats : MonoBehaviour {
     private bool dead = false;
 
     void Awake() {
+        // Apply scaling based on game difficulty
         maxHealth *= GlobalSettings.GetEnemyHealthScalar();
         health = maxHealth;
+        // Health Bar UI 
         maxHealthBarWidth = (healthBarBackground.transform as RectTransform).rect.width;
         healthBarTransform = (healthBar.transform as RectTransform);
     }
@@ -35,6 +36,7 @@ public class EnemyStats : MonoBehaviour {
 
     void Update() {
         if(dead || regenPerSecond == 0 || health >= maxHealth) return;
+        // Heal the target if they have any regen
         Heal(regenPerSecond * Time.deltaTime);
     }
 
@@ -68,10 +70,12 @@ public class EnemyStats : MonoBehaviour {
     }
 
     public void RegisterDamageListener(System.Action<EnemyStats, float> action) {
+        // Allows other classes to receive callback events when this enemy is damaged
         damageListeners.Add(action);
     }
 
     private void Heal(float amount) {
+        // Heal this enemy, do not allow health to become negative or exceed their max health
         health = Mathf.Clamp(health + amount, 0, maxHealth);
         UpdateHealthBar();
     }
@@ -99,6 +103,7 @@ public class EnemyStats : MonoBehaviour {
     }
 
     private void UpdateHealthBar() {
+        // Updates the Health Bar UI by changing bar overlay width
         float healthPercentage = health / maxHealth;
         healthBarTransform.sizeDelta = new Vector2(healthPercentage * maxHealthBarWidth, healthBarTransform.sizeDelta.y);
         healthText.GetComponent<TMP_Text>().text = Mathf.RoundToInt(health) + " / " + Mathf.RoundToInt(maxHealth);

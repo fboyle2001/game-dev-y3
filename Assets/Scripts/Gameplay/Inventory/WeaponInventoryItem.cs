@@ -1,7 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Represents a weapon in the inventory
+* Has some extra information about the damage and fire rate
+**/
 public abstract class WeaponInventoryItem : EquippableInventoryItem {
 
     public readonly float roundsPerMinute;

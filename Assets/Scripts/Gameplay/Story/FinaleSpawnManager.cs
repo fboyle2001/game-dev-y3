@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/**
+* Handles wave spawning and tree growing for the final boss fight
+**/
 public class FinaleSpawnManager : MonoBehaviour {
 
     [Header("Finish")]
@@ -23,7 +26,6 @@ public class FinaleSpawnManager : MonoBehaviour {
 
     private GameObject gameManager;
     private DialogueManager dialogueManager;
-    private float unscaledHalfTreeHeight;
 
     void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
@@ -41,6 +43,7 @@ public class FinaleSpawnManager : MonoBehaviour {
             return;
         }
 
+        // Grow the tree slowly by scaling
         float scaleFactor = Time.deltaTime;
         tree.transform.localScale += Vector3.one * scaleFactor;
         tree.GetComponent<AudioSource>().Play();
@@ -49,6 +52,7 @@ public class FinaleSpawnManager : MonoBehaviour {
     private void OnDamageHandler(EnemyBase enemy) {
         if(!enemy.GetStats().IsDead()) return;
 
+        // Need to track if any enemies are still alive in the phases
         switch(enemy.identifier) {
             case "phase1":
                 deadPhaseOne += 1;
@@ -66,6 +70,8 @@ public class FinaleSpawnManager : MonoBehaviour {
                 return;
         }
     }
+
+    // Attempt to spawn each phase
 
     private void SpawnPhaseOne() {
         spawnerEffect.RestartEffect();
@@ -98,6 +104,7 @@ public class FinaleSpawnManager : MonoBehaviour {
         spawnerEffect.RestartEffect();
         tree.transform.localScale = new Vector3(maxScale, maxScale, maxScale);
         maxScale = 16;
+        // Ancient Orc speaks to player
         dialogueManager.QueueDialogue("speaker_ancient", "fnl_ancient_speak", 5);
         dialogueManager.QueueDialogue("speaker_you", "fnl_phase_3_2", 3);
         phaseThreeParent.SetActive(true);
@@ -105,6 +112,7 @@ public class FinaleSpawnManager : MonoBehaviour {
 
     private void TryFinish() {
         if(deadPhaseThree < 4) return;
+        // Grow tree as game ends
         tree.transform.localScale = new Vector3(maxScale, maxScale, maxScale);
         maxScale = 24;
         dialogueManager.QueueDialogue("speaker_you", "fnl_celebrate", 4);
@@ -113,6 +121,7 @@ public class FinaleSpawnManager : MonoBehaviour {
     }
 
     private void EndGame() {
+        // Player has beaten the game so show the end UI!
         playableParent.SetActive(false);
         finishCamera.SetActive(true);
         winUI.SetActive(true);

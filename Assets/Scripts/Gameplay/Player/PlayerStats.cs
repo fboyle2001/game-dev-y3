@@ -1,9 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
-{
+/**
+* Handles the global stats for the player that apply to both characters
+**/
+public class PlayerStats : MonoBehaviour {
     
     private List<System.Action<PlayerStats, float, float, float, float>> statChangeListeners = new List<System.Action<PlayerStats, float, float, float, float>>();
 

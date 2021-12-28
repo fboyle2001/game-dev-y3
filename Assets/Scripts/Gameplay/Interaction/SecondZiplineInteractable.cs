@@ -1,7 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* The returning zip line journey from the seeds
+* See FirstZiplineInteractable for more details
+**/
 public class SecondZiplineInteractable : MonoBehaviour, IInteractable {
     
     public GameObject npc;
@@ -35,7 +37,7 @@ public class SecondZiplineInteractable : MonoBehaviour, IInteractable {
     private void EnableZipline() {
         target = endZipline.transform.position - heightOffset * Vector3.up;
         Vector3 travelDirection = (target - transform.position).normalized;
-        primary.transform.position = transform.position + travelDirection * 2;// - Vector3.up * heightOffset;
+        primary.transform.position = transform.position + travelDirection * 2;
 
         enableZipline = true;
         primary.GetComponent<Rigidbody>().isKinematic = true;
@@ -44,16 +46,21 @@ public class SecondZiplineInteractable : MonoBehaviour, IInteractable {
 
     private void DisableZipline() {
         enableZipline = false;
+
+        // Stop the wind, enable physics
         GetComponent<AudioSource>().Stop();
         primary.GetComponent<Rigidbody>().isKinematic = false;
+        // Put on the mountain, move the NPC to the forest path
         primary.transform.position = new Vector3(481.66f, 49.92f, 711.97f);
         npc.transform.position = new Vector3(651.77f, 15.04f, 629.11f);
         npc.transform.rotation = Quaternion.Euler(new Vector3(2.964f, -137.6f, -1.56f));
+        // Re-enable the secondary character
         characterManager.ShowSecondary();
         characterManager.SetSwappingAvailable(true);
     }
 
     void FixedUpdate() {
+        // See FirstZiplineInteractable.FixedUpdate for more details
         if(!enableZipline) return;
 
         Vector3 difference = target - primary.transform.position;
@@ -76,6 +83,7 @@ public class SecondZiplineInteractable : MonoBehaviour, IInteractable {
     }
 
     public void OnInteractPossible() {
+        // Only usable if they are at the right place in the story
         if(objectiveManager.HasObjective("returnToCamp2") && !used) {
             interactionManager.SetText("int_use_zipline");
             interactionManager.ShowText();

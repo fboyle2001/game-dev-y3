@@ -1,7 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Represents any item in the inventory that can be consumed
+* e.g. potions
+**/
 public abstract class ConsumableInventoryItem : InventoryItem {
 
     public ConsumableInventoryItem(string itemIdentifier, string itemKey, int goldValue, Sprite itemImage)

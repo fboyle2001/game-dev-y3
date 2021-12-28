@@ -1,8 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/**
+* Used when the character is not the leader but is following
+* the active character instead
+**/
 public class FollowerAgent : MonoBehaviour {
 
     public GameObject target;
@@ -21,6 +23,8 @@ public class FollowerAgent : MonoBehaviour {
     void FixedUpdate() {
         Vector3 targetDifference = target.transform.position - transform.position;
 
+        // If we are too far away then teleport nearer to the leader
+        // prevents one getting lost
         if(targetDifference.magnitude > teleportDistance) {
             MoveTowardsTarget();
             TeleportNearTarget();
@@ -28,6 +32,7 @@ public class FollowerAgent : MonoBehaviour {
             MoveTowardsTarget();
         }
 
+        // Play footstep audio
         float horizontalVelocity = Mathf.Sqrt(Mathf.Pow(agent.velocity.x, 2) + Mathf.Pow(agent.velocity.z, 2));
 
         if(horizontalVelocity > 0.2f) {
@@ -39,20 +44,23 @@ public class FollowerAgent : MonoBehaviour {
             audioSource.Stop();
         }
 
+        // Enable the walking animation
         animator.SetFloat("speed", horizontalVelocity);
     }
 
     private void TeleportNearTarget() {
-        Vector3[] directions = new Vector3[]{Vector3.back, Vector3.left, Vector3.right};
+        // For the teleportation try a few areas around the leader to see if we can teleport
+        Vector3[] directions = new Vector3[]{ Vector3.back, Vector3.left, Vector3.right };
 
         foreach(Vector3 direction in directions) {
+            // Teleport next to the leader
             Vector3 teleportTarget = target.transform.position - 4 * direction + 2 * Vector3.up;
             Collider[] hits = Physics.OverlapSphere(teleportTarget, 1);
             bool safe = true;
 
+            // Check the location is safe i.e. nothing else is occupying the spot
             foreach(Collider c in hits) {
                 if(c.name != "Terrain" && c.name != "Player" && c.name != "Pipe" && c.name != "Floor Smooth 1" && c.name != "Floor Smooth 2") {
-                    Debug.Log("[DIR " + direction + "] unable to teleport due to " + c.name);
                     safe = false;
                 }
             }
@@ -65,6 +73,7 @@ public class FollowerAgent : MonoBehaviour {
     }
 
     private void MoveTowardsTarget() {
+        // Move using the NavMeshAgent, smoothly face the leader
         Vector3 targetPosition = target.transform.position;
         agent.SetDestination(targetPosition);
         Quaternion lookAt = Quaternion.LookRotation(targetPosition - transform.position);

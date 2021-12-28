@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class PurchaseSlotManager : MonoBehaviour
-{
+/**
+* Represents a slot in the shop
+**/
+public class PurchaseSlotManager : MonoBehaviour {
 
     public string itemIdentifier;
     public float markupScalar = 1;
@@ -34,6 +34,7 @@ public class PurchaseSlotManager : MonoBehaviour
     }
 
     void OnEnable() {
+        // Register handlers
         playerResources.RegisterResourceUpdateListener((resources, discard_a, discard_b) => {
             CheckIfPurchasable();
         });
@@ -70,6 +71,7 @@ public class PurchaseSlotManager : MonoBehaviour
 
     private bool CheckIfPurchasable() {
         if(!ready) return false;
+
         // Purchasable if they have enough gold and enough space in their inventory
         // and they don't have it equipped
 
@@ -103,6 +105,8 @@ public class PurchaseSlotManager : MonoBehaviour
             audioSource.PlayOneShot(notAllowedClip);
             return;
         }
+        
+        // Buy the item and add it to their inventory
 
         playerResources.AddGold(-goldCost);
         playerInventory.AddItemToInventory(heldItem.itemIdentifier, 1);

@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class SettingsScreen : MonoBehaviour
-{
+/**
+* UI actions for the settings screen
+**/
+public class SettingsScreen : MonoBehaviour {
 
     public GameObject mainPanel;
     public TMP_Dropdown languageDropdown;
@@ -28,6 +28,7 @@ public class SettingsScreen : MonoBehaviour
     }
 
     void OnEnable() {
+        // Get the current selected language
         int languageValue = 0;
         string code = localeManager.GetCurrentTable().LocaleIdentifier.CultureInfo.IetfLanguageTag;
 
@@ -45,6 +46,7 @@ public class SettingsScreen : MonoBehaviour
 
         languageDropdown.value = languageValue;
 
+        // Display current sensitivity
         horizontalValue.text = GlobalSettings.horizontalMouseSensitivity.ToString();
         verticalValue.text = GlobalSettings.verticalMouseSensitivity.ToString();
     }
@@ -89,6 +91,7 @@ public class SettingsScreen : MonoBehaviour
     }
 
     private void ChangeHorizontalSens(int amount) {
+        // Handles a weird issue where the UI wants to double click on the main menu
         if(horzChanges % 2 != 0) {
             horzChanges++;
             return;

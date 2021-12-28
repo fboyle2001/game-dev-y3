@@ -1,8 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/**
+* Utilises Nav Mesh Agents to path find towards the player while
+* also managing the rotation of the enemy and playing audio
+* and animation as they move
+**/
 public class AnimatedEnemyMovement : MonoBehaviour {
 
     public GameObject cornerA;
@@ -35,6 +38,8 @@ public class AnimatedEnemyMovement : MonoBehaviour {
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
 
+        // These values form a bounding rectangle on the area that the enemy 
+        // seek the target within
         minX = Mathf.Min(cornerA.transform.position.x, cornerB.transform.position.x);
         maxX = Mathf.Max(cornerA.transform.position.x, cornerB.transform.position.x);
         minZ = Mathf.Min(cornerA.transform.position.z, cornerB.transform.position.z);
@@ -42,12 +47,20 @@ public class AnimatedEnemyMovement : MonoBehaviour {
     }
 
     void FixedUpdate() {
+        // Want to slow down as we approach the target so scale velocity by speedFactor
         agent.velocity = agent.velocity * speedFactor;
+        // The animation controllers use the speed to determine the state of animation
         animator.SetFloat(animatorSpeedName, agent.velocity.magnitude);
+
         if(!active) return;
-        timeSinceLastWalkPlayed += Time.fixedDeltaTime;
+        
+        // Moves the game object towards the target
         MoveTowardsTarget();
 
+        timeSinceLastWalkPlayed += Time.fixedDeltaTime;
+
+        // Don't want to spam play the audio so play it every timeSinceLastWalkPlayed seconds 
+        // if they are moving fast enough
         if(timeSinceLastWalkPlayed >= timeBetweenWalkingClip && agent.velocity.magnitude > minVelocityForWalkingClip) {
             timeSinceLastWalkPlayed = 0;
             audioSource.PlayOneShot(walkingClip, 0.4f);
@@ -57,6 +70,8 @@ public class AnimatedEnemyMovement : MonoBehaviour {
     private void MoveTowardsTarget() {
         Vector3 targetPosition = target.transform.position;
 
+        // If the target is outside the bounding rectangle return to the
+        // home position instead
         if(targetPosition.x > maxX || targetPosition.x < minX) {
             agent.SetDestination(home.transform.position);
             currentAim = home;
@@ -69,9 +84,11 @@ public class AnimatedEnemyMovement : MonoBehaviour {
             return;
         }
 
+        // Path find to the target position while smoothly rotating to face the position
         currentAim = target;
         agent.SetDestination(targetPosition);
         Quaternion lookAt = Quaternion.LookRotation(targetPosition - transform.position);
+        // Slerp handles the smoothing of the rotation
         transform.rotation = Quaternion.Slerp(transform.rotation, lookAt, 10 * Time.fixedDeltaTime);
     }
 

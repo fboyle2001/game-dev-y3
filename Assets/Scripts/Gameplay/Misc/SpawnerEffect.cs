@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /**
 * This code is heavily based on the Effects Examples from Unity
 * Specifically the SpawnEffect.cs script has been altered to create this class
+* Plays the effect seen in the boss fight on the sphere when enemies are spawning
 **/
 public class SpawnerEffect : MonoBehaviour
 {

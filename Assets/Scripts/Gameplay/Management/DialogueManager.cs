@@ -1,10 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class DialogueManager : MonoBehaviour
-{
+/**
+* Handles queuing of dialogue and audio chatter
+**/
+public class DialogueManager : MonoBehaviour {
 
     public AudioClip npcVoice;
     public AudioClip playerVoice;
@@ -14,6 +15,7 @@ public class DialogueManager : MonoBehaviour
 
     private AudioSource audioSource;
 
+    // Defines a queuable dialogue entry enclosed with all required information
     struct DialogueEntry {
         public readonly string speakerKey;
         public readonly string textKey;
@@ -43,6 +45,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     public void QueueDialogue(string speakerKey, string textKey, float durationInSeconds, System.Action startCallback = null, string voice = null) {
+        // Queue a piece of dialogue, play it immediately if none is playing
         dialogueQueue.Enqueue(new DialogueEntry(speakerKey, textKey, durationInSeconds, startCallback, voice));
 
         if(!activeDialogue) {
@@ -50,6 +53,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    // Reset the dialogue queue and cancel any ongoing or outstanding
     public void ClearDialogue() {
         activeDialogue = false;
         dialogueQueue = new Queue<DialogueEntry>();
@@ -59,6 +63,7 @@ public class DialogueManager : MonoBehaviour
         audioSource.Stop();
     }
 
+    // Display the dialogue UI with localised strings
     void DisplayDialogue(string speakerKey, string textKey) {
         dialoguePanel.SetActive(true);
         speakerNameText.text = GetComponent<LocaleManager>().GetString(speakerKey);
@@ -71,6 +76,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
         
+        // Get the next dialogue entry to play
         activeDialogue = true;
         DialogueEntry nextEntry = dialogueQueue.Dequeue();
 
@@ -94,6 +100,7 @@ public class DialogueManager : MonoBehaviour
             audioSource.Play();        
         }
 
+        // Display dialogue UI
         DisplayDialogue(nextEntry.speakerKey, nextEntry.textKey);
 
         // Display the next text after the delay 

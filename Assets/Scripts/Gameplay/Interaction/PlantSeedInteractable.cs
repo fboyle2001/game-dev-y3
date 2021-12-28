@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* This interactable is used to start the final boss fight
+**/
 public class PlantSeedInteractable : MonoBehaviour, IInteractable
 {
 
@@ -25,6 +26,7 @@ public class PlantSeedInteractable : MonoBehaviour, IInteractable
     }
 
     public void OnInteractPossible() {
+        // Only triggerable if at the correct spot in the story
         if(objectiveManager.HasObjective("plantSeeds") && !registered) {
             registered = true;
             interactionManager.SetText("int_plant_seeds");
@@ -35,11 +37,14 @@ public class PlantSeedInteractable : MonoBehaviour, IInteractable
                 gameObject.SetActive(false);
                 interactionManager.HideText();
                 objectiveManager.CompleteObjective("plantSeeds");
+
+                // Enable the tree and spawner
                 gameManager.GetComponent<MapSectionManager>().EnableSeedParent();
 
                 dialogueManager.QueueDialogue("speaker_you", "int_seeds_initial", 3);
                 dialogueManager.QueueDialogue("speaker_you", "int_seeds_second", 5, () => {
                     objectiveManager.AddObjective("finish", "obj_defeat_ancient_orc", new ObjectiveManager.RewardEntry(7500, 150));
+                    // Start the boss fight
                     finaleSpawnManager.SetActive(true);
                 });
             });

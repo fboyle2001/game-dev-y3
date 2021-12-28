@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Handles the cut scene when you find the seeds
+**/
 public class SeedsCutScene : CutScene {
 
     public GameObject cutSceneCamera;

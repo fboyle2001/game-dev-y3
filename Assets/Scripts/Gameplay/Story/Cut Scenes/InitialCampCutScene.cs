@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Handles the first cut scene when you discover the camp
+**/
 public class InitialCampCutScene : CutScene {
 
     public GameObject npc;

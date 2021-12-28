@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Handles the cut scene when you come back from the zip line
+**/
 public class RedirectCutScene : CutScene {
 
     public GameObject npc;

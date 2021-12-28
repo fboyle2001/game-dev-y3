@@ -1,11 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.AI;
 
-public class CharacterManager : MonoBehaviour
-{
+/**
+* Handles everything related to the two characters and swapping between them
+**/
+public class CharacterManager : MonoBehaviour {
 
     public GameObject primary;
     public GameObject primaryCamera;
@@ -16,25 +16,31 @@ public class CharacterManager : MonoBehaviour
     private bool primaryActive = true;
     private bool swappingAvailable = true;
 
+    // Allows listening to when the active character changes
     private Dictionary<int, System.Action<GameObject>> activeChangeListeners = new Dictionary<int, System.Action<GameObject>>();
 
     void OnEnable() {
-        // Spawn in, give them their stats
+        // Spawn in: give them their stats according to the difficulty 
         GlobalSettings.GiveBonusStats(GetComponent<PlayerStats>());
     }
 
     public void UnlockSecondary() {
+        // Allow the player to use the cat
         secondaryUnlocked = true;
 
+        // Sort out some components so that they are in the correct state
         secondary.GetComponent<NavMeshObstacle>().enabled = false;
         secondary.GetComponent<NavMeshAgent>().enabled = true;
         secondary.GetComponent<FollowerAgent>().enabled = true;
         secondary.GetComponent<ICharacterActions>().StopMovement();
         secondary.GetComponent<ICharacterActions>().SetFrozen(true);
 
+        // Display the secondary health in the top left with the primary
         GetComponent<UIManager>().DisplaySecondaryPanel(true);
         
+        // Update the inventory stat display if it is open
         GameObject statDisplay = GameObject.FindGameObjectWithTag("Stat Display");
+        
         if(statDisplay != null && statDisplay.activeSelf) {
             statDisplay.GetComponent<StatDisplayHandler>().UpdateStatDisplayGM();
         }
@@ -57,6 +63,8 @@ public class CharacterManager : MonoBehaviour
     }
 
     public void SetFrozen(bool frozen) {
+        // Prevent any player input for specific actions
+        // mainly any that allow them to move or attack for cut scenes
         if(frozen) {
             if(secondaryUnlocked && !IsPrimaryActive()) {
                 secondary.GetComponent<ICharacterActions>().StopMovement();
@@ -78,6 +86,8 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
+    // Hide, show and enable/disable character swapping
+
     public void HideSecondary() {
         secondary.SetActive(false);
     }
@@ -91,8 +101,16 @@ public class CharacterManager : MonoBehaviour
     }
 
     public void SwapActive() {
+        // Switch character
+
         if(!secondaryUnlocked) return;
         if(!swappingAvailable) return;
+
+        // Both do the same but apply the actions to the opposite character
+        // these allow the follower to be controlled by the path finder and prevents
+        // them from receiving input intended for the leader
+        // And does the opposite to the new leader so that they receive input etc
+        // Also fixes some camera issues when swapping between
 
         if(primaryActive) {
             primaryCamera.SetActive(false);
@@ -149,6 +167,8 @@ public class CharacterManager : MonoBehaviour
         primaryActive = !primaryActive;
         PropagateActiveChangeEvent(GetActiveCharacter());
     }
+
+    // Allows other objects to track when the active character changes
 
     public void RegisterActiveChangeListener(GameObject owner, System.Action<GameObject> action) {
         if(activeChangeListeners.ContainsKey(owner.GetInstanceID())) {

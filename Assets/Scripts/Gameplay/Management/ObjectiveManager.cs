@@ -1,8 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+/**
+* Handles all objectives in the story and grants rewards to the player
+**/
 public class ObjectiveManager : MonoBehaviour
 {
 
@@ -11,6 +13,7 @@ public class ObjectiveManager : MonoBehaviour
     private List<string> completedObjectives = new List<string>();
     private PlayerResources playerResources;
 
+    // Encapsulates the rewards granted to the user for completing an objective
     public struct RewardEntry {
         public readonly int gold;
         public readonly float xp;
@@ -21,6 +24,7 @@ public class ObjectiveManager : MonoBehaviour
         }
     }
 
+    // Encapsulates an objective
     struct ObjectiveEntry {
         public readonly string identifier;
         public readonly string titleKey;
@@ -54,6 +58,7 @@ public class ObjectiveManager : MonoBehaviour
     }
 
     public bool HasAtLeastOneObjective(string[] potentialObjectivesIds) {
+        // Checks if the player has at least one of the objectives in the array
         foreach (string objectiveId in potentialObjectivesIds) {
             if(this.HasObjective(objectiveId)) {
                 return true;
@@ -72,6 +77,7 @@ public class ObjectiveManager : MonoBehaviour
     }
 
     void UpdateObjectiveDisplay() {
+        // UI appears in the top right
         string text = "";
 
         foreach (ObjectiveEntry entry in objectives.Values) {
@@ -91,6 +97,7 @@ public class ObjectiveManager : MonoBehaviour
     }
 
     public void CompleteObjective(string idenitifer, float rewardScalar = 1) {
+        // Mark the objective complete and grant the rewards
         ObjectiveEntry objective;
         bool found = objectives.TryGetValue(idenitifer, out objective);
 
@@ -102,9 +109,9 @@ public class ObjectiveManager : MonoBehaviour
         completedObjectives.Add(idenitifer);
         UpdateObjectiveDisplay();
 
-        // TODO: Give rewards
         RewardEntry reward = objective.reward;
 
+        // Scale rewards according to difficulty
         playerResources.AddExperience(reward.xp * rewardScalar * GlobalSettings.GetRewardScalar());
         playerResources.AddGold(Mathf.RoundToInt(reward.gold * rewardScalar * GlobalSettings.GetRewardScalar()));
     }

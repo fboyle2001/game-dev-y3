@@ -1,9 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterStats : MonoBehaviour
-{
+/**
+* Stats specific to each character rather than globally to the player
+* e.g. current health
+**/
+public class CharacterStats : MonoBehaviour {
 
     public float maxHealth;
     public AudioClip damageClip;
@@ -24,6 +26,7 @@ public class CharacterStats : MonoBehaviour
     }
 
     void Start() {
+        // Need to scale max health as we go along
         stats.RegisterStatChangeListener(OnMaxHealthMultiplierChange);
     }
 
@@ -42,6 +45,8 @@ public class CharacterStats : MonoBehaviour
     }
 
     void Update() {
+        // Apply damage over time effect
+
         if(currentDOTEffect != 0) {
             appliedDOTTime += Time.deltaTime;
             float time = Time.deltaTime;
@@ -59,10 +64,14 @@ public class CharacterStats : MonoBehaviour
             }
         }
 
+        // Regeneration of health smoothly over time
+
         if(currentHealth < maxHealth && stats.GetRegenPerSecond() > 0) {
             Heal(stats.GetRegenPerSecond() * Time.deltaTime);
         }
     }
+
+    // Allow other objects to track the health of the characters
 
     public void RegisterHealthUpdateListener(System.Action<CharacterStats, float> listener) {
         healthUpdateListeners.Add(listener);
@@ -70,8 +79,9 @@ public class CharacterStats : MonoBehaviour
     }
 
     public void ApplyDamage(float damage) {
-        // Scale the damage based on armour, damage reduction = 1 / (0.04 * armour + 1)
-        // e.g. 100 damage with 0 armour = 100 health taken, 100 damage with 100 armour = 20 health taken
+        // Non-linear scale for the damage taken based on armour, damage reduction = 1 / (0.04 * armour + 1)
+        // e.g. 100 damage with 0 armour = 100 health taken, 100 damage with 25 armour = 50 health taken, 100 damage with 100 armour = 20 health taken
+        // essentially more and more armour is needed to have the same effect as low armour at the start
         float realDamage = damage / (0.04f * stats.GetArmour() + 1);
         currentHealth = Mathf.Clamp(currentHealth - realDamage, 0, maxHealth);
         AudioSource.PlayClipAtPoint(damageClip, transform.position);
@@ -79,11 +89,13 @@ public class CharacterStats : MonoBehaviour
     }
 
     public void Heal(float amount) {
+        // Heal a fixed amount
         currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
         PropagateHealthEvent(amount);
     }
 
     public void HealAsPercent(float percentage) {
+        // Heal as a percentage of max health
         Heal(maxHealth * Mathf.Clamp01(percentage));
     }
 

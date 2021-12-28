@@ -1,7 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Shows the text to interact when they are in range of a usable
+* object that supports interaction (i.e. implements IInteractable)
+* This is attached to the primary character
+**/
 public class ShowInteractText : MonoBehaviour {
 
     private CharacterManager characterManager;

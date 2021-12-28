@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Tracks some story triggers
+**/
 public class CompletionManager : MonoBehaviour {
     
     private DialogueManager dialogueManager;
@@ -19,6 +20,7 @@ public class CompletionManager : MonoBehaviour {
     private void OnDamageHandler(EnemyBase enemy) {
         if(!enemy.GetStats().IsDead()) return;
 
+        // Looks for specific enemy identifiers to advance the story
         switch(enemy.identifier) {
             case "firstOrc":
                 objectiveManager.CompleteObjective("findFirstOrcCave");

@@ -1,10 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+* Represents and manages the players' inventory
+**/
 public class PlayerInventory : MonoBehaviour {
 
+    // All items need to be registered against their identifier for ease of access
     public static Dictionary<string, InventoryItem> registeredItems = new Dictionary<string, InventoryItem>();
 
     public static void RegisterItem(InventoryItem item) {
@@ -28,7 +31,7 @@ public class PlayerInventory : MonoBehaviour {
     private List<System.Action<PlayerInventory>> itemChangeListeners = new List<System.Action<PlayerInventory>>();
 
     private void RegisterItems() {
-        // Load sprite sheet
+        // Load sprite sheet and store them so they can be accessed by their names
         Sprite[] itemSprites = Resources.LoadAll<Sprite>("Sprites/item_sprite_sheet");
         Dictionary<string, Sprite> spriteMap = new Dictionary<string, Sprite>();
 
@@ -36,6 +39,7 @@ public class PlayerInventory : MonoBehaviour {
             spriteMap.Add(sprite.name, sprite);
         }
         
+        // Register all of the items along with their sprite
         RegisterItem(new ClawsItem(spriteMap["claws"]));
         RegisterItem(new CraftedBowWeapon(spriteMap["craftedBow"]));
         RegisterItem(new CrystalArmour(spriteMap["crystalArmour"]));
@@ -54,6 +58,7 @@ public class PlayerInventory : MonoBehaviour {
 
     void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
+        // Register all items once
         RegisterItems();
     }
 
@@ -65,11 +70,13 @@ public class PlayerInventory : MonoBehaviour {
         emptyText.SetActive(true);
     }
 
+    // Other objects can list to equipping of items
     public void RegisterEquipUpdateListener(System.Action<PlayerInventory> action) {
         equipUpdateListeners.Add(action);
         PropagateEquipEvent();
     }
 
+    // Other objects can list to when items are gained or lost
     public void RegisterItemChangeListener(System.Action<PlayerInventory> action) {
         itemChangeListeners.Add(action);
         PropagateItemChangeEvent();
@@ -92,6 +99,7 @@ public class PlayerInventory : MonoBehaviour {
                 
                 if(firstEmptySlot == null) {
                     firstEmptySlot = slot;
+                    // don't break here as we want to check if they have the item in another slot
                 }
             }
         }
@@ -100,7 +108,7 @@ public class PlayerInventory : MonoBehaviour {
         InventoryItem identifiedItem = registeredItems[itemIdentifier];
 
         if(occupiedSlot == null && inventoryFull) {
-            // TODO: Let them know their inventory is full and pay them for the excess
+            // Let them know their inventory is full and pay them for the excess
             int goldPayout = quantity * identifiedItem.goldValue;
             gameManager.GetComponent<PlayerResources>().AddGold(goldPayout);
         } else if (occupiedSlot != null) {
@@ -133,11 +141,13 @@ public class PlayerInventory : MonoBehaviour {
             }
         }
 
+        // Display some text if the inventory is empty
         if(empty) {
             emptyText.SetActive(true);
         }
     }
 
+    // Find the item slot occupied by the item with itemIdentifier
     public InventorySlot GetItemSlot(string itemIdentifier) {
         foreach(InventorySlot slot in inventorySlots) {
             if(slot.HasOccupyingItem()) {
@@ -150,6 +160,7 @@ public class PlayerInventory : MonoBehaviour {
         return null;
     }
 
+    // Check if the inventory has space for new item types
     public bool AcceptingNewItemTypes() {
         foreach(InventorySlot slot in inventorySlots) {
             if(!slot.HasOccupyingItem()) {
@@ -160,6 +171,7 @@ public class PlayerInventory : MonoBehaviour {
         return false;
     }
 
+    // Check if the inventory has space for quantity amount of this specific type
     public bool HasSpace(string itemIdentifier, int quantity) {
         InventoryItem item = registeredItems[itemIdentifier];
 
@@ -177,21 +189,28 @@ public class PlayerInventory : MonoBehaviour {
             return true;
         }
 
+        // We didn't already have this item so it will need to occupy a new slot
+        // check if this is an option
         return AcceptingNewItemTypes();
     }
 
     public void EquipItem(EquippableInventoryItem item, string slot) {
+        // Equip an item to the correct slot
         switch(slot) {
             case "weapon":
                 if(currentWeapon != null) {
+                    // Remove any stats and effects granted by this item
                     currentWeapon.ReverseEffect(gameManager);
                 }
 
                 weaponSlot.GetComponent<Image>().sprite = item.itemImage;
+                // Cast to a weapon item, should be fine as we registered all items statically
+                // rather than on the fly
                 currentWeapon = item as WeaponInventoryItem;
                 break;
             case "armour":
                 if(currentArmour != null) {
+                    // Remove any stats and effects granted by this item
                     currentArmour.ReverseEffect(gameManager);
                 }
 
@@ -200,6 +219,7 @@ public class PlayerInventory : MonoBehaviour {
                 break;
             case "ring":
                 if(currentRing != null) {
+                    // Remove any stats and effects granted by this item
                     currentRing.ReverseEffect(gameManager);
                 }
 
@@ -213,6 +233,7 @@ public class PlayerInventory : MonoBehaviour {
         PropagateEquipEvent();
     }
 
+    // Check if they have this item already equipped
     public bool IsEquipped(string itemIdentifier) {
         if(currentWeapon != null && currentWeapon.itemIdentifier == itemIdentifier) {
             return true;

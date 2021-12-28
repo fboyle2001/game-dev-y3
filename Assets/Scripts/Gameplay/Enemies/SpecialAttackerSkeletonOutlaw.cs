@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpecialAttackerSkeletonOutlaw : EnemyBase {
@@ -29,12 +27,16 @@ public class SpecialAttackerSkeletonOutlaw : EnemyBase {
 
     void FixedUpdate() {
         if(!active) return;
+        // This enemy is slightly different in that it is not attacking the player
+        // rather it is attacking the zip line
         GetComponent<AnimatedEnemyMovement>().SetTarget(specialTarget);
 
         Vector3 targetDirection = (specialTarget.transform.position - transform.position);
         float distanceToTarget = targetDirection.magnitude;
 
         timeSinceLastAttack += Time.fixedDeltaTime;
+
+        // Everything else is the same as the SkeletonOutlaw class
 
         if(distanceToTarget <= attackRange) {
             if(distanceToTarget <= targetGap) {

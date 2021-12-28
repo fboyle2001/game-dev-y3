@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class MessageTrigger : MonoBehaviour
-{
+/**
+* Displays text when walking through a specific trigger with specific objectives
+**/
+public class MessageTrigger : MonoBehaviour {
 
     public string speakerKey;
     public string messageKey;
@@ -27,9 +27,11 @@ public class MessageTrigger : MonoBehaviour
     }
 
     void FixedUpdate() {
+        // Limited number of times it can be triggered
         if(canTrigger || triggeredCount >= maxTriggerCount) return;
         timeSinceLastTrigger += Time.fixedDeltaTime;
 
+        // Don't show everytime we go through use a timeout delay
         if(timeSinceLastTrigger > delayBetweenTriggers) {
             canTrigger = true;
         }
@@ -38,6 +40,7 @@ public class MessageTrigger : MonoBehaviour
     void OnTriggerEnter(Collider collider) {
         if(!canTrigger) return;
 
+        // Trigger if possible and meets conditions
         if(collider.gameObject.tag == triggerTag && objectiveManager.HasAtLeastOneObjective(activeOnObjectiveIds)) {
             canTrigger = false;
             triggeredCount += 1;

@@ -1,7 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Applies user input actions to the secondary character
+* e.g. movement, attacking, camera rotation
+* Refer to PrimaryCharacterActions for more information about each method's implementation
+**/
 public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
     
     public float forceScalar = 1500;
@@ -33,6 +36,8 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     void FixedUpdate() {
+        // See PrimaryCharacterActions.FixedUpdate for details
+
         if(frozen) {
             rb.velocity = Vector3.zero;
             animator.SetFloat("speed", 0f);
@@ -64,6 +69,7 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     void Update() {
+        // See PrimaryCharacterActions.Update for details
         if(frozen) return;
         if(attacking) {
             weaponManager.FireWeapon();
@@ -71,11 +77,13 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     void LateUpdate() {
+        // See PrimaryCharacterActions.LateUpdate for details
         if(frozen) return;
         LookAround();
     }
 
     private void Move() {
+        // See PrimaryCharacterActions.Move for details
         float scalar = forceScalar;
         float maxVelocity = maxWalkVelocity;
 
@@ -85,12 +93,9 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
         }
 
         Vector3 force = transform.TransformVector(new Vector3(movementDirection.x, 0, movementDirection.y) * scalar);
-        // bool moving = false;
-        // bool resisted = false;
 
         if(movementDirection.x != 0 || movementDirection.y != 0) {
             rb.AddForce(force);
-            // moving = true;
         }
 
         float velocitySquareDiff = rb.velocity.sqrMagnitude - maxVelocity * maxVelocity;
@@ -98,11 +103,7 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
         if(velocitySquareDiff > 0) {
             Vector3 resistance = transform.TransformVector(new Vector3(movementDirection.x, 0, movementDirection.y)) * scalar * -0.03f * velocitySquareDiff;
             rb.AddForce(resistance);
-            // resisted = true;
-        }
-
-        // Debug.Log("Applied Force: " + force);
-        // Debug.Log("Velocity: " + rb.velocity + " m/s using applied force of " + force.magnitude + " N (sprinting: " + sprinting + ", moved: " + moving + ", resisted: " + resisted + ")");   
+        }   
     }
 
     public void StartSprinting() {
@@ -123,10 +124,9 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     private void LookAround() {
+        // See PrimaryCharacterActions.LookAround for details
         float right = lookDirection.x * GlobalSettings.horizontalMouseSensitivity * mouseSpeed;
         float up = -lookDirection.y * GlobalSettings.verticalMouseSensitivity * mouseSpeed;
-
-        // Debug.Log("Mouse Up: " + up + ", Mouse Right: " + right);
         
         Vector3 vectorCameraRot = primaryCamera.transform.rotation.eulerAngles + new Vector3(up, 0, 0);
         Quaternion cameraRot = Quaternion.Slerp(primaryCamera.transform.rotation, Quaternion.Euler(vectorCameraRot), Time.deltaTime);
@@ -165,6 +165,7 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
     }
 
     public void Interact() {
+        // Secondary cannot interact so do nothing if they try
         return;
     }
 

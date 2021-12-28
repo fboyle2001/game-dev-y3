@@ -1,7 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Handles spawning in and falling down the mountain
+* Special cut scene doesn't extend CutScene
+**/
 public class SpawnInCutScene : MonoBehaviour {
 
     public GameObject realPlayer;
@@ -26,6 +28,7 @@ public class SpawnInCutScene : MonoBehaviour {
     }
 
     void Start() {
+        // Make it bright
         daylightManager.SetLightIntensity(1);
         realPlayer.SetActive(true);
         realCamera.SetActive(false);
@@ -39,6 +42,7 @@ public class SpawnInCutScene : MonoBehaviour {
     void FixedUpdate() {
         if(scriptFrozen) return;
 
+        // Cut scene ends when they have been moving slowly for 3 consecutive seconds
         if(lastVelocityMagnitude <= 3) {
             timeUnder += Time.fixedDeltaTime;
         } else {
@@ -53,8 +57,8 @@ public class SpawnInCutScene : MonoBehaviour {
             realCamera.GetComponent<Camera>().clearFlags = CameraClearFlags.SolidColor;
             realCamera.GetComponent<Camera>().backgroundColor = Color.black;
 
-            // Darken time
-            daylightManager.SetLightIntensity(0);
+            // Darken world
+            daylightManager.SetLightIntensity(0.2f);
 
             // Move the character
             realPlayer.transform.position = new Vector3(gameObject.transform.position.x, 16, gameObject.transform.position.z);

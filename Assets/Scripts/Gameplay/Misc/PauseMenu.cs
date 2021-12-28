@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
+/**
+* Events for the pause menu UI
+**/
 public class PauseMenu : MonoBehaviour {
     
     public TMP_Dropdown languageDropdown;
@@ -23,7 +24,10 @@ public class PauseMenu : MonoBehaviour {
     }
 
     void OnEnable() {
+        // When the menu opens freeze Time.deltaTime and Time.fixedDeltaTime to simulate pausing
         Time.timeScale = 0;
+
+        // Find the current locale for the dropdown
         int languageValue = 0;
         string code = localeManager.GetCurrentTable().LocaleIdentifier.CultureInfo.IetfLanguageTag;
 
@@ -46,6 +50,7 @@ public class PauseMenu : MonoBehaviour {
     }
 
     void OnDisable() {
+        // Go back to normal time
         Time.timeScale = 1;
     }
 
@@ -54,6 +59,7 @@ public class PauseMenu : MonoBehaviour {
     }
 
     public void OnLanguageChange(int value) {
+        // Change the locale
         switch(value) {
             case 0:
                 localeManager.ChangeLocale("en-GB");
@@ -74,6 +80,8 @@ public class PauseMenu : MonoBehaviour {
     public void Quit() {
         Application.Quit();
     }
+
+    // Change the sensitivity
 
     public void IncreaseHS() {
         ChangeHorizontalSens(1);

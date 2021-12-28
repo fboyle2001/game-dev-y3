@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Handles cut scene when you return to the camp with your cat
+**/
 public class TrustedCutScene : CutScene {
 
     public GameObject npc;

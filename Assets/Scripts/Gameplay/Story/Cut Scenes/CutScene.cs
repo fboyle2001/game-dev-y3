@@ -1,7 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+* Represents a cut scene and gets the necessary scripts for them
+**/
 public abstract class CutScene : MonoBehaviour {
 
     struct CutSceneAction {
@@ -51,7 +53,9 @@ public abstract class CutScene : MonoBehaviour {
     }
 
     private void PlayNextAction() {
+        // Cycle through sequentially
         if(actions.Count == 0) {
+            // Restore the crosshair if needed, they are always forced back to the player at the start of a cut scene
             gameManager.GetComponent<UIManager>().SetCrosshairActive(gameManager.GetComponent<PlayerInventory>().GetCurrentWeapon() != null);
             return;
         }
@@ -66,7 +70,10 @@ public abstract class CutScene : MonoBehaviour {
         actions.Enqueue(new CutSceneAction(action, timeBeforeNext));
     }
     
+    // Used to check objectives etc.
     public abstract bool IsCutSceneActivatable();
+
+    // Queue actions to be run sequentially in the cut scene
     protected abstract void QueueActions();
 
 }

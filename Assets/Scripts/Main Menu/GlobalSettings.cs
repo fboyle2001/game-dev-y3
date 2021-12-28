@@ -1,3 +1,6 @@
+/**
+* Stores settings that should be passed between scenes
+**/
 public class GlobalSettings {
 
     public static string primaryName = "Primary";
@@ -6,6 +9,9 @@ public class GlobalSettings {
 
     public static int horizontalMouseSensitivity = 5;
     public static int verticalMouseSensitivity = 5;
+
+    // These are called when loaded in to the main game scene
+    // applies the difficulty settings and customisation
 
     public static void UpdateNames(LocaleManager localeManager) {
         localeManager.UpdateGlobalVariable("main_name", primaryName);

@@ -1,12 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
+/**
+* Implements dynamic localised UI dropdown
+**/
 public class LocalisedDropdown : MonoBehaviour {
     
     [System.Serializable]
+    // Represents a dropdown entry
     public struct DropdownEntry {
 
         public string localisationKey;
@@ -40,6 +42,7 @@ public class LocalisedDropdown : MonoBehaviour {
 
     void OnEnable() {
         FillDropdownOptions();
+        // Want to automatically update if the locale changes
         localeManager.SubscribeToLocaleChange(gameObject, OnLocaleChange);
     }
 
@@ -58,6 +61,7 @@ public class LocalisedDropdown : MonoBehaviour {
         int defIndex = 0;
 
         foreach(DropdownEntry entry in entries) {
+            // Localise the dropdown options
             data.Add(new TMP_Dropdown.OptionData(localeManager.GetString(entry.localisationKey), entry.sprite));
 
             if(entry.def) {
@@ -68,6 +72,8 @@ public class LocalisedDropdown : MonoBehaviour {
         }
 
         dropdown.AddOptions(data);
+
+        // Set the item that is selected
         dropdown.value = overrideDefault == -1 ? defIndex : overrideDefault;
     }
 

@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/**
+* UI actions for starting a new game
+**/
 public class NewGameDetails : MonoBehaviour {
     
     public GameObject mainPanel;
@@ -53,6 +54,7 @@ public class NewGameDetails : MonoBehaviour {
     }
 
     public void StartGame() {
+        // Set global settings and load the scene
         loadingText.SetActive(true);
         startButton.interactable = false;
         GlobalSettings.difficulty = difficulty;
@@ -63,6 +65,8 @@ public class NewGameDetails : MonoBehaviour {
 
     private void CheckCanStart() {
         bool canStart = true;
+
+        // Make sure we have names before we can start
 
         if(primaryName == null || primaryName == "") {
             canStart = false;
@@ -81,6 +85,8 @@ public class NewGameDetails : MonoBehaviour {
 
     private void UpdateDifficultyText() {
         string localeKey = "";
+
+        // Show information about the selected difficulty
 
         switch(difficulty) {
             case 0:
