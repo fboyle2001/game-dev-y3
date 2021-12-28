@@ -15,7 +15,7 @@
                 },
                 {
                     "name": "Jump",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "47da98bd-0b5f-4345-828a-7b1c9165080f",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -386,7 +386,7 @@
                     "name": "Click",
                     "type": "PassThrough",
                     "id": "8766b9ba-82f8-4186-a426-610f8d498010",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
                 },
@@ -405,6 +405,14 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Scroll",
+                    "type": "PassThrough",
+                    "id": "f51640de-3539-4c8f-9557-4d17f6950df1",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -412,17 +420,6 @@
                     "name": "",
                     "id": "c8fe74ee-51b7-476a-b6ae-4362a3cfb2b7",
                     "path": "<VirtualMouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Click",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "39b3b9a6-c3f2-49de-8e09-7bcd3e98ee2b",
-                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -443,17 +440,6 @@
                 },
                 {
                     "name": "",
-                    "id": "9c82540d-f861-4716-82c8-a01093ffc84f",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move Cursor",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "b79bdfde-b2a1-4633-9d93-4da6e4cd686b",
                     "path": "<VirtualMouse>/position",
                     "interactions": "",
@@ -465,12 +451,12 @@
                 },
                 {
                     "name": "",
-                    "id": "b638cd91-180c-46d2-80bb-a0fc14da39bc",
-                    "path": "<Mouse>/position",
+                    "id": "8f797c72-5173-4b67-a321-520215fbb2e0",
+                    "path": "<VirtualMouse>/scroll",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Point",
+                    "action": "Scroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

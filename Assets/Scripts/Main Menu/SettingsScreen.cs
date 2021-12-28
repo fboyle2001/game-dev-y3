@@ -10,10 +10,18 @@ public class SettingsScreen : MonoBehaviour
     public GameObject mainPanel;
     public TMP_Dropdown languageDropdown;
     public LocalisedDropdown localisedDropdownLocaliser;
-    public Slider horizontalSlider;
-    public Slider verticalSlider;
+
+    public TMP_Text horizontalValue;
+    public Button horizontalDecrease;
+    public Button horizontalIncrease;
+    public TMP_Text verticalValue;
+    public Button verticalDecrease;
+    public Button verticalIncrease;
     
     private LocaleManager localeManager;
+
+    private int horzChanges = 0;
+    private int vertChanges = 0;
 
     void Awake() {
         localeManager = GameObject.FindGameObjectWithTag("Locale").GetComponent<LocaleManager>();
@@ -37,8 +45,8 @@ public class SettingsScreen : MonoBehaviour
 
         languageDropdown.value = languageValue;
 
-        horizontalSlider.value = GlobalSettings.horizontalMouseSensitivity;
-        verticalSlider.value = GlobalSettings.verticalMouseSensitivity;
+        horizontalValue.text = GlobalSettings.horizontalMouseSensitivity.ToString();
+        verticalValue.text = GlobalSettings.verticalMouseSensitivity.ToString();
     }
 
     public void Back() {
@@ -64,12 +72,68 @@ public class SettingsScreen : MonoBehaviour
         localisedDropdownLocaliser.overrideDefault = value;
     }
 
-    public void OnHorizontalSensChange() {
-        GlobalSettings.horizontalMouseSensitivity = horizontalSlider.value;
+    public void IncreaseHS() {
+        ChangeHorizontalSens(1);
     }
 
-    public void OnVerticalSensChange() {
-        GlobalSettings.verticalMouseSensitivity = verticalSlider.value;
+    public void DecreaseHS() {
+        ChangeHorizontalSens(-1);
+    }
+
+    public void IncreaseVS() {
+        ChangeVerticalSens(1);
+    }
+
+    public void DecreaseVS() {
+        ChangeVerticalSens(-1);
+    }
+
+    private void ChangeHorizontalSens(int amount) {
+        if(horzChanges % 2 != 0) {
+            horzChanges++;
+            return;
+        }
+
+        int newVal = (int) Mathf.Clamp(GlobalSettings.horizontalMouseSensitivity + amount, 1, 10);
+        GlobalSettings.horizontalMouseSensitivity = newVal;
+        horizontalValue.text = newVal.ToString();
+
+        if(newVal <= 1) {
+            horizontalIncrease.interactable = true;
+            horizontalDecrease.interactable = false;
+        } else if (newVal >= 10) {
+            horizontalIncrease.interactable = false;
+            horizontalDecrease.interactable = true;
+        } else {
+            horizontalIncrease.interactable = true;
+            horizontalDecrease.interactable = true;
+        }
+
+        horzChanges++;
+    }
+
+    private void ChangeVerticalSens(int amount) {
+        if(vertChanges % 2 != 0) {
+            vertChanges++;
+            return;
+        }
+
+        int newVal = (int) Mathf.Clamp(GlobalSettings.verticalMouseSensitivity + amount, 1, 10);
+        GlobalSettings.verticalMouseSensitivity = newVal;
+        verticalValue.text = newVal.ToString();
+
+        if(newVal <= 1) {
+            verticalIncrease.interactable = true;
+            verticalDecrease.interactable = false;
+        } else if (newVal >= 10) {
+            verticalIncrease.interactable = false;
+            verticalDecrease.interactable = true;
+        } else {
+            verticalIncrease.interactable = true;
+            verticalDecrease.interactable = true;
+        }
+
+        vertChanges++;
     }
 
 }

@@ -10,8 +10,9 @@ public class TestingOverrides : MonoBehaviour {
 
     void Delayed() {
         // GetComponent<CharacterManager>().UnlockSecondary();
-        // GetComponent<PlayerResources>().AddGold(1000000);
-        // GetComponent<PlayerInventory>().AddItemToInventory("expertBow", 1);
+        GetComponent<PlayerResources>().AddGold(99999);
+        GetComponent<PlayerInventory>().AddItemToInventory("expertBow", 1);
+        // GetComponent<UIManager>().inventoryPanel.SetActive(true);
         // GetComponent<ObjectiveManager>().AddObjective("findSeeds", "Find Seeds", "crossZiplineA", new ObjectiveManager.RewardEntry(0, 0));
         // GetComponent<CharacterManager>().primary.GetComponent<ShowInteractText>().RecheckInterability();
         // GetComponent<MapSectionManager>().EnableMountainPathSection();

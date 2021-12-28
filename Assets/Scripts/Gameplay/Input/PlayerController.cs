@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         sprintingAction.performed += OnSprintingPerformed;
         sprintingAction.canceled += OnSprintingCancelled;
 
-        toggleInventoryAction.started += ToggleInventory;
+        toggleInventoryAction.performed += ToggleInventory;
 
         lookAroundAction.performed += StartLookAround;
         lookAroundAction.canceled += StopLookAround;
@@ -59,13 +59,13 @@ public class PlayerController : MonoBehaviour
         attackAction.performed += OnAttackPerformed;
         attackAction.canceled += OnAttackCancelled;
 
-        interactAction.started += OnInteractPerformed;
+        interactAction.performed += OnInteractPerformed;
 
         jumpAction.performed += OnJumpPerformed;
 
         switchCharacterAction.started += OnSwitchPerformed;
 
-        pauseAction.started += OnPause;
+        pauseAction.performed += OnPause;
     }
 
     private void OnDisable() {
@@ -77,7 +77,7 @@ public class PlayerController : MonoBehaviour
         sprintingAction.performed -= OnSprintingPerformed;
         sprintingAction.canceled -= OnSprintingCancelled;
         
-        toggleInventoryAction.started -= ToggleInventory;
+        toggleInventoryAction.performed -= ToggleInventory;
         
         lookAroundAction.performed -= StartLookAround;
         lookAroundAction.canceled -= StopLookAround;
@@ -85,13 +85,13 @@ public class PlayerController : MonoBehaviour
         attackAction.performed -= OnAttackPerformed;
         attackAction.canceled -= OnAttackCancelled;
 
-        interactAction.started -= OnInteractPerformed;
+        interactAction.performed -= OnInteractPerformed;
 
         jumpAction.performed -= OnJumpPerformed;
 
         switchCharacterAction.started -= OnSwitchPerformed;
 
-        pauseAction.started -= OnPause;
+        pauseAction.performed -= OnPause;
     }
 
     private void OnActiveCharacterChange(GameObject active) {
@@ -99,12 +99,12 @@ public class PlayerController : MonoBehaviour
     }
 
     private void ToggleInventory(InputAction.CallbackContext context) {
-        if(uiManager.shopPanel.activeSelf || currentController.IsFrozen()) return;
+        if(uiManager.shopPanel.activeSelf || uiManager.pausePanel.activeSelf || currentController.IsFrozen()) return;
         uiManager.inventoryPanel.SetActive(!uiManager.inventoryPanel.activeSelf);
-        Cursor.visible = !Cursor.visible;
     }
 
     private void OnMovePerformed(InputAction.CallbackContext context) {
+        if(uiManager.shopPanel.activeSelf || uiManager.pausePanel.activeSelf || uiManager.inventoryPanel.activeSelf) return;
         currentController.StartMovement(context.ReadValue<Vector2>());
     }
 
@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void StartLookAround(InputAction.CallbackContext context) {
-        if(uiManager.shopPanel.activeSelf || uiManager.inventoryPanel.activeSelf) return;
+        if(uiManager.shopPanel.activeSelf || uiManager.pausePanel.activeSelf || uiManager.inventoryPanel.activeSelf) return;
         currentController.StartLookAround(context.ReadValue<Vector2>());
     }
 
@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnAttackPerformed(InputAction.CallbackContext context) {
-        if(uiManager.shopPanel.activeSelf || uiManager.inventoryPanel.activeSelf) return;
+        if(uiManager.shopPanel.activeSelf || uiManager.inventoryPanel.activeSelf || uiManager.pausePanel.activeSelf || currentController.IsFrozen()) return;
         currentController.StartAttack();
     }
 
@@ -139,11 +139,12 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnInteractPerformed(InputAction.CallbackContext context) {
-        if(uiManager.inventoryPanel.activeSelf || currentController.IsFrozen()) return;
+        if(uiManager.inventoryPanel.activeSelf || uiManager.pausePanel.activeSelf || currentController.IsFrozen()) return;
         currentController.Interact();
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext context) {
+        if(uiManager.inventoryPanel.activeSelf || uiManager.shopPanel.activeSelf || uiManager.pausePanel.activeSelf || currentController.IsFrozen()) return;
         currentController.Jump();
     }
 
@@ -155,7 +156,6 @@ public class PlayerController : MonoBehaviour
         uiManager.inventoryPanel.SetActive(false);
         uiManager.shopPanel.SetActive(false);
         uiManager.pausePanel.SetActive(!uiManager.pausePanel.activeSelf);
-        Cursor.visible = uiManager.pausePanel.activeSelf;
     }
 
 }

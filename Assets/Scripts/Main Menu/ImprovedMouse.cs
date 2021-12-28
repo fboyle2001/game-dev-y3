@@ -11,70 +11,102 @@ public class ImprovedMouse : MonoBehaviour {
     
     public InputActionProperty moveProp;
     public InputActionProperty clickProp;
+    public InputActionProperty scrollProp;
+
     public RectTransform cursorTransform;
-    public RectTransform canvasTransform;
+    public Canvas canvas;
 
     private Mouse virtualMouse;
 
-    private InputAction moveCursorAction;
-    private InputAction clickAction;
-
     private Vector2 direction = Vector2.zero;
-    private float mouseSpeed = 1000;
+    private float mouseSpeed = 100;
+
+    private Vector2 scrollDirection = Vector2.zero;
+    private float scrollSpeed = 40;
 
     void Awake() {
+        virtualMouse = InputSystem.AddDevice("VirtualMouse") as Mouse;
+        Debug.Log($"VM Added: {virtualMouse.enabled}");
+        InputSystem.DisableDevice(virtualMouse);
     }
 
     void OnEnable() {
-        virtualMouse = InputSystem.AddDevice("VirtualMouse") as Mouse;
-
-        if(!virtualMouse.added) {
-            Debug.Log("**Virtual Mouse is not added**");
-        }
-
         if(!virtualMouse.enabled) {
-            Debug.Log("**Virtual Mouse is not enabled**");
+            InputSystem.EnableDevice(virtualMouse);
         }
 
-        InputUser.PerformPairingWithDevice(virtualMouse);
-
-        moveProp.action.performed += ctx => { direction = ctx.ReadValue<Vector2>(); };
-        moveProp.action.canceled += _ => direction = Vector2.zero;
+        moveProp.action.performed += UpdateCursorDirection;
+        moveProp.action.canceled += ZeroCursorDirection;
         moveProp.action.Enable();
 
-        clickProp.action.started += Click;
-        clickProp.action.canceled += Click;
+        clickProp.action.performed += Click;
         clickProp.action.Enable();
 
-        cursorTransform.position = virtualMouse.position.ReadValue();
+        scrollProp.action.performed += UpdateScrollDirection;
+        scrollProp.action.canceled += ZeroScrollDirection;
+        scrollProp.action.Enable();
 
+        InputState.Change(virtualMouse.position, cursorTransform.anchoredPosition);
         InputSystem.onAfterUpdate += UpdateCursor;
     }
 
     void OnDisable() {
-        InputSystem.RemoveDevice(virtualMouse);
+        moveProp.action.performed -= UpdateCursorDirection;
+        moveProp.action.canceled -= ZeroCursorDirection;
         moveProp.action.Disable();
+
+        clickProp.action.performed -= Click;
         clickProp.action.Disable();
+
+        scrollProp.action.performed -= UpdateScrollDirection;
+        scrollProp.action.canceled -= ZeroScrollDirection;
+        scrollProp.action.Disable();
+        
         InputSystem.onAfterUpdate -= UpdateCursor;
+
+        InputSystem.DisableDevice(virtualMouse);
     }
 
-    void UpdateCursor() {
-        if(direction == Vector2.zero) return;
-
-        Vector2 currentPosition = virtualMouse.position.ReadValue();
-        Vector2 delta = direction * mouseSpeed * Time.deltaTime;
-        Vector2 newPosition = currentPosition + delta;
-
-        InputState.Change(virtualMouse.position, newPosition);
-        InputState.Change(virtualMouse.delta, delta);
-
-        AnchorCursor(newPosition);
+    void OnDestroy() {
+        InputSystem.RemoveDevice(virtualMouse);
     }
 
-    private void AnchorCursor(Vector2 pos) {
-        Vector2 ap;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasTransform, pos, null, out ap);
-        cursorTransform.anchoredPosition = ap;
+    private void ZeroScrollDirection(InputAction.CallbackContext ctx) {
+        scrollDirection = Vector2.zero;
+    }
+
+    private void UpdateScrollDirection(InputAction.CallbackContext ctx) {
+        scrollDirection = ctx.ReadValue<Vector2>();
+    }
+
+    private void ZeroCursorDirection(InputAction.CallbackContext ctx) {
+        direction = Vector2.zero;
+    }
+
+    private void UpdateCursorDirection(InputAction.CallbackContext ctx) {
+        direction = ctx.ReadValue<Vector2>();
+    }
+
+    private void UpdateCursor() {
+        if(direction != Vector2.zero) {
+            Vector2 currentPosition = virtualMouse.position.ReadValue();
+            float deltaX = direction.x * mouseSpeed * Time.unscaledDeltaTime * GlobalSettings.horizontalMouseSensitivity;
+            float deltaY = direction.y * mouseSpeed * Time.unscaledDeltaTime * GlobalSettings.verticalMouseSensitivity;
+            Vector2 delta = new Vector2(deltaX, deltaY);
+            Vector2 newPosition = currentPosition + delta;
+
+            newPosition.x = Mathf.Clamp(newPosition.x, canvas.pixelRect.xMin, canvas.pixelRect.xMax);
+            newPosition.y = Mathf.Clamp(newPosition.y, canvas.pixelRect.yMin, canvas.pixelRect.yMax);
+
+            InputState.Change(virtualMouse.position, newPosition);
+            InputState.Change(virtualMouse.delta, delta);
+
+            cursorTransform.anchoredPosition = newPosition;
+        }
+
+        if(scrollDirection != Vector2.zero) {
+            InputState.Change(virtualMouse.scroll, scrollDirection * scrollSpeed);
+        }
     }
 
     private void Click(InputAction.CallbackContext ctx) {

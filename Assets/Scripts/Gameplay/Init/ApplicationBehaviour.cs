@@ -20,7 +20,7 @@ public class ApplicationBehaviour : MonoBehaviour
 
     void Start() {
         Application.targetFrameRate = -1;
-        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = false;
     }
 

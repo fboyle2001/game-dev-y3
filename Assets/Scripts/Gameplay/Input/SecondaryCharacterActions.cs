@@ -8,9 +8,9 @@ public class SecondaryCharacterActions : MonoBehaviour, ICharacterActions {
     public float sprintScalar = 2;
     public float maxWalkVelocity = 10;
     public float maxSprintVelocity = 15;
-    public float mouseSpeed = 200;
     public GameObject primaryCamera;
 
+    public float mouseSpeed = 80;
     private Rigidbody rb;
     private GameObject gameManager;
     private WeaponManager weaponManager;

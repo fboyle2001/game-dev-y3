@@ -4,8 +4,8 @@ public class GlobalSettings {
     public static string secondaryName = "Secondary";
     public static int difficulty = 1;
 
-    public static float horizontalMouseSensitivity = 0.5f;
-    public static float verticalMouseSensitivity = 0.5f;
+    public static int horizontalMouseSensitivity = 5;
+    public static int verticalMouseSensitivity = 5;
 
     public static void UpdateNames(LocaleManager localeManager) {
         localeManager.UpdateGlobalVariable("main_name", primaryName);

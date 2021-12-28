@@ -654,11 +654,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 914084764712960
-    m_Localized: Horizontale
+    m_Localized: 'Horizontale:'
     m_Metadata:
       m_Items: []
   - m_Id: 914123432001536
-    m_Localized: Verticale
+    m_Localized: 'Verticale:'
     m_Metadata:
       m_Items: []
   - m_Id: 1095557912330240

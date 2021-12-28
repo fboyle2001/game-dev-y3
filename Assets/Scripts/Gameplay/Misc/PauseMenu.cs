@@ -67,11 +67,11 @@ public class PauseMenu : MonoBehaviour {
     }
 
     public void OnHorizontalSensChange() {
-        GlobalSettings.horizontalMouseSensitivity = horizontalSlider.value;
+        // GlobalSettings.horizontalMouseSensitivity = horizontalSlider.value;
     }
 
     public void OnVerticalSensChange() {
-        GlobalSettings.verticalMouseSensitivity = verticalSlider.value;
+        // GlobalSettings.verticalMouseSensitivity = verticalSlider.value;
     }
 
     public void Quit() {
