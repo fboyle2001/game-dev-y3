@@ -134,7 +134,7 @@ PlayerSettings:
     16:10: 0
     16:9: 1
     Others: 0
-  bundleVersion: 0.7.1 (Beta)
+  bundleVersion: 0.8.0 (Beta)
   preloadedAssets:
   - {fileID: 11400000, guid: 2762cbf8c7e57e34ea8d59cce4556c43, type: 2}
   - {fileID: 0}
