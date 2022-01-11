@@ -110,6 +110,8 @@ public class PlayerController : MonoBehaviour
         // When the active changes update the controller so that actions apply
         // to the correct character e.g. moving on the correct character
         this.currentController = active.GetComponent<ICharacterActions>();
+        // End rumble if applicable
+        InputSystem.ResetHaptics();
     }
 
     private void ToggleInventory(InputAction.CallbackContext context) {
@@ -182,6 +184,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnPause(InputAction.CallbackContext context) {
         // Open the pause menu, closes all other UI panels
+        InputSystem.PauseHaptics();
         uiManager.inventoryPanel.SetActive(false);
         uiManager.shopPanel.SetActive(false);
         uiManager.pausePanel.SetActive(!uiManager.pausePanel.activeSelf);

@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.DualShock;
 
 /**
 * Stats specific to each character rather than globally to the player
@@ -12,6 +14,8 @@ public class CharacterStats : MonoBehaviour {
 
     private List<System.Action<CharacterStats, float>> healthUpdateListeners = new List<System.Action<CharacterStats, float>>();
     private List<System.Action<CharacterStats>> statUpdateListeners = new List<System.Action<CharacterStats>>();
+
+    private float rumbleDuration = 1.0f;
 
     private float currentHealth;
     private float originalMaxHealth;
@@ -85,7 +89,14 @@ public class CharacterStats : MonoBehaviour {
         float realDamage = damage / (0.04f * stats.GetArmour() + 1);
         currentHealth = Mathf.Clamp(currentHealth - realDamage, 0, maxHealth);
         AudioSource.PlayClipAtPoint(damageClip, transform.position);
+
+        // Feedback via rumble if playing on controller
+        Gamepad.current?.SetMotorSpeeds(0.3f, 0.6f);
+
         PropagateHealthEvent(-realDamage);
+
+        CancelInvoke("EndRumble");
+        Invoke("EndRumble", rumbleDuration);
     }
 
     public void Heal(float amount) {
@@ -128,6 +139,10 @@ public class CharacterStats : MonoBehaviour {
 
     private void PropagateHealthEvent(float change) {
         healthUpdateListeners.ForEach(action => action(this, change));
+    }
+
+    private void EndRumble() {
+        InputSystem.ResetHaptics();
     }
 
 }

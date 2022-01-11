@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 /**
 * Events for the pause menu UI
@@ -52,6 +53,8 @@ public class PauseMenu : MonoBehaviour {
     void OnDisable() {
         // Go back to normal time
         Time.timeScale = 1;
+        // Resume haptics
+        InputSystem.ResumeHaptics();
     }
 
     public void Close() {
