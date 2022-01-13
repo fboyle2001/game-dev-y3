@@ -26,10 +26,12 @@ public class FinaleSpawnManager : MonoBehaviour {
 
     private GameObject gameManager;
     private DialogueManager dialogueManager;
+    private ObjectiveManager objectiveManager;
 
     void Awake() {
         gameManager = GameObject.FindGameObjectWithTag("Game Manager");
         dialogueManager = gameManager.GetComponent<DialogueManager>();
+        objectiveManager = gameManager.GetComponent<ObjectiveManager>();
         EnemyBase.RegisterGlobalDamageHandler(gameObject, OnDamageHandler);
     }
 
@@ -115,6 +117,7 @@ public class FinaleSpawnManager : MonoBehaviour {
         // Grow tree as game ends
         tree.transform.localScale = new Vector3(maxScale, maxScale, maxScale);
         maxScale = 24;
+        objectiveManager.CompleteObjective("finish");
         dialogueManager.QueueDialogue("speaker_you", "fnl_celebrate", 4);
         spawnerEffect.gameObject.SetActive(false);
         Invoke("EndGame", 5f);

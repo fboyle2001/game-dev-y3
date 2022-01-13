@@ -96,78 +96,16 @@ public class PlayerResources : MonoBehaviour {
     }
 
     private void GrantLevelUpReward(int levelReached) {
-        // Rewards are pre-determined for the first 22 levels which seems to be max level
-        // Gives bonus stats when they level up
-        switch(levelReached) {
-            case 1:
-                stats.AddMaxHealthMultiplier(0.1f);
-                break;
-            case 2:
-                stats.AddRegenPerSecond(0.2f);
-                break;
-            case 3:
-                stats.AddMaxHealthMultiplier(0.1f);
-                break;
-            case 4:
-                stats.AddMaxHealthMultiplier(0.1f);
-                break;
-            case 5:
-                stats.AddMaxHealthMultiplier(0.1f);
-                break;
-            case 6:
-                stats.AddMaxHealthMultiplier(0.1f);
-                break;
-            case 7:
-                stats.AddArmour(5f);
-                break;
-            case 8:
-                stats.AddDamageMultiplier(0.2f);
-                break;
-            case 9:
-                stats.AddMaxHealthMultiplier(0.1f);
-                break;
-            case 10:
-                stats.AddRegenPerSecond(0.2f);
-                break;
-            case 11:
-                stats.AddMaxHealthMultiplier(0.15f);
-                break;
-            case 12:
-                stats.AddArmour(5f);
-                break;
-            case 13:
-                stats.AddMaxHealthMultiplier(0.2f);
-                break;
-            case 14:
-                stats.AddDamageMultiplier(0.2f);
-                break;
-            case 15:
-                stats.AddMaxHealthMultiplier(0.2f);
-                break;
-            case 16:
-                stats.AddArmour(5f);
-                break;
-            case 17:
-                stats.AddRegenPerSecond(0.2f);
-                break;
-            case 18:
-                stats.AddDamageMultiplier(0.2f);
-                break;
-            case 19:
-                stats.AddMaxHealthMultiplier(0.2f);
-                break;
-            case 20:
-                stats.AddMaxHealthMultiplier(0.2f);
-                break;
-            case 21:
-                stats.AddDamageMultiplier(0.2f);
-                break;
-            case 22:
-                stats.AddArmour(5f);
-                break;
-            default:
-                break;
-        }
+        // Gain 1 armour and 8% max health per level
+        // Every 5 levels gain 0.2 health/s and 20% damage increase
+
+        if(levelReached % 5 == 0) {
+            stats.AddRegenPerSecond(0.2f);
+            stats.AddDamageMultiplier(0.2f);
+        } 
+
+        stats.AddArmour(1f);
+        stats.AddMaxHealthMultiplier(0.08f);
     }
 
 }
